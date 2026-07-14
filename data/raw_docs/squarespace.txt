@@ -1,0 +1,484 @@
+Squarespace Python API Docs | dltHub
+←
+All Scaffoldings
+Squarespace Python API Docs | dltHub
+Build a Squarespace-to-database pipeline in Python using dlt with AI Workbench support for Claude Code, Cursor, and Codex.
+Last updated:
+May 19, 2026
+Squarespace is a website building and commerce platform that provides REST Commerce APIs to manage merchant site data (products, orders, inventory, transactions) and site/content APIs to read site data. The REST API base URL is
+https://api.squarespace.com/{api-version}
+and All requests require a Bearer token (API key or OAuth access token)..
+dlt is an open-source Python library that handles authentication, pagination, and schema evolution automatically. dlthub provides AI context files that enable code assistants to generate production-ready pipelines. Install with
+uv add "dlt[hub]"
+and start loading Squarespace data in under 10 minutes.
+What data can I load from Squarespace?
+Here are some of the endpoints you can load from Squarespace:
+Resource
+Endpoint
+Method
+Data selector
+Description
+authorization_website
+authorization/website
+GET
+Retrieve basic site information associated with the API key.
+products
+commerce/products
+GET
+products
+Retrieve all products; response contains a
+products
+array and pagination info.
+product_by_id
+commerce/products/{productId}
+GET
+products
+Retrieve specific product(s); response includes a
+products
+array.
+orders
+commerce/orders
+GET
+orders
+Retrieve orders for the merchant site; response includes an
+orders
+array.
+inventory
+commerce/inventory
+GET
+inventory
+Retrieve inventory records; response contains an
+inventory
+array.
+transactions
+commerce/transactions
+GET
+transactions
+Retrieve transactions; response contains a
+transactions
+array.
+webhook_subscriptions
+commerce/webhook-subscriptions
+GET
+webhookSubscriptions
+List webhook subscriptions for the site; response contains a
+webhookSubscriptions
+array.
+customers_profiles
+profiles
+GET
+profiles
+Retrieve site profiles; response contains a
+profiles
+array or object.
+How do I authenticate with the Squarespace API?
+Commerce API requests must include an Authorization header with a Bearer token (API key or OAuth access token). Example: Authorization: Bearer YOUR_SECRET_API_KEY. Include a User-Agent header for identifying your application.
+1. Get your credentials
+Sign into your Squarespace account and open the Developer tools panel.
+Navigate to Developer API Keys.
+Click
+Generate Key
+, give it a name, and select required permissions such as Orders, Inventory, Transactions, etc.
+Copy the generated API key (it is shown only once).
+Store the key securely and use it as a Bearer token in API requests.
+2. Add them to
+.dlt/secrets.toml
+Copy
+[
+sources.squarespace_source
+]
+api_key
+=
+"your_squarespace_api_key_here"
+dlt reads this automatically at runtime — never hardcode tokens in your pipeline script. For production environments, see
+setting up credentials with dlt
+for environment variable and vault-based options.
+How do I set up and run the pipeline?
+Set up a virtual environment and install dlt:
+Copy
+uv init
+uv
+add
+"dlt[hub]"
+1. Install the
+dlt
+AI Workbench:
+Copy
+uv run dlthub ai init
+--agent
+<
+your-agent
+>
+# <agent>: claude | cursor | codex
+This installs project rules, a secrets management skill, appropriate ignore files, and configures the
+dlt
+MCP server for your agent.
+Learn more →
+2. Install the
+rest-api-pipeline
+toolkit:
+Copy
+uv run dlthub ai toolkit
+install
+rest-api-pipeline
+This loads the skills and context about
+dlt
+the agent uses to build the pipeline iteratively, efficiently, and safely. The agent uses MCP tools to inspect credentials — it never needs to read your
+secrets.toml
+directly.
+Learn more →
+3. Start LLM-assisted coding:
+Use /find-source to load data from the Squarespace API into DuckDB.
+The
+rest-api-pipeline
+toolkit takes over from here — it reads relevant API documentation, presents you with options for which endpoints to load, and follows a structured workflow to scaffold, debug, and validate the pipeline step by step.
+4. Run the pipeline:
+Copy
+uv run python squarespace_pipeline.py
+If everything is configured correctly, you'll see output like this:
+Copy
+Pipeline squarespace_pipeline load step completed
+in
+0.26
+seconds
+1
+load package
+(
+s
+)
+were loaded to destination duckdb and into dataset squarespace_data
+The duckdb destination used duckdb:/squarespace.duckdb location to store data
+Load package
+1749667187.541553
+is LOADED and contains no failed
+jobs
+Inspect your pipeline and data:
+Copy
+uv run dlthub show
+This opens the Pipeline Dashboard where you can verify pipeline state, load metrics, schema (tables, columns, types), and query the loaded data directly.
+Python pipeline example
+This example loads
+products
+and
+authorization_website
+from the Squarespace API into DuckDB. It mirrors the endpoint and data selector configuration from the table above:
+Copy
+import
+dlt
+from
+dlt
+.
+sources
+.
+rest_api
+import
+RESTAPIConfig
+,
+rest_api_resources
+@dlt
+.
+source
+def
+squarespace_source
+(
+api_key
+=
+dlt
+.
+secrets
+.
+value
+)
+:
+config
+:
+RESTAPIConfig
+=
+{
+"client"
+:
+{
+"base_url"
+:
+"https://api.squarespace.com/{api-version}"
+,
+"auth"
+:
+{
+"type"
+:
+"bearer"
+,
+"token"
+:
+api_key
+,
+}
+,
+}
+,
+"resources"
+:
+[
+{
+"name"
+:
+"authorization_website"
+,
+"endpoint"
+:
+{
+"path"
+:
+"authorization/website"
+}
+}
+,
+{
+"name"
+:
+"products"
+,
+"endpoint"
+:
+{
+"path"
+:
+"commerce/products"
+,
+"data_selector"
+:
+"products"
+}
+}
+]
+,
+}
+yield
+from
+rest_api_resources
+(
+config
+)
+def
+get_data
+(
+)
+-
+>
+None
+:
+pipeline
+=
+dlt
+.
+pipeline
+(
+pipeline_name
+=
+"squarespace_pipeline"
+,
+destination
+=
+"duckdb"
+,
+dataset_name
+=
+"squarespace_data"
+,
+)
+load_info
+=
+pipeline
+.
+run
+(
+squarespace_source
+(
+)
+)
+print
+(
+load_info
+)
+To add more endpoints, append entries from the resource table to the
+"resources"
+list using the same
+name
+,
+path
+, and
+data_selector
+pattern.
+How do I query the loaded data?
+Once the pipeline runs, dlt creates one table per resource. You can query with Python or SQL.
+Python (pandas DataFrame):
+Copy
+import
+dlt
+data
+=
+dlt
+.
+pipeline
+(
+"squarespace_pipeline"
+)
+.
+dataset
+(
+)
+sessions_df
+=
+data
+.
+products
+.
+df
+(
+)
+print
+(
+sessions_df
+.
+head
+(
+)
+)
+SQL (DuckDB example):
+Copy
+SELECT
+*
+FROM
+squarespace_data
+.
+products
+LIMIT
+10
+;
+In a marimo or Jupyter notebook:
+Copy
+import
+dlt
+data
+=
+dlt
+.
+pipeline
+(
+"squarespace_pipeline"
+)
+.
+dataset
+(
+)
+data
+.
+products
+.
+df
+(
+)
+.
+head
+(
+)
+See
+how to explore your data in marimo Notebooks
+and
+how to query your data in Python with dataset
+.
+What destinations can I load Squarespace data to?
+dlt supports loading into any of these destinations — only the
+destination
+parameter changes:
+Destination
+Example value
+DuckDB (local, default)
+"duckdb"
+PostgreSQL
+"postgres"
+BigQuery
+"bigquery"
+Snowflake
+"snowflake"
+Redshift
+"redshift"
+Databricks
+"databricks"
+Filesystem (S3, GCS, Azure)
+"filesystem"
+Change the destination in
+dlt.pipeline(destination="snowflake")
+and add credentials in
+.dlt/secrets.toml
+. See the
+full destinations list
+.
+Troubleshooting
+Authentication failures
+If you receive 401 Unauthorized, verify the Authorization header is present and uses a valid Bearer token. API keys are shown only once at creation—if lost, generate a new key. 401 can also indicate expired or revoked OAuth tokens.
+Permission / Forbidden errors
+403 Forbidden indicates the token lacks required permissions for the requested Commerce scope (Orders, Inventory, Transactions, etc.). Ensure the API key has appropriate scopes in Developer API Keys settings.
+Rate limiting & 5xx server errors
+Commerce APIs use standard HTTP codes. For 5xx errors include the
+contextId
+in support requests. Retry with exponential backoff for transient 5xx errors. Check response body for an error object with
+type
+,
+subtype
+,
+message
+, and
+contextId
+.
+Pagination
+Many list endpoints return a top‑level array field (e.g.,
+products
+,
+orders
+) plus a
+pagination
+object with
+hasNextPage
+,
+nextPageCursor
+, and a pre‑built
+nextPageUrl
+. Use the cursor parameter (or
+nextPageUrl
+) to iterate pages.
+Response shape quirks
+Squarespace always returns a JSON error object with fields (type, subtype, message, details, contextId). Array fields with no data may be returned as null or an empty array—code should handle both.
+Ensure that the API key is valid to avoid 401 Unauthorized errors. Also, verify endpoint paths and parameters to avoid 404 Not Found errors.
+Next steps
+Continue your data engineering journey with the other toolkits of the
+dltHub AI Workbench
+:
+data-exploration
+— Build custom notebooks, charts, and dashboards for deeper analysis with marimo notebooks.
+dlthub-runtime
+— Deploy, schedule, and monitor your pipeline in production.
+Copy
+uv run dlthub ai toolkit
+install
+data-exploration
+uv run dlthub ai toolkit
+install
+dlthub-runtime
+How to deploy a pipeline
+How to explore your data in marimo Notebooks
+How to query your data in Python with dataset
+Join the dlt community on Slack
+Was this page helpful?
+Yes
+No
+Community Hub
+Need more dlt context for
+Squarespace
+?
+Request dlt skills, commands,
+AGENT.md
+files, and AI-native context.
+Request more context
+Submit context

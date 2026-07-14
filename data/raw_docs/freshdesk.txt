@@ -1,0 +1,171 @@
+Freshdesk resource authentication - 💬 Queries and Resources - Retool Forum
+Freshdesk resource authentication
+💬 Queries and Resources
+Matthijspo
+September 8, 2023,  9:33am
+1
+Good Morning Retool Community,
+For our customer service, we use Freshdesk as our Support system. I would like to link Freshdesk to Retool but unfortunately authentication is difficult.
+Even though I follow Freshdesk's documentation I just don't manage to authenticate and continuously get 401.
+Right now I have it set up as follows:
+Schermafbeelding 2023-09-08 om 11.14.07
+990×699 38.1 KB
+Can anyone help me further?
+victoria
+October 13, 2023, 10:11pm
+2
+Hey Matt! According to my quick glance of the Freshdesk API docs, a 401 "Indicates that the Authorization header is either missing or incorrect. You can learn more about the Authorization header
+here
+"
+Are you passing in an Authorization header anywhere in your Retool Resource?
+coda1024
+January 4, 2024,  1:37am
+3
+Very interesting, did you get it working? I have the same issue
+heres the params
+it returns
+{
+"code": "invalid_credentials",
+"message": "You have to be logged in to perform this action."
+}
+Matthijspo
+January 4, 2024,  9:57am
+4
+Unfortunately, no solution yet..
+coda1024
+January 5, 2024,  1:20am
+5
+Note: this post was incorrect - see solution below.
+I think i*ts a FreshDesk issue - even their example is broken
+on this page
+https://developers.freshdesk.com/api/#getting-started
+they show this usage:
+image
+744×529 40.9 KB
+and using CURL with my domain / API key gives the same error as in Retool:
+{"code":"invalid_credentials","message":"You have to be logged in to perform this action."}
+Notes:
+I am logged into Freshdesk in the browser
+If I open
+https://mydomain.freshdesk.com/api/v2/tickets
+in my browser, I get a JSON of tickets
+In Retool, using the Auth Header - the API returns the same 'not logged in' error.
+I'll see if I can find out more...
+(okay - I found how to fix it, the API key probably changed lol - go to the account and get it again -
+How to find your API key : Freshdesk
+)
+then this curl example will work
+curl -v -u <api-key-here>:x -H "Content-Type: application/json" -X GET 'https://yourdomain.freshdesk.com/api/v2/tickets'
+I'll see if it works in Retool....
+coda1024
+January 5, 2024,  4:07am
+8
+It works!
+get the API key again from FreshDesk (
+How to find your API key : Freshdesk
+)
+base 64 encode the key plus ':x' eg mykey:x (use
+https://www.base64encode.org/
+)
+use the settings in this screenshot
+image
+653×615 18.5 KB
+done.
+bobthebear
+January 5, 2024,  4:08am
+9
+I've never used freshdesk before, but taking a look at the docs and some code there are a few interesting things that might help out.
+the 401 error seems like it actually has 2 possible meanings.  the first is from the docs:
+If you are sure that your credentials are correct, but are still unable to access your helpdesk, make sure that the "APIkey:X" is Base64-encoded before passing it as an "Authorization" header.
+I'm not sure how Retool handles the Authorization header, but the api_key:x should be base64 encoded when it's sent.  You'll have to use a browsers dev tools and check the network tab to see the actual headers being sent out.  it should look something like
+Authorization: Bearer HSIURSBHES73439889HJSD
+the other thing I found is from looking at their sample code on
+github
+where I noticed them using unirest.  I actually had to look this one up, but the unirest call actually uses a flag named "sendImmediately".  checking the
+unirest docs
+you find this description for sendImmediately:
+Optional
+; Defaults to
+true
+; Flag to determine whether Request should send the basic authentication header along with the request. Upon being
+false
+, Request will retry with a
+proper
+authentication header after receiving a
+401
+response from the server (which must contain a
+WWW-Authenticate
+header indicating the required authentication method)
+this is where I thought there might be a 2nd possible meaning to that 401 error.  checking what
+WWW-Authenticate
+is used for:
+A server using
+HTTP authentication
+will respond with a
+401
+Unauthorized
+response to a request for a protected resource. This response must include at least one
+WWW-Authenticate
+header and at least one
+challenge
+, to indicate what authentication schemes can be used to access the resource (and any additional data that each particular scheme needs).
+and more importantly, further down:
+After receiving the
+WWW-Authenticate
+header, a client will typically prompt the user for credentials, and then re-request the resource. This new request uses the
+Authorization
+header to supply the credentials to the server, encoded appropriately for the selected "challenge" authentication method.
+I think this is why their github examples use unirest, the library handles this whole 'get a 401 error, change the Authorization header, then resend the request' process keeping their samples simple so they don't have to document this (ya ok, i don't know that for sure but it is odd how this is no where in their docs).
+ok so, where does this leave us if it isn't the base64 encoding?  well, i think the best solution would be a js or python one.  you could try chaining a bunch of queries using the fail/success events but I think since you might need to process the 401 response then decide what to do a pure code solution will result in less overhead getting users logged in quicker and avoiding any Retool timeouts that could result from this longer authorization process.  personally, it looks like using a workflow and python will be easier.... it doesn't require extra libraries or odd processing of responses.  you can find samples
+here
+.  if you choose to go the js route, unirest does have a
+cdn
+so you could try adding the library, or you could try the
+esm script
+in a custom component.  otherwise, for js you'll have to use fetch and process everything afterwards including resending the request (do note, it is possible for the API to request more than 1 challenge in which case you'd have to keep resending an 'answer' after each one until you finally get that 200)
+EDIT:
+I had to re-read the WWW-Authenticate stuff, I think I got it backwards.  the freshdesk code uses true for sendImmediately, so it doesn't actually try and resend when it recieves a 401.  instead freshdesk seems to want you to figure it out on your own or email their support with whatever the X-request-id header is in the 401 response.  since I still have no idea how the freshdesk API works or responds I'm going to leave the WWW-Authenticate stuff in here, just incase someone finds themselves stuck after doublechecking the base64 encoding(plus that took a while to work out lol but if it's too confusing to keep in just say something, I'll remove it)
+Matthijspo
+January 5, 2024,  6:12pm
+10
+Haha wow respect for solving for this issue, it works for me now too! How you fixed it I don't know, but super thanks!!!
+Related topics
+Topic
+Replies
+Views
+Activity
+Curl works but REST API doesn't
+💬 Queries and Resources
+rest-api
+5
+125
+August 18, 2025
+Why (Refresh Auth Workflow) not getting triggered when API responds with 401/403?
+💬 App Building
+31
+522
+March 27, 2026
+GraphQL Authorization with URL token
+💬 Queries and Resources
+graphql
+,
+custom-auth
+,
+authentication
+11
+4402
+August 2, 2023
+Unable to POST with OAuth1 Authentication
+💬 Queries and Resources
+bug
+,
+authentication
+11
+2483
+March 24, 2025
+422 Error When Trying to Use OpenAPI 3.1.0 Resource
+💬 Queries and Resources
+bug
+10
+185
+February 12, 2026

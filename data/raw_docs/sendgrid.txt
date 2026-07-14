@@ -1,0 +1,71 @@
+SendGrid v3 API reference | SendGrid Docs | Twilio
+Skip to content
+Skip to navigation
+Skip to topbar
+Twilio SendGrid Logo
+Twilio SendGrid Docs
+Search
+Search
+Search
+Page tools
+View as Markdown
+Copy as Markdown
+On this page
+Looking for more inspiration?
+Visit the
+Developer Hub
+Page Tools
+View as Markdown
+Copy as Markdown
+SendGrid v3 API reference
+Positive Feedback
+Negative Feedback
+The SendGrid v3 Web API provides a REST interface to send email at scale and ensure your application can handle high volumes.
+The SendGrid API endpoints allow you to integrate with your tech stack to send transactional emails, create marketing campaigns, manage your contacts, and monitor the health of your email statistics.
+This API reference provides complete documentation for every endpoint and operation. For an overview of using SendGrid APIs, see the
+Getting Started
+section.
+Additional resources
+additional-resources page anchor
+Positive Feedback
+Negative Feedback
+Onboarding guide
+onboarding-guide page anchor
+Positive Feedback
+Negative Feedback
+For a full-featured guide to ensure you build your email program on a solid foundation, see the
+Email API Onboarding guide
+.
+Email API quickstarts
+email-api-quickstarts page anchor
+Positive Feedback
+Negative Feedback
+Jump to an email quickstart in your programming language of choice to implement the Mail Send API.
+C#
+Go
+Java
+Node.js
+PHP
+Python
+Ruby
+SDKs and tools
+sdks-and-tools page anchor
+Positive Feedback
+Negative Feedback
+See our open-source SDKs and tools to integrate with SendGrid.
+C#
+(link takes you to an external page)
+Go
+(link takes you to an external page)
+Java
+(link takes you to an external page)
+Node.js
+(link takes you to an external page)
+PHP
+(link takes you to an external page)
+Python
+(link takes you to an external page)
+Ruby
+(link takes you to an external page)
+OpenAPI specification
+(link takes you to an external page)

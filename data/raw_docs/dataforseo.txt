@@ -1,0 +1,118 @@
+Authentication – DataForSEO API v.3
+Authentication
+from client import RestClient
+#You can download this file from here https://cdn.dataforseo.com/v3/examples/python/python_Client.zip
+#Instead of 'login' and 'password' use your credentials from https://app.dataforseo.com/api-access
+client = RestClient("login", "password")
+#do something
+using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+namespace DataForSeoDemos
+{
+public static partial class Demos
+{
+public static async Task cmn_key_id()
+{
+var httpClient = new HttpClient
+{
+BaseAddress = new Uri("https://api.dataforseo.com/"),
+//Instead of 'login' and 'password' use your credentials from https://app.dataforseo.com/api-access
+DefaultRequestHeaders = { Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes("login:password"))) }
+};
+// do something
+}
+}
+}
+Create a free account
+with DataForSEO, then go to the
+API Access tab
+in the account dashboard to find your API login and password, which you’ll need to authenticate and use the DataForSEO APIs. Note that the API password is generated automatically by DataForSEO and is different from your account password.
+DataForSEO is using the
+Basic Authentication
+, which makes it possible to call our APIs with almost any programming language, Postman app, REST API platforms, and all major frameworks.
+Regardless of the programming language, your unique API token should be passed
+in the ‘Authorization’ header
+within the request in the following format:
+Authorization: Basic login:password
+Instead of “login” and “password”, use your API credentials encoded in Base64.
+For instance, the Base64-encoded ‘login:password’ value will have the following format:
+bG9naW46cGFzc3dvcmQ=
+So the whole string will look as follows:
+Authorization: Basic bG9naW46cGFzc3dvcmQ=
+Check the examples for PHP, Python, and C# on the right to see how it works with a particular programming language.
+Note that it is not possible to pass the login and password in URL parameters. Also, you do not have to make a separate authentication call to obtain API credentials. Basic authentication is the only way to access DataForSEO API; credentials should always be passed in the header of the request.
+To authorize, use this code:
+# Instead of 'login' and 'password' use your credentials from https://app.dataforseo.com/api-access
+login="login"
+password="password"
+cred="$(printf ${login}:${password} | base64)"
+curl --location --request GET "https://example.com"
+--header "Authorization: Basic ${cred}"
+--header "Content-Type: application/json"
+<?php
+require('RestClient.php');
+//You can download this file from here https://cdn.dataforseo.com/v3/examples/php/php_RestClient.zip
+try {
+//Instead of 'login' and 'password' use your credentials from https://app.dataforseo.com/api-access
+$client = new RestClient('https://api.dataforseo.com/', null, 'login', 'password');
+//do something
+} catch (RestClientException $e) {
+echo "n";
+print "HTTP code: {$e->getHttpCode()}n";
+print "Error code: {$e->getCode()}n";
+print "Message: {$e->getMessage()}n";
+print  $e->getTraceAsString();
+echo "n";
+exit();
+}
+?>
+# Instead of 'login' and 'password' use your credentials from https://app.dataforseo.com/api-access
+const axios = require('axios');
+axios({
+method: 'get',
+url: 'https://example.com',
+auth: {
+username: 'login',
+password: 'password'
+}
+}).then(response => {
+console.log(response.data);
+}).catch(error => {
+console.log(error);
+});
+from client import RestClient
+#You can download this file from here https://cdn.dataforseo.com/v3/examples/python/python_Client.zip
+#Instead of 'login' and 'password' use your credentials from https://app.dataforseo.com/api-access
+client = RestClient("login", "password")
+#do something
+using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+namespace DataForSeoDemos
+{
+public static partial class Demos
+{
+public static async Task cmn_key_id()
+{
+var httpClient = new HttpClient
+{
+BaseAddress = new Uri("https://api.dataforseo.com/"),
+//Instead of 'login' and 'password' use your credentials from https://app.dataforseo.com/api-access
+DefaultRequestHeaders = { Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes("login:password"))) }
+};
+// do something
+}
+}
+}
+cURL
+php
+Node.js
+Python
+cSharp

@@ -1,0 +1,7 @@
+REST API reference
+REST API reference
+This comprehensive reference provides detailed documentation for all available REST API endpoints in Adobe Commerce and Magento Open Source. Each endpoint includes complete parameter descriptions, request/response examples, authentication requirements, and error handling information to help developers integrate with the platform effectively.
+PaaS only
+REST API reference
+SaaS only
+REST API reference

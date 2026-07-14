@@ -1,0 +1,257 @@
+Guidance for Atlas Authentication - Atlas Architecture Center - MongoDB Docs
+For AI agents: a documentation index is available at https://www.mongodb.com/docs/llms.txt — markdown versions of all pages are available by appending .md to any URL path.
+Docs Menu
+Ask MongoDB AI
+Docs Home
+/
+/
+Authorization and Authentication
+Docs Home
+/
+Atlas Architecture Center
+/
+Security
+/
+Authorization and Authentication
+Docs Home
+/
+Atlas Architecture Center
+/
+Security
+/
+Authorization and Authentication
+Guidance for Atlas Authentication
+Copy page
+MongoDB Atlas
+supports a variety of authentication methods to ensure robust security.
+Atlas
+requires all users to authenticate to access the Atlas UI,
+Atlas
+databases, and  the Atlas Administration API.
+Note
+The
+MongoDB Atlas
+Shared Responsibility Model
+defines the complementary duties of MongoDB and its customers in maintaining a secure and resilient data environment. Under this framework, MongoDB manages the security and operational integrity of the underlying platform, while customers are responsible for the configuration, management, and data policies of their specific deployments. For a detailed breakdown of ownership across security and operational excellence, see
+Shared Responsibility Model.
+Note
+In this context, a "user" can be a human or an application. We refer to human users as "Workforce Identity" and applications as "Workload Identity".
+Two factors determine which authentication types to use:
+The identity type (human or machine)
+The resource that the identity needs access to. The resource can be one of the following:
+Atlas
+UI,
+Atlas
+Database, or
+Atlas
+APIs.
+Atlas
+UI Authentication
+Workforce Users
+Use IP access restrictions, and then:
+Use
+Federated Authentication
+with an SAML 2.0 identity provider, such as Okta, Microsoft Entra ID, or Ping Identity,
+and
+Use Atlas credentials with
+Multi-factor Authentication (MFA)
+. You should always use the most secure form of MFA available, such as a hardware key or biometrics.
+Workload Users
+This only applies to Workforce users.
+Atlas
+Database Authentication
+Workforce Users
+Use
+Workforce Identity Federation.
+For development and test environments, you can also use
+SCRAM
+. Consider
+creating temporary database
+users
+with just-in-time database access.
+Workload Users
+Use one of the following:
+Workload Identity Federation
+AWS-IAM authentication
+X.509
+certificates
+For development and test environments, you can also use
+X.509
+certificates or
+SCRAM.
+Atlas
+API Authentication
+Note
+This applies to both Workforce and Workload users.
+Use
+Service Accounts
+. For development and test environments, you can also use
+Service Accounts
+or
+API Keys.
+Authentication Types
+The following sections provide details about the authentication methods used when accessing the Atlas UI,
+Atlas
+Database, or the Atlas Administration API.
+Federated Authentication
+Federated authentication allows you to manage all authentication to the Atlas UI across multiple systems and applications through a central identity provider, which reduces user management complexity. With federated authentication, you can enforce security policies such as password complexity, credential rotation, and
+MFA
+within your identity provider's tools.
+For the Atlas UI, you can use any
+compatible identity provider such as Okta, Microsoft Entra ID, or Ping Identity.
+Workforce Identity Federation
+Workforce Identity Federation allows you to manage all authentication to the
+Atlas
+database through your identity provider. To learn more, see
+Set up Workforce Identity Federation with OIDC.
+Workload Identity Federation
+Workload Identity Federation enables applications running in cloud environments like
+Azure
+and Google Cloud to authenticate with
+Atlas
+without the need to manage separate database user credentials. With Workload Identity Federation, you can manage
+Atlas
+database users using
+Azure
+Managed Identities, Google Service Accounts, or any OAuth 2.0-compliant service. These authentication mechanisms simplify management and enhance security by allowing for passwordless access to the
+Atlas
+database.
+AWS IAM Role Authentication
+You can also authenticate through
+AWS
+IAM
+roles. To learn more, see
+AWS IAM Authentication.
+To learn more, see
+Set up Workload Identity Federation with OAuth 2.0
+and
+Configure Federated Authentication.
+Multi-Factor Authentication
+For any human user that has access to the
+Atlas
+control plane, we
+require
+MFA
+for enhanced security.
+Atlas
+supports the following MFA methods as secondary identification:
+Security keys
+Biometrics
+OTP authenticators
+Push notifications with Okta Verify
+Email
+Note
+If you are using Federated Auth, you configure and manage MFA in the
+IdP
+. If you are using
+Atlas
+credentials, MFA is configured and managed within
+Atlas
+. MFA is required when using
+Atlas
+credentials.
+To learn more, see
+Manage Your Multi-Factor Authentication Options.
+X.509 Client Certificates
+X.509 certificates provide the security of mutual TLS, making them suitable for staging and production environments, and you can bring your own certificate authority for use with X.509. The disadvantage of X.509 is that you must manage certificates and the security of these certificates on the application side, while Workload Identity Federation allows for password-less access and easier application security.
+To learn more, see
+X.509.
+SCRAM Password Authentication
+Atlas
+clusters support SCRAM password authentication for user authentication, but we recommend SCRAM only for use in development and test environments.
+If you leverage X.509 or SCRAM authentication, we recommend that you use a third-party secrets manager like
+HashiCorp Vault
+or
+AWS
+Secrets Manager to generate and store complex database credentials.
+To learn more, see
+SCRAM.
+Service Accounts
+Service accounts use industry-standard OAuth2.0 to securely authenticate with Atlas through the Atlas Administration API. We recommend that you use service accounts instead of
+API
+keys when possible because they provide added security through short-lived access tokens and required credential rotations.
+You can manage programmatic access for service accounts by using the Atlas UI, Atlas CLI, Atlas Administration API, and Terraform.
+API Keys
+Service accounts are the preferred method of authentication. Atlas provides legacy support for
+API
+key-based authentication for managing programmatic access.
+API
+key-based authentication uses
+HTTP
+Digest authentication to protect requests.
+To further enhance security and minimize the risk of unauthorized access:
+Follow best practices for rotating API keys regularly. To learn how to rotate these keys with
+HashiCorp Vault
+, for example, see the
+Hashicorp documentation.
+Use the IP access list for your API keys. To learn more, see
+Require an IP Access List for the Atlas Administration API.
+To learn more, see
+Atlas Administration API Authentication Methods.
+Secrets Management
+We recommend using a third-party secrets manager like
+HashiCorp Vault
+or
+AWS
+Secrets Manager to generate and store complex database credentials. A secrets manager can generate database credentials dynamically based on configured roles for
+Atlas
+databases.
+To learn more, see the blog
+Manage
+MongoDB Atlas Database Secrets in HashiCorp Vault.
+Deployments
+To learn our recommendations for deployments that relate to authentication, see
+Guidance for Atlas Orgs, Projects, and Clusters.
+Additional Security Measures
+To further enhance security and minimize the risk of unauthorized access, consider these additional security measures:
+Rotate service account secrets
+before they expire.
+Use an
+IP access list
+for your service accounts.
+Assign the least privileged
+Atlas role
+required for the service account's intended purpose to adhere to the principle of least privilege.
+To learn more, see
+Service Accounts Overview.
+Back
+Authorization and Authentication
+Next
+Authorization
+Rate this page
+On this page
+Atlas
+UI Authentication
+Atlas
+Database Authentication
+Atlas
+API Authentication
+Authentication Types
+Federated Authentication
+AWS IAM Role Authentication
+Multi-Factor Authentication
+X.509 Client Certificates
+SCRAM Password Authentication
+Service Accounts
+API Keys
+Secrets Management
+Deployments
+Additional Security Measures
+On this page
+Atlas
+UI Authentication
+Atlas
+Database Authentication
+Atlas
+API Authentication
+Authentication Types
+Federated Authentication
+AWS IAM Role Authentication
+Multi-Factor Authentication
+X.509 Client Certificates
+SCRAM Password Authentication
+Service Accounts
+API Keys
+Secrets Management
+Deployments
+Additional Security Measures

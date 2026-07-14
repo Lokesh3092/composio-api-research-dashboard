@@ -1,0 +1,49 @@
+High-level MERMAID API documentation — MERMAID API  documentation
+»
+High-level MERMAID API documentation
+Edit on GitHub
+High-level MERMAID API documentation
+ï
+The MERMAID API is the central interface through which all MERMAID data is read and written, and is the core of the
+MERMAID project
+, which seeks to accelerate coral reef conservation by making common coral reef data collection and analysis fast, less error-prone, secure, and flexible.
+This documentation refers to its production instantiation at
+https://api.datamermaid.org/v1/
+, backed by an AWS-based
+stack including an RDS PostgreSQL database and using
+Django
+and
+Django REST Framework
+, and is actively used by
+MERMAID collection app
+[
+repository
+]
+MERMAID public dashboard
+[
+repository
+]
+mermaidr
+analysis package
+Our code is free (
+as in speech
+) and
+open source
+.
+Note
+This documentation is for folks who know how to use
+API
+s. If you are not a developer and just want to access your MERMAID data for analysis, go to
+mermaidr
+and read the excellent documentation there.
+Getting started
+Using the API
+Authentication
+Resources
+Non-Project resources
+Project resources
+Collect Records
+Aggregated views
+Developers
+Developer documentation
+Contributing to the MERMAID API

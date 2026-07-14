@@ -1,0 +1,36 @@
+Gladly Integration | Maestro QA Help Center
+Skip to main content
+Gladly Integration
+Written by
+Harrison Hunter
+February 24, 2026
+Table of contents
+Setting up a Gladly Integration will require admin access in both Gladly and Rippit.
+The information presented here is referenced from the Gladly API Documentation, available at
+https://developer.gladly.com/rest/
+.
+The Gladly + Ripppit Integration uses HTTP Basic Authentication with the Gladly admin's email and an API Token provided during integration setup.
+Setting up the Integration
+Navigate to
+https://app.rippit.com/settings/integrations/gladly
+. Follow the setup wizard, and enter credentials into the form.
+How Rippit uses Gladly
+Rippit uses the Gladly REST API to sync data from your Gladly account into your Rippit account. The integration does not use webhooks.
+Currently, the endpoints in use are:
+/agents
+/topics
+/customer-profiles
+/reports
+/conversations
+/conversation-items
+/inboxes
+/tasks
+The only report used is
+ConversationDataExportReport
+.
+The Rippit + Gladly integration will never make changes to your Gladly account or data.
+Did this answer your question?
+😞
+😐
+😃
+Table of contents

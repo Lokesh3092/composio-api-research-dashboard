@@ -1,0 +1,26 @@
+Authentication | Pylon
+For the complete documentation index, see
+llms.txt
+. This page is also available as
+Markdown
+.
+The Pylon API uses
+Bearer
+authentication. This means you’ll need to pass your API token in the header of your request:
+Copy
+Authorization: Bearer <token>
+Generate an API token in the
+Pylon dashboard
+.
+Once creating a token, you can hit the
+/me
+endpoint to retrieve details about your organization to confirm your token is working as expected.
+Actions performed by the token will show up with name of the token.
+Previous
+API
+Next
+Errors
+Last updated
+1 year ago
+Was this helpful?
+Was this helpful?

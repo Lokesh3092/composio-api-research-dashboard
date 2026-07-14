@@ -1,0 +1,62 @@
+REST API overview | REST API Reference | Ecwid Documentation
+For the complete documentation index, see
+llms.txt
+. This page is also available as
+Markdown
+.
+Ecwid REST API allows you to access and manage any store data, payment and shipping methods, and storefront settings.
+We use OAuth 2.0 authorization simplified for single-store customizations, JSON-formatted data, and a clear structure.
+Please note that our REST API has
+rate limits
+.
+We accept up to
+600 requests per minute
+per token
+. If you exceed the limit, all subsequent requests will be ignored with an error 429 and a
+"Retry-After": N
+header (number
+N
+is a cooldown) . If more requests continue to come from a non-working token, Ecwid will block it for much longer after 20 requests per minute or a total of 600 requests with non-working tokens per IP.
+Ecwid API also supports
+gzip
+encoding through the
+"Accept-Encoding": "gzip"
+header.
+Get access to REST API
+If you don't yet have access to Ecwid API, follow the detailed instructions in these articles:
+Set up your dev environment in Ecwid
+Make your first API request
+Add more features to your custom app
+Get started with the popular API calls
+General store settings:
+Get store profile
+Update store profile
+Store reports
+Orders:
+Search orders
+Search abandoned carts
+Calculate order details
+Products:
+Search products
+Search product variations
+Search product reviews
+Customers:
+Search customers
+Search customer groups
+Update customer
+Categories:
+Search categories
+Assign products to the category
+Upload category image
+Discounts:
+Search promotions
+Create promotion
+Search discount coupons
+Next
+REST API error codes
+Last updated
+7 months ago
+Was this helpful?
+Get access to REST API
+Get started with the popular API calls
+Was this helpful?

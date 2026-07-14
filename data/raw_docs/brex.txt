@@ -1,0 +1,36 @@
+Brex API Documentation, Developer Portal & SDKs
+Survey
+New report: The State of B2B Embedded Finance 2026 — $185B opportunity across 16 categories
+Developer Resources
+🔗
+Developer Portal
+Access API documentation and guides
+🧪
+Sandbox Environment
+Test APIs in a safe environment
+Brex API Products
+No API products listed for
+Brex
+.
+Brex SDKs
+No SDKs available for
+Brex
+.
+Postman Collections
+No Postman collections available for
+Brex
+.
+Brex API FAQ
+Does Brex have a public API?
+Yes, Brex offers public APIs for developers to integrate with their banking services. Their developer portal is at developer.brex.com — use the Developer Resources section above for documentation, authentication guides, and endpoints for account information, payments, and other banking services.
+How do I get API access to Brex?
+To get API access to Brex: 1) Visit their developer portal at developer.brex.com and create a developer account, 2) Review the API documentation and terms of service, 3) Register your application to obtain API credentials, 4) Test your integration in the sandbox environment before going live. Use the Developer Resources link above to get started.
+What APIs does Brex offer?
+Brex's API offerings may include standard Open Banking APIs for account information (AIS) and payment initiation (PIS) as required by regulations like PSD2. Check the developer resources section above for the most current API availability.
+Is Brex API free to use?
+API pricing varies by provider and use case. Open Banking APIs mandated by regulations like PSD2 are typically free for licensed third-party providers. Premium APIs with additional features may have usage-based pricing. Contact Brex's developer support for specific pricing information and rate limits.
+Does Brex have a sandbox for testing?
+Yes, Brex provides a sandbox environment where developers can test API integrations safely without affecting real accounts. The sandbox simulates production behavior with test data, allowing you to validate your implementation before going live.
+Want to integrate Accounting & ERP data?
+Connect to 30+ accounting platforms and ERPs through a single unified API with Apideck.
+Explore Apideck Accounting API

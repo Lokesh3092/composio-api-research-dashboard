@@ -1,0 +1,163 @@
+Zoho Cliq API Documentation | MindCloud Universal API
+This is the complete API documentation for connecting to the Zoho Cliq API using MindCloud's Universal API.
+If you are new to MindCloud, start with the
+Introduction
+to see how one API can sit in front of many different apps.
+MindCloud is an integration company that offers one normalized API to access 3,100+ apps from a single place. It cleans up provider-specific quirks, keeps requests and responses consistent, and centralizes authentication so you do not need to manage separate flows for every app.
+Browse other apps
+.
+Meet Zoho Cliq: Chat in channels, collaborate in threads, manage reminders, and track status updates in Zoho Cliq.
+Keep reading to get started.
+Quickstart
+Before you run your first Zoho Cliq request, you need three things:
+A
+MindCloud account
+— sign in or create an account at
+MindCloud
+.
+A
+MindCloud API Key
+— create one in
+API Keys
+. Keep it on your server.
+At least one
+Zoho Cliq connection
+— create or choose one in
+Connections
+. Note its
+connectionId
+.
+Every Zoho Cliq action uses the same URL pattern:
+https://connect.mindcloud.co/v1/universal/zohoCliq/latest/actions/{actionSlug}
+You need a MindCloud API Key and a
+Zoho Cliq connection.
+Then call an action
+such as
+Get Thread Main Message
+:
+curl
+--request GET \
+--url
+"https://connect.mindcloud.co/v1/universal/zohoCliq/latest/actions/get-thread-main-message"
+\
+--header
+"Authorization: Bearer
+$MINDCLOUD_API_KEY
+"
+\
+--get
+\
+--data-urlencode
+"connectionId=
+$CONNECTION_ID
+"
+Every response comes back in the same envelope, with your rows in a
+data
+array:
+{
+"success"
+:
+true
+,
+"data"
+: [
+{
+"id"
+:
+"1042"
+,
+"name"
+:
+"Ava"
+}
+],
+"meta"
+: {}
+}
+After your first request works, use
+Shape your requests
+to control arguments, pagination, filtering, fields, and errors.
+Authentication
+Authentication has two layers. Your
+MindCloud API Key
+authenticates the request to MindCloud, sent as a Bearer token in the
+Authorization
+header. The
+connectionId
+selects the connected Zoho Cliq account that should run the action. MindCloud stores and refreshes the Zoho Cliq credentials behind that connection, so you never send provider tokens with your requests.
+Pass
+connectionId
+in the query string for
+GET
+and
+DELETE
+actions, and in the JSON body for
+POST
+,
+PUT
+, and
+PATCH
+actions. Keep your MindCloud API Key on your server; do not ship it in browser code, mobile apps, public repositories, or logs.
+Zoho Cliq actions
+All 24 published actions for this Zoho Cliq version. Each page documents the endpoint, arguments, and response controls.
+PUT
+Add Channel Members
+PUT
+Complete Reminder
+POST
+Create Channel
+DELETE
+Delete Chat Message
+GET
+Get Thread Main Message
+PUT
+Join Channel
+PUT
+Leave Channel
+GET
+List Channel Members
+GET
+List Channel Threads
+GET
+List Channels
+GET
+List Chat Members
+GET
+List Chat Messages
+GET
+List Direct Chats
+GET
+List Reminders
+DELETE
+Remove Channel Members
+GET
+Retrieve Channel
+GET
+Retrieve Chat Message
+GET
+Retrieve Current Status
+GET
+Retrieve Reminder
+POST
+Send Chat Message
+POST
+Set Self Reminder
+PUT
+Update Channel
+PUT
+Update Chat Message
+PUT
+Update Reminder
+Related apps
+More Communication apps on the Universal API,
+behind the same REST shape. Or
+browse all apps
+.
+Gmail
+Slack
+Discord
+Twilio
+Microsoft Teams
+Circle
+tl;dv
+ClickSend SMS

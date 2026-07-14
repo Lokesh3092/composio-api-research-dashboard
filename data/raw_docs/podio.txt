@@ -1,0 +1,158 @@
+Authentication: App authentication flow - Podio API Documentation
+Getting started
+Get an API key
+Authentication
+Scopes & Permissions
+Server-side flow
+Client-side flow
+Username & password flow
+App authentication flow
+API Reference
+Tutorials
+Client Libraries
+Developer Forums
+Partner Extensions
+Terms of Use
+Authentication
+App authentication flow
+The app authentication flow is suitable in situations where you only need data from a single app and do not wish authenticate as a specific user. It is similar to the
+username & password flow
+, but uses the app ID and a special app token as the login credentials.
+When you authenticate as an app you can only access that specific app and if you create content it will appear as having been created by the app itself rather than a specific user. Good uses for the app authentication flow are automated scripts that run without any user interaction.
+To gain an access token, you make a
+POST request
+to our endpoint with your authentication parameters placed in the
+request body
+. The
+grant_type
+parameter set to
+app
+.
+HTTP
+METHOD:
+POST
+URL:
+https://api.podio.com/oauth/token/v
+2
+HEADER:
+"Content-Type: application/json"
+BODY:
+{
+"grant_type"
+:
+"app"
+,
+"app_id"
+:
+YOUR_PODIO_APP_ID
+,
+"app_token"
+:
+YOUR_PODIO_APP_TOKEN
+,
+"client_id"
+:
+YOUR_CLIENT_ID
+,
+"redirect_uri"
+:
+YOUR_URL
+,
+"client_secret"
+:
+YOUR_CLIENT_SECRET
+}
+You can find the Podio App ID and Podio App Token by going to your app in Podio and clicking the Developer link in the settings dropdown.
+If your app is successfully authenticated and the credentials provided are valid, the API will return the access token:
+{
+"access_token"
+:
+ACCESS_TOKEN
+"token_type"
+:
+"bearer"
+,
+"expires_in"
+:
+EXPIRES_IN
+,
+"refresh_token"
+:
+REFRESH_TOKEN
+,
+"ref"
+:
+{
+"type"
+:
+"app"
+,
+"id"
+:
+APP_ID
+}
+}
+Example code
+The example code below show you how to do app authentication using the Ruby gem or PHP client.
+php
+ruby
+Podio
+.
+setup
+(
+:api_key
+=>
+'YOUR_CLIENT_ID'
+,
+:api_secret
+=>
+'YOUR_CLIENT_SECRET'
+)
+begin
+Podio
+.
+client
+.
+authenticate_with_app
+(
+'YOUR_APP_ID'
+,
+'YOUR_APP_TOKEN'
+)
+# Authentication was a success, now you can start making API calls.
+rescue
+Podio
+::
+PodioError
+=>
+ex
+# Something went wrong
+end
+Podio
+::
+setup
+(
+YOUR_CLIENT_ID
+,
+YOUR_CLIENT_SECRET
+);
+try
+{
+Podio
+::
+authenticate_with_app
+(
+YOUR_APP_ID
+,
+YOUR_APP_TOKEN
+);
+// Authentication was a success, now you can start making API calls.
+}
+catch
+(
+PodioError
+$e
+)
+{
+// Something went wrong. Examine $e->body['error_description'] for a description of the error.
+}

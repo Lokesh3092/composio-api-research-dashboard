@@ -1,0 +1,25 @@
+{
+    "Authentication Methods": {
+        "OAuth2": 38,
+        "Bearer Token": 36,
+        "API Key": 36,
+        "Basic Auth": 12,
+        "JWT": 5
+    },
+    "API Types": {
+        "Webhooks": 28,
+        "REST": 56,
+        "GraphQL": 6,
+        "SDK": 21
+    },
+    "Self Serve vs Gated": {
+        "Unknown": 70,
+        "Partner Gated": 17,
+        "Self Serve": 11,
+        "Contact Sales": 2
+    },
+    "Buildability": {
+        "No": 16,
+        "Yes": 84
+    }
+}

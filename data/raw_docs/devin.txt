@@ -1,0 +1,239 @@
+Authentication - Devin Docs
+Documentation Index
+Fetch the complete documentation index at:
+/llms.txt
+Use this file to discover all available pages before exploring further.
+Skip to main content
+The Devin API uses a
+principal + token
+model. A
+principal
+is who you are (your identity), and a
+token
+is how you prove it (your credential). Understanding this distinction is the key to choosing the right authentication method for your use case.
+​
+Principals & tokens
+Principal
+Token
+Description
+Service User
+(non-human)
+Service User API Key
+For automated integrations and CI/CD pipelines
+User
+(human)
+Personal Access Token (PAT)
+For human programmatic access under your own identity
+All API credentials use the
+cog_
+prefix format. Include your token in the
+Authorization
+header of every request:
+curl
+-X
+GET
+"https://api.devin.ai/v3/organizations/
+$DEVIN_ORG_ID
+/sessions"
+\
+-H
+"Authorization: Bearer cog_your_token_here"
+The key distinction is
+which principal the token authenticates as
+:
+A
+Service User API Key
+authenticates as the
+service user
+— the service user’s identity, permissions, and org memberships apply.
+A
+Personal Access Token
+authenticates as the
+human user
+who created it — that user’s identity, permissions, and org memberships apply.
+​
+Service users (recommended for automation)
+Service users are non-human accounts designed for API integrations. They can be assigned specific permissions via RBAC and added to organizations independently of human users.
+​
+How it works
+Create a service user
+in
+Settings > Service users
+(organization) or
+Enterprise settings > Service users
+(enterprise)
+Assign a role
+that controls which endpoints the service user can access
+Generate an API key
+— the key starts with
+cog_
+and is shown only once at creation
+Use the key
+in the
+Authorization
+header of every API request
+curl
+-X
+POST
+"https://api.devin.ai/v3/organizations/
+$DEVIN_ORG_ID
+/sessions"
+\
+-H
+"Authorization: Bearer
+$DEVIN_API_KEY
+"
+\
+-H
+"Content-Type: application/json"
+\
+-d
+'{"prompt": "Create a simple Python script"}'
+​
+Service user scopes
+Scope
+Created in
+API access
+Use case
+Organization
+Settings > Service users
+/v3/organizations/*
+Session management, knowledge, playbooks, secrets
+Enterprise
+Enterprise settings > Service users
+/v3/enterprise/*
++
+/v3/organizations/*
+Cross-org management, analytics, audit logs, billing
+Find your organization ID on the
+Settings > Service Users
+page.
+​
+Session attribution with
+create_as_user_id
+Service users are separate identities from human users. By default, sessions created by a service user are attributed to the service user itself. To create sessions
+on behalf of a specific user
+, pass the
+create_as_user_id
+parameter when creating a session. The session will appear in that user’s session list and count toward their usage.
+This requires the
+ImpersonateOrgSessions
+permission on the service user’s role.
+​
+Key properties
+Keys start with
+cog_
+and are shown only once at creation time
+Service users appear separately from human users in audit logs
+Permissions are controlled via RBAC — assign only what the integration needs
+Enterprise service users inherit org-level permissions across all organizations
+For detailed setup instructions, see the
+Teams quick start
+or
+Enterprise quick start
+.
+​
+Personal access tokens (closed beta)
+Personal Access Tokens are currently in
+closed beta
+and are feature-flagged.
+Contact support
+for access. PATs are not available for SSO/enterprise accounts.
+Personal Access Tokens (PATs) allow human users to authenticate programmatically under their own identity. When you use a PAT, the API sees
+you
+— your permissions, your org memberships, and your audit trail.
+This is useful when you want to make API calls as yourself (e.g., personal scripts, local tooling) rather than through a shared service user.
+For more details, see
+Personal Access Tokens
+.
+​
+Legacy authentication (deprecated)
+Legacy API keys are deprecated. Use
+API v3
+with service user authentication. See the
+migration guide
+.
+Legacy API keys are used with the v1 and v2 APIs. They continue to work during the deprecation period but do not support new features like RBAC, session attribution, or cursor-based pagination.
+Key type
+Prefix
+Used with
+Description
+Personal API key
+apk_user_
+v1, v2
+Tied to a user account, inherits user permissions
+Service API key
+apk_
+v1
+Organization-scoped, for automation
+Where to generate:
+Settings > API Keys
+​
+Security best practices
+Never share API keys in publicly accessible areas such as GitHub repositories, client-side code, or logs.
+Store keys securely
+: Use environment variables or secret management systems
+Rotate keys regularly
+: Generate new keys and revoke old ones periodically
+Use service users for automation
+: Prefer service users over personal keys for production
+Apply least privilege
+: Grant only the minimum permissions required
+Monitor usage
+: Review audit logs for unexpected API activity
+Revoke compromised keys immediately
+: If a key is exposed, revoke it and generate a new one
+​
+Troubleshooting
+​
+401 Unauthorized
+Possible causes:
+Invalid or expired API key
+Missing
+Authorization
+header
+Incorrect Bearer token format
+Using a legacy API key (
+apk_
+/
+apk_user_
+) with the
+Devin MCP
+— only
+cog_
+-prefixed keys are supported
+Solution:
+Verify your API key is correct and properly formatted in the Authorization header. For MCP usage, ensure you are using a service user API key (not a legacy key).
+​
+403 Forbidden
+Possible causes:
+API key doesn’t have required permissions
+Using the wrong key type for the endpoint (e.g., legacy key with v3 endpoints)
+Attempting to access resources outside your scope
+Solution:
+Ensure your service user has the correct role and permissions
+For legacy v2 endpoints: ensure you have the Enterprise Admin role
+For legacy v1 endpoints: verify you have access to the organization
+​
+404 Not Found
+Possible causes:
+Incorrect API endpoint URL
+Resource doesn’t exist or you don’t have access
+Solution:
+Verify the endpoint URL and that the resource exists.
+​
+Next steps
+Teams quick start
+— get started in minutes
+Enterprise quick start
+— RBAC and multi-org setup
+Common flows
+— end-to-end workflow examples
+Migration guide
+— migrate from v1/v2
+Migrating from v1/v2
+Permissions & RBAC
+⌘
+I
+Assistant
+Responses are generated using AI and may contain mistakes.

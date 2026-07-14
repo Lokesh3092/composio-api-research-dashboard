@@ -1,0 +1,77 @@
+API Reference Home | Zendesk Developer Docs
+API Reference
+Welcome to the Zendesk API reference docs. Whether you're an experienced developer and Zendesk user or just starting out, this is where you'll find the documentation you need.
+Most of our APIs are organized by product capabilities. You'll find APIs for ticketing, help center, live chat, voice, sales CRM as well as some features that span capabilities, such as omnichannel routing and custom data. For each API, you'll find information about who can authenticate requests, detailed descriptions of endpoints, example requests, and other essential information to help you unlock the full potential of Zendesk.
+Run in Postman
+To quickly get started with the Zendesk APIs, you can use the Zendesk Public Workspace on Postman. The collection includes all Zendesk APIs except the Sell and Sunshine Conversations APIs.
+Capabilities
+Ticketing
+Work with tickets, users and organizations and manage ticket workflows.
+Support API
+JIRA Integration API
+Help Center
+Help Center, Knowledge base and Community.
+Help Center API
+AI Agents
+Automate conversations and manage intelligent workflows.
+AI Agents API
+Messaging
+Unify messages from every channel into a single conversation and build interactive experiences.
+Conversations API
+Voice
+Call center software.
+Talk API
+Talk Partner Edition API
+Custom data
+Connect and understand all your customer data wherever it lives.
+Custom Objects API
+Legacy Custom Objects API
+Omnichannel
+Access features and functionality that span Zendesk channels.
+Omnichannel APIs
+Status
+Get a list of active incidents and scheduled maintenance that may affect Zendesk availability.
+Status API
+Live Chat
+Live chat and messaging.
+Chat API
+Real Time Chat API
+Chat Conversations API
+Sales CRM
+Sales force automation.
+Sell API
+Sync API
+Firehose API
+Search API
+Embedding Zendesk
+Web Widget
+Control data passed to and from the Web Widget
+Web Widget (Messaging) API
+Web Widget (Classic) API
+Answer Bot
+Provide Help Center article suggestions for an enquiry.
+Answer Bot API
+Android SDK
+Control data passed to and from the Android SDK
+Android SDK (Messaging) API
+iOS SDK
+Control data passed to and from the iOS SDK
+iOS SDK (Messaging) API
+Zendesk SDK for Unity
+Control data passed to and from the Zendesk SDK for Unity
+Zendesk SDK for Unity (Messaging) API
+Extending Zendesk
+Apps
+APIs to help you build apps for Zendesk Support, Sell and Chat
+Apps Core API
+Apps Support API
+Apps Sell API
+Apps Chat API
+Integration Services
+APIs and trigger events information for building integrations with Zendesk Integration Services (ZIS)
+ZIS Configs API
+Connections API
+ZIS Inbound Webhooks API
+ZIS Links API
+ZIS Registry API
+Trigger events reference

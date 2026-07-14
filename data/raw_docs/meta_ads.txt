@@ -1,0 +1,288 @@
+GitHub - emeraldtarek/meta-ads-api-docs-md: Offline Markdown mirror of Meta's Ads & Commerce developer docs; Marketing API, Conversions API, Catalog, Commerce Platform, Instagram Ads. 978 pages, verbatim +   summarized. Drop-in reference for Claude Code, Cursor, Aider, and other AI coding agents so they ground answers in real docs instead of hallucinating Meta API fields and endpoints. · GitHub
+Skip to content
+You signed in with another tab or window.
+Reload
+to refresh your session.
+You signed out in another tab or window.
+Reload
+to refresh your session.
+You switched accounts on another tab or window.
+Reload
+to refresh your session.
+Dismiss alert
+emeraldtarek
+/
+meta-ads-api-docs-md
+Public
+Notifications
+You must be signed in to change notification settings
+Fork
+1
+Star
+5
+main
+Branches
+Tags
+Go to file
+Code
+Open more actions menu
+Folders and files
+Name
+Name
+Last commit message
+Last commit date
+Latest commit
+History
+2 Commits
+2 Commits
+full
+full
+scripts
+scripts
+summarized
+summarized
+.gitignore
+.gitignore
+README.md
+README.md
+all-urls.json
+all-urls.json
+all-urls.txt
+all-urls.txt
+View all files
+Repository files navigation
+Meta Ads & Commerce API Documentation in Markdown
+Offline, AI-ready mirror of the entire
+Meta Ads & Commerce developer documentation
+— 978 pages of Marketing API, Conversions API, Catalog API, Commerce Platform, and Instagram/Threads Ads docs in plain Markdown.
+Built so AI coding agents — Claude Code, Cursor, Aider, Codex, Cline, Continue, and friends — can ground their answers in the real docs instead of hallucinating field names, deprecated endpoints, or invented parameters when you ask them to write Meta API code.
+Why this exists
+Ask any LLM to write Marketing API code and you've probably watched it confidently invent fields that don't exist, wire up endpoints that were removed three API versions ago, or mix up
+ads_management
+vs
+ads_read
+permissions. Meta's docs are large, partly client-rendered, and gated behind anti-bot defenses, so most models only have stale, partial training data on them.
+This repo flattens the whole
+developers.facebook.com/documentation/ads-commerce
+tree into one searchable Markdown corpus so you can:
+Drop it next to your project and tell your agent:
+"use these docs as ground truth for anything Meta API."
+Reference it from
+CLAUDE.md
+/
+.cursorrules
+/
+AGENTS.md
+.
+grep
+/
+rg
+for a field name, endpoint, or error code locally — no flaky JS-rendered docs site, no rate limits.
+What's inside
+full/         978 verbatim Markdown pages — headings, paragraphs, lists, tables,
+code samples, links, and image references preserved
+summarized/   978 focused 200–500 word summaries, 1:1 with full/ — useful as a
+lightweight index when you don't want to feed full pages to the model
+all-urls.txt  flat list of every source URL on developers.facebook.com
+all-urls.json same list with display labels (sidebar text)
+scripts/      Playwright-based refresh pipeline (see "Refreshing" below)
+Every Markdown file starts with frontmatter linking back to the canonical Meta source:
+---
+url
+:
+https://developers.facebook.com/documentation/ads-commerce/marketing-api/get-started/authorization
+title
+:
+"
+Authorization
+"
+---
+Filename rule: take the URL portion after
+/documentation/ads-commerce/
+, replace
+/
+with
+__
+, append
+.md
+. So
+/documentation/ads-commerce/marketing-api/get-started/authorization
+becomes
+marketing-api__get-started__authorization.md
+. The same name is used in both
+full/
+and
+summarized/
+.
+Coverage
+Captured 2026-04-26.
+Section
+Pages
+Marketing API
+— campaigns, ad sets, ads, creative, audiences, insights, ad rules, bidding, partnership ads, full reference tree
+617
+Conversions API
+— server events, parameters, integrations, dataset quality, deduplication
+112
+Commerce Platform
+— sellers, catalog, orders, finance, post-purchase, integration partners
+91
+Gateway Products
+— Conversions API Gateway, Signals Gateway, hosting on AWS / GCP
+76
+Catalog API
+— product feeds, items batch, supplementary feeds, localized catalogs, microdata
+51
+Instagram Ads API
+18
+Graph API
+(cross-references)
+11
+Other (CCCO, root index)
+2
+Total
+978
+Using it with Claude Code / Cursor / Aider / etc.
+Clone next to (or inside) your project:
+git clone https://github.com/
+<
+you
+>
+/meta-ads-api-docs-md.git
+Add a short pointer in your agent rules file. Example for
+CLAUDE.md
+/
+.cursorrules
+/
+AGENTS.md
+:
+##
+Meta Ads / Marketing API reference
+Authoritative offline docs live in
+`
+meta-ads-api-docs-md/
+`
+.
+-
+Browse
+`
+meta-ads-api-docs-md/summarized/
+`
+first to find the right page.
+-
+Read the matching file in
+`
+meta-ads-api-docs-md/full/
+`
+for verbatim docs
+(fields, endpoints, parameters, code examples).
+-
+For ANY question about Meta Ads, Marketing API, Conversions API, Catalog,
+Commerce Platform, or Instagram Ads: prefer these docs over training-data recall.
+-
+If a page isn't in the mirror, fall back to developers.facebook.com.
+That's usually enough — agents will start grepping
+summarized/
+for keywords, then opening the matching
+full/
+page when they need detail.
+Known gaps
+Two pages didn't yield extractable content (their CMS payload was missing in both static HTML and rendered DOM at capture time). They're tracked as
+.failed
+markers inside
+full/
+:
+marketing-api/lead-ads/enable-quality-features
+marketing-api/product-set-optimization/product-set-optimization-overview
+If you need either, fetch directly from
+developers.facebook.com
+.
+Refreshing the mirror
+Pipeline scripts in
+scripts/
+are Playwright-based: each page is fetched inside a browser session, then either parsed from the rendered DOM or extracted from the embedded Relay
+json_cms_content
+payload. Re-run them when Meta ships docs updates. See script docstrings for invocation details.
+How this was built — and how to make your own
+The lessons from this crawl (and a follow-up
+ElevenLabs Agents docs mirror
+) were distilled into a Claude Code skill called
+docs-to-md
+. Give it a docs root URL and it will discover the sitemap, detect the docs platform (Fern, Mintlify, Docusaurus, Nextra, GitBook, or generic SSR), crawl every page in parallel with headless Playwright, then dispatch parallel summarizer sub-agents to write 200–500 word summaries — producing the same
+full/
++
+summarized/
++
+all-urls.*
+shape you see here.
+Skill source (drop into
+~/.claude/skills/
+):
+github.com/emeraldtarek/dotfiles ·
+claude/.claude/skills/docs-to-md
+Then in Claude Code, just say something like
+"mirror these docs: "
+and it'll bootstrap an output repo, run the pipeline, and hand you a finished corpus you can
+git push
+. Note that the skill's default extractor handles modern static-MD docs sites; the Meta DMC
+json_cms_content
+extractor in this repo's
+scripts/build_retry_js.py
+is platform-specific to
+developers.facebook.com
+and is referenced by the skill as a special-case strategy.
+Attribution & disclaimer
+Documentation content © Meta Platforms, Inc. — sourced from the public developer docs at
+developers.facebook.com
+. This is an unofficial Markdown mirror provided as-is for engineering reference. Not affiliated with or endorsed by Meta.
+If Meta requests removal or changes, please open an issue.
+Keywords:
+meta ads api docs · facebook marketing api documentation · meta marketing api markdown · conversions api docs · meta catalog api · meta commerce api · facebook ads api offline docs · meta api claude code · meta marketing api cursor · meta ads api llm · meta ads api hallucination · meta ads api ai agent · facebook ads api ai coding
+About
+Offline Markdown mirror of Meta's Ads & Commerce developer docs; Marketing API, Conversions API, Catalog, Commerce Platform, Instagram Ads. 978 pages, verbatim + summarized. Drop-in reference for Claude Code, Cursor, Aider, and other AI coding agents so they ground answers in real docs instead of hallucinating Meta API fields and endpoints.
+Topics
+documentation
+cursor
+facebook-marketing-api
+facebook-ads-api
+meta-ads
+markdown-docs
+llm-context
+claude-code
+ai-coding-agents
+offline-docs
+meta-marketing-api
+Resources
+Readme
+Uh oh!
+There was an error while loading.
+Please reload this page
+.
+Activity
+Stars
+5
+stars
+Watchers
+0
+watching
+Forks
+1
+fork
+Report repository
+Releases
+No releases published
+Packages
+0
+Uh oh!
+There was an error while loading.
+Please reload this page
+.
+Contributors
+Uh oh!
+There was an error while loading.
+Please reload this page
+.
+Languages
+Python
+100.0%
+You can’t perform that action at this time.

@@ -1,0 +1,25 @@
+Authentication
+For AI agents: visit https://pipedrive.readme.io/llms.txt for an index of all pages formatted in Markdown and endpoints in OpenAPI.
+📘
+All requests to our API need
+authentication
+.
+If you're creating an app
+Continue to
+OAuth 2.0 overview
+.
+You can find our step-by-step guide to getting OAuth 2.0 implemented in your app in
+OAuth authorization
+.
+If you're working with an API token integration
+The API token must be provided in the
+x-api-token
+header for all requests, for example:
+cURL
+curl --request GET \
+--url "https://companydomain.pipedrive.com/api/v2/deals" \
+--header "x-api-token: 659c9fddb16335e48cc67114694b52074e812e03"
+How to find the API token?
+📘
+Keep in mind that an API token is tied to a specific user and company, giving access to all user's data. You can only have one active API token at any time. If you change the API token, all existing integrations using this API token will not be able to make successful requests against our API and stop working.
+Copy Page

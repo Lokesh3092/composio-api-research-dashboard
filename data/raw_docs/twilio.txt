@@ -1,0 +1,1247 @@
+Twilio - Wikipedia
+Jump to content
+From Wikipedia, the free encyclopedia
+US cloud communications company
+This article
+is in
+list
+format but may read better as
+prose
+.
+You can help by
+converting this article
+, if appropriate.
+Editing help
+is available.
+(
+January 2026
+)
+Twilio Inc.
+Type of business
+Public
+Traded
+as
+NYSE
+:
+TWLO
+(Class A)
+S&P 400
+component
+Founded
+2008
+;
+18
+years ago
+(
+2008
+)
+in
+Seattle
+, Washington, U.S.
+[
+1
+]
+Headquarters
+Rincon Center
+San Francisco
+, California, U.S.
+Founders
+Jeff Lawson
+Evan Cooke
+John Wolthuis
+Key
+people
+Khozema Shipchandler (
+CEO
+)
+Mark Simms (
+CTO
+)
+Industry
+Communications
+Products
+Voice
+SMS
+MMS
+SIP
+trunking
+WebRTC
+2FA
+Call Center
+Revenue
+US$
+5.07
+billion
+(2025)
+Operating income
+US$158
+million
+(2025)
+Net income
+US$33.8
+million
+(2025)
+Total assets
+US$9.77
+billion
+(2025)
+Total equity
+US$7.82
+billion
+(2025)
+Employees
+5,587 (2025)
+Subsidiaries
+SendGrid
+URL
+twilio
+.com
+ASN
+394434
+[
+2
+]
+Twilio Inc.
+is an American cloud communications company based in
+San Francisco
+, California, which provides programmable communication tools for making and receiving
+phone calls
+, sending and receiving
+text messages
+, and performing other communication functions using its
+web service
+APIs
+.
+History
+[
+edit
+]
+Twilio was founded in 2008 by
+University of Michigan
+graduates
+[
+3
+]
+Jeff Lawson, Evan Cooke, and John Wolthuis
+[
+4
+]
+and was based initially in
+Seattle
+, Washington, and San Francisco, California.
+[
+5
+]
+On November 20, 2008, the company launched Twilio Voice, an API to make and receive phone calls completely hosted in the cloud.
+[
+6
+]
+Twilio's text messaging API was released in February 2010,
+[
+7
+]
+and
+SMS shortcodes
+were released in public beta in July 2011.
+[
+8
+]
+Twilio raised approximately $103 million in
+venture capital
+growth funding. Twilio received its first round of seed funding in March 2009 for an undisclosed amount from
+Mitch Kapor
+,
+The Founders Fund
+,
+Dave McClure
+, David G. Cohen,
+Chris Sacca
+, Manu Kumar, from K9 Ventures, and Jeff Fluhr.
+[
+9
+]
+Twilio's first A round of funding was led by
+Union Square Ventures
+for $3.7 million
+[
+4
+]
+and its second B round of funding, for $12 million, was led by
+Bessemer Venture Partners
+.
+[
+10
+]
+Twilio received $17 million in a Series C round in December 2011 from Bessemer Venture Partners and Union Square Ventures.
+[
+11
+]
+In July 2013 Twilio received another $70 million from
+Redpoint Ventures
+,
+Draper Fisher Jurvetson
+(DFJ), and Bessemer Venture Partners.
+[
+12
+]
+In July 2015, Twilio raised a $130 million Series E from
+Fidelity
+,
+T Rowe Price
+,
+Altimeter Capital
+Management, and Arrowpoint Partners, in addition to
+Amazon
+and
+Salesforce
+.
+[
+13
+]
+Twilio filed for
+IPO
+on the
+New York Stock Exchange
+and started trading on June 23, 2016, with a 92% increase on the first day.
+[
+14
+]
+In March 2020, Twilio announced the appointment of Steve Pugh as Chief Security Officer and Glenn Weinstein as Chief Customer Officer.
+[
+15
+]
+In 2021, Twilio shut down its links to
+Parler
+due to Parler refusing to agree to monitor hate speech and insurrection on its platform.
+On August 4, 2022, an unknown attacker accessed Twilio's internal network through an
+SMS phishing
+campaign targeting Twilio's employees. Twilio confirmed the breach three days later, clarifying that it affected only "a limited number" of customer accounts.
+[
+16
+]
+On August 15,
+Signal
+announced that it had been affected by the breach, indicating that the 125 customers affected included at least some enterprise accounts.
+[
+17
+]
+In September 2022, Twilio laid off 11% of its workforce.
+[
+18
+]
+In the company announcement, former CEO Jeff Lawson claimed that the decisions (on which employees to lay off) were made through an "anti-racist/anti-oppression lens".
+[
+19
+]
+[
+20
+]
+The company announced an additional 17% cut in its workforce, nearly 1,500 employees, in February 2023.
+[
+21
+]
+As a part of restructuring, the company also announced creation of two business units
+–
+Twilio Data & Applications and Twilio Communications.
+[
+22
+]
+In December 2023, Twilio announced a decision to reduce its workforce by 5%, affecting around 300 employees, primarily within its Data and Applications division.
+[
+23
+]
+Twilio is known for using
+platform evangelism
+to acquire customers.
+[
+24
+]
+An early example is
+GroupMe
+, which was founded in May 2010 at the
+hackathon
+of
+TechCrunch Disrupt
+and uses Twilio's text messaging product to facilitate group chat.
+[
+25
+]
+GroupMe raised $10.6 million in venture funding in January 2011.
+[
+26
+]
+Following the success of TechCrunch Disrupt,
+seed accelerator
+500 Startups
+(now 500 Global) announced the Twilio Fund, a $250,000 "micro-fund" to provide
+seed money
+to startups using Twilio in September 2010.
+[
+27
+]
+[
+28
+]
+In January 2024, Twilio founder Jeff Lawson stepped down as CEO and board member, succeeded by Khozema Shipchandler.
+[
+29
+]
+Later that year in July, alleged threat actors acquired the phone numbers of over 33 million users of the company's
+multi-factor authentication
+service "Authy".
+[
+30
+]
+For full-year 2025, Twilio reported total revenue of $5.07 billion, a 14% year-over-year increase, driven by growth in voice AI, software add-ons, and solution bundles. Q4 2025 revenue was $1.37 billion, up 14% year-over-year.
+[
+31
+]
+Acquisitions
+[
+edit
+]
+In February 2015, Twilio acquired Authy, a
+Y Combinator
+–backed startup that offers
+two-factor authentication
+services to end users, developers and enterprises.
+[
+32
+]
+In September 2016, Twilio acquired Tikal Technologies, the development team behind the Kurento WebRTC open-source media server software, for $8.5 million.
+[
+33
+]
+In February 2017, Twilio acquired Beepsend, a Swedish-based SMS messaging provider, for an undisclosed amount.
+[
+34
+]
+Twilio announced in September 2018 that it was acquiring Ytica, a Prague, Czech Republic–based speech analytics firm, for an undisclosed amount.
+[
+35
+]
+In October 2018 Twilio announced it was acquiring
+SendGrid
+, a Denver, Colorado-based customer communication platform for transactional and marketing email, for $2 billion.
+[
+36
+]
+In February 2019, the two companies were formally merged in a deal valued at $3 billion.
+[
+37
+]
+In November 2018, the company acquired Core Network Dynamics GmbH, a Berlin, Germany-based virtual evolved packet core company.
+[
+38
+]
+Twilio announced in July 2020 that it had acquired Electric Imp, an internet of things platform company, for an undisclosed amount.
+[
+39
+]
+In October of that year, the company acquired Segment, a platform to collect, clean, and activate customer data, for $3.2 billion.
+[
+40
+]
+In May 2021, Twilio acquired Ionic Security, a data security platform for $30.2 million,
+[
+41
+]
+[
+42
+]
+and Zipwhip, a toll-free messaging services provider, for $850 million.
+[
+43
+]
+[
+44
+]
+In January 2022, Twilio announced that it agreed to acquire Boku Identity, Inc. from
+Boku, Inc.
+for $32.3 million.
+[
+45
+]
+[
+46
+]
+In October 2025, Twilio announced its agreement to acquire Stytch, an identity platform for AI agents.
+[
+47
+]
+Technology
+[
+edit
+]
+Twilio uses
+Amazon Web Services
+to host its communication infrastructure via APIs.
+[
+48
+]
+Rather than using industry-standard protocols such as
+SIP
+for call control, Twilio uses a customized
+markup language
+known as TwiML to allow for direct integration with its services.
+[
+49
+]
+Twilio and the customer typically exchange TwiML documents via HTTP
+Webhook
+.
+In June 2010, Twilio launched OpenVBX, an open-source product that lets business users configure phone numbers to receive and route phone calls.
+[
+50
+]
+One month later, Twilio engineer Kyle Conroy released Stashboard, an open-source status dashboard written in the
+Python programming language
+that any API or software service can use to display whether their service is functioning properly.
+[
+51
+]
+See also
+[
+edit
+]
+Clef (app)
+References
+[
+edit
+]
+↑
+John Cook (September 24, 2010).
+"Super angel McClure unveils 'micro-fund' for Twilio apps"
+.
+Puget Sound Business Journal
+.
+↑
+"US SEC: Twilio, Inc. Form 10-K"
+.
+U.S. Securities and Exchange Commission
+. February 24, 2026.
+↑
+Wilkins, Pete (October 11, 2022).
+"What Drives The University Of Michigan's Entrepreneurial Success"
+.
+forbes.com
+. Retrieved
+September 22,
+2025
+.
+1
+2
+"Twilio Raises $3.7 Million For Powerful Telephony API"
+.
+TechCrunch
+. December 30, 2009
+. Retrieved
+December 3,
+2015
+.
+↑
+"Twilio scores funding to build telecom in the cloud business"
+.
+Techflash.com
+. Retrieved
+December 3,
+2015
+.
+↑
+Kincaid, Jason (November 20, 2008).
+"Twilio: Powerful API For Phone Services That Can Recreate GrandCentral's Core Functionality In 15 Lines Of Code"
+. TechCrunch.
+↑
+Kincaid, Jason (February 9, 2010).
+"Twilio's Telephony API Now Lets Applications Send And Receive SMS Messages"
+. TechCrunch.
+↑
+Kincaid, Jason (July 13, 2011).
+"Twilio's Streamlined Shortcode API Now Open To All"
+. TechCrunch.
+↑
+"Twilio Closes Funding Round, Lands Major Customers For Its Telephony API"
+.
+TechCrunch
+. March 2, 2009
+. Retrieved
+December 3,
+2015
+.
+↑
+"Twilio Raises $12 Million For Powerful Telephony API"
+.
+TechCrunch
+. November 9, 2010
+. Retrieved
+December 3,
+2015
+.
+↑
+"Twilio Raises $17 Million Series C From Bessemer and Union Square To Expand Abroad"
+.
+TechCrunch
+. December 7, 2011
+. Retrieved
+December 3,
+2015
+.
+↑
+"Twilio Raises A $70M Series D As They Consider An IPO"
+.
+TechCrunch
+. June 7, 2013
+. Retrieved
+December 3,
+2015
+.
+↑
+"Twilio lands $130 million to make it easier to communicate via software"
+.
+Fortune
+. Retrieved
+January 2,
+2019
+.
+↑
+Driebusch, Corrie; Farrell, Maureen (June 23, 2016).
+"Twilio's Shares Jump 92% in Trading Debut"
+.
+The Wall Street Journal
+.
+↑
+"Twilio Welcomes Steve Pugh as Chief Security Officer and Glenn Weinstein as Chief Customer Officer"
+.
+Valdosta Daily Times
+. Retrieved
+March 5,
+2020
+.
+[
+permanent dead link
+]
+↑
+Roth, Emma (August 8, 2022).
+"Twilio suffers data breach after a phishing campaign targeted its employees"
+.
+The Verge
+. Retrieved
+August 8,
+2022
+.
+↑
+Oage, Carly (August 15, 2022).
+"Signal says 1,900 users' phone numbers exposed by Twilio breach"
+.
+TechCrunch
+. Retrieved
+August 16,
+2022
+.
+↑
+Wiggers, Kyle (September 14, 2022).
+"Twilio lays off 11% of its staff as it aims for profitability in 2023"
+.
+TechCrunch
+. Retrieved
+September 26,
+2022
+.
+↑
+Robison, Kylie (September 14, 2022).
+"Twilio promises 'anti-racist' layoffs as CEO says 11% job cuts won't hit workers from 'marginalized communities' more than others"
+.
+Fortune
+.
+{{
+cite web
+}}
+:  CS1 maint: deprecated archival service (
+link
+)
+↑
+Lawson, Jeff.
+"A Message from Twilio CEO Jeff Lawson"
+.
+Twilio
+. Retrieved
+September 26,
+2022
+.
+↑
+Ford, Brody (February 13, 2023).
+"Twilio Announces Second Wave of Layoffs, Cutting 17% of Workforce"
+.
+Bloomberg News
+.
+↑
+Capoot, Ashley (February 13, 2023).
+"Twilio to lay off about 1,500 employees, or 17% of its workforce"
+.
+CNBC
+.
+↑
+Goswami, Rohan.
+"Twilio lays off 5% of employees in unit activists want to divest"
+.
+CNBC
+. Retrieved
+February 17,
+2024
+.
+↑
+"Twilio's Founder On How To Partner With 20,000 Developers - with Jeff Lawson"
+. Mixergy. January 10, 2011
+. Retrieved
+December 3,
+2015
+.
+↑
+"Inception: A Hackday Dream (The Story Of GroupMe)"
+.
+TechCrunch
+. August 26, 2010
+. Retrieved
+December 3,
+2015
+.
+↑
+Matthew Lynley (January 4, 2011).
+"Group texting startup GroupMe raises $10.6M despite being a long way from revenue"
+. VentureBeat
+. Retrieved
+December 3,
+2015
+.
+↑
+Om Malik (September 23, 2010).
+"Got a Twilio-based App? Get Some Investment Dollars"
+. Gigaom. Archived from
+the original
+on December 8, 2015
+. Retrieved
+December 3,
+2015
+.
+↑
+"Announcing Twilio Fund for 500 Startups"
+. Archived from
+the original
+on January 30, 2011
+. Retrieved
+July 21,
+2011
+.
+↑
+"Twilio CEO Lawson steps down after bruising activist battles"
+. CNBC. January 8, 2024
+. Retrieved
+January 9,
+2024
+.
+↑
+Roth, Emma (July 3, 2024).
+"Twilio alerts Authy two-factor app users that 'threat actors' have their phone numbers"
+.
+The Verge
+. Retrieved
+July 6,
+2024
+.
+↑
+"Twilio Announces Fourth Quarter and Full Year 2025 Results"
+.
+Twilio Investor Relations
+. Retrieved
+March 21,
+2026
+.
+↑
+Lardinois, Frederic (February 24, 2015).
+"Twilio Acquires Two-Factor Authentication Service Authy"
+.
+TechCrunch
+. Retrieved
+December 28,
+2017
+.
+↑
+"Twilio paid $8.5 million in cash for assets of Kurento Open Source Project"
+. VentureBeat. February 22, 2017
+. Retrieved
+February 25,
+2017
+.
+↑
+Matney, Lucas (February 7, 2017).
+"Twilio acquires Beepsend to make message delivery more efficient on its Super Network"
+.
+TechCrunch
+. Retrieved
+December 28,
+2017
+.
+↑
+Miller, Ron (September 11, 2018).
+"Twilio's contact center products just got more analytical with Ytica acquisition"
+.
+TechCrunch
+.
+↑
+"Twilio to Acquire SendGrid, the Leading Email API Platform"
+. BusinessWire. October 15, 2018
+. Retrieved
+October 16,
+2018
+.
+↑
+"Value of Denver-based SendGrid goes up to $3B as San Francisco's Twilio completes acquisition"
+.
+The Denver Post
+. February 5, 2019
+. Retrieved
+September 27,
+2022
+.
+↑
+"Twilio buys Core Network Dynamics"
+. the-mobile-network.com. November 14, 2018.
+↑
+"Electric Imp is now part of Twilio"
+.
+connect.electricimp.com
+. Archived from
+the original
+on August 11, 2020
+. Retrieved
+August 3,
+2020
+.
+↑
+"Twilio confirms it is buying Segment for $3.2B in an all-stock deal"
+.
+TechCrunch
+. October 12, 2020
+. Retrieved
+October 12,
+2020
+.
+↑
+MarketScreener (May 17, 2021).
+"Twilio Inc. acquired Ionic Security Inc. for $30.2 million. | MarketScreener"
+.
+www.marketscreener.com
+. Retrieved
+November 22,
+2022
+.
+↑
+"Cybersecurity M&A Roundup: 36 Deals Announced in May 2021 | SecurityWeek.Com"
+.
+www.securityweek.com
+. June 2021
+. Retrieved
+November 22,
+2022
+.
+↑
+Gagliordi, Natalie.
+"Twilio to acquire toll-free messaging provider Zipwhip for $850 million"
+.
+ZDNet
+. Retrieved
+May 18,
+2021
+.
+↑
+Schlosser, Kurt (May 17, 2021).
+"Twilio to acquire Seattle business texting startup Zipwhip for $850M"
+.
+GeekWire
+. Retrieved
+December 10,
+2022
+.
+↑
+MarketScreener (January 19, 2022).
+"Twilio Inc. agreed to acquire Boku Identity, Inc. from Boku, Inc. for $32.3 million. | MarketScreener"
+.
+www.marketscreener.com
+. Retrieved
+January 28,
+2023
+.
+↑
+"Twilio and Boku Mobile Identity Come Together to Offer Secure Onboarding"
+.
+Twilio Blog
+. Retrieved
+January 28,
+2023
+.
+↑
+"Twilio to Acquire Identity Platform for AI Agents, Stytch"
+.
+Twilio
+. Retrieved
+November 1,
+2025
+.
+↑
+Harris, Derrick (March 3, 2009).
+"Why Amazon Will Make or Break Twilio"
+Archived
+2021-12-03 at the
+Wayback Machine
+. Gigaom.
+↑
+Levent-Levi, Tsahi (January 6, 2020).
+"The top 6 CPaaS trends to track in 2022"
+.
+TechTarget
+. Retrieved
+December 10,
+2022
+.
+↑
+"Twilio Releases OpenVBX, An Open Source Google Voice For Businesses"
+.
+TechCrunch
+. June 15, 2010
+. Retrieved
+December 3,
+2015
+.
+↑
+Catacchio, Chad (July 21, 2010).
+"Twilio open sources Stashboard, an API monitoring dashboard"
+.
+TNW | Apps
+. Retrieved
+December 10,
+2022
+.
+External links
+[
+edit
+]
+Official website
+Business data for Twilio Inc.:
+Google
+SEC filings
+Yahoo!
+v
+t
+e
+S&P 400 companies
+Energy
+Antero Midstream
+Antero Resources
+Chord Energy
+CNX Resources
+HF Sinclair
+Murphy Oil
+NOV Inc.
+Ovintiv
+PBF Energy
+Range Resources
+TechnipFMC
+Valaris Limited
+Weatherford International
+Materials
+Alcoa
+AptarGroup
+Ashland Global
+Avient
+Axalta
+Cabot Corporation
+Carpenter Technology
+Cleveland-Cliffs
+Coeur Mining
+Commercial Metals Company
+Crown Holdings
+Eagle Materials
+Graphic Packaging
+Greif, Inc.
+Hecla Mining
+Knife River Corporation
+Louisiana-Pacific
+MP Materials
+NewMarket Corporation
+Olin
+Reliance
+Royal Gold
+RPM International
+Scotts Miracle-Gro Company
+Silgan Holdings
+Solstice Advanced Materials
+Sonoco
+Westlake
+Industrials
+AAON
+Acuity Brands
+Advanced Drainage Systems
+AECOM
+AeroVironment
+AGCO
+Alaska Air Group
+Allison Transmission
+American Airlines Group
+Applied Industrial Technologies
+ATI Inc.
+Avis Budget Group
+Booz Allen Hamilton
+Brink's
+BWX Technologies
+CACI International
+Carlisle Companies
+Clean Harbors
+CNH Industrial
+Core & Main
+Crane
+Curtiss-Wright
+Donaldson
+EnerSys
+ESAB
+EXL Service
+Exponent, Inc.
+Flowserve
+Fluor
+Fortune Brands Innovations
+FTI Consulting
+GATX
+Genpact
+Graco
+GXO Logistics
+Hexcel
+Integrated Electrical Services
+ITT Inc.
+KBR
+Kirby
+Knight-Swift
+Kratos Defense & Security Solutions
+Landstar System
+Lincoln Electric
+MasTec
+Maximus Inc.
+Middleby
+Moog Inc.
+MSA Safety
+MSC Industrial Direct
+Mueller Industries
+Nextpower
+nVent Electric
+Oshkosh
+Owens Corning
+Parsons
+Paylocity
+RB Global
+Regal Rexnord
+Ryder
+Saia
+Science Applications International Corporation
+Simpson Manufacturing Company
+SPX Corporation
+StandardAero
+Terex
+Tetra Tech
+Timken
+The Toro Company
+TransUnion
+Trex
+UFP Industries
+UL Solutions
+Valmont Industries
+Vicor Corporation
+Watsco
+Watts Water Technologies
+WESCO International
+Woodward, Inc.
+XPO, Inc.
+Consumer
+discretionary
+Abercrombie & Fitch
+Aramark
+Autoliv
+AutoNation
+Bath & Body Works, Inc.
+BorgWarner
+Boyd Gaming
+Brunswick
+Burlington Stores
+Capri Holdings
+Cava Group
+Chewy
+Choice Hotels
+Churchill Downs Inc.
+Columbia Sportswear
+Crocs
+Dick's Sporting Goods
+Duolingo
+Dutch Bros Inc.
+Five Below
+Floor & Decor
+GameStop
+Gap
+Gentex
+Graham Holdings
+Grand Canyon Education
+H&R Block
+Harley-Davidson
+Hilton Grand Vacations
+Hyatt
+KB Home
+Lear
+Lithia Motors
+Macy's
+Mattel
+Murphy USA
+Ollie's Bargain Outlet
+Penske Automotive Group
+Planet Fitness
+Polaris
+PVH
+RH
+Service Corp Intl
+SharkNinja
+Somnigroup International
+Taylor Morrison
+Texas Roadhouse
+Thor Industries
+Toll Brothers
+Travel + Leisure Co.
+Vail Resorts
+Valvoline
+VF Corporation
+Visteon
+Whirlpool
+Wingstop
+Wyndham Hotels & Resorts
+Yeti Holdings
+Consumer
+staples
+Albertsons
+BJ's Wholesale Club
+Boston Beer Company
+Celsius Holdings
+Coca-Cola Consolidated
+e.l.f. Beauty
+Ingredion
+Maplebear Inc.
+Performance Food Group
+Pilgrim's Pride
+Post Holdings
+Sprouts Farmers Market
+US Foods
+Health Care
+Arrowhead Pharmaceuticals
+Avantor
+Bio-Rad Laboratories
+BioMarin Pharmaceutical
+Bruker
+Cytokinetics
+Dentsply Sirona
+Doximity
+Elanco
+Encompass Health
+Exelixis
+Globus Medical
+Haemonetics
+Halozyme
+HealthEquity
+Hims & Hers Health
+Illumina
+Jazz Pharmaceuticals
+Lantheus Holdings
+LivaNova
+Medpace
+Neurocrine Biosciences
+Penumbra
+Repligen
+Roivant Sciences
+Tenet Healthcare
+United Therapeutics
+Financials
+Affiliated Managers Group
+Ally Financial
+American Financial Group
+Annaly Capital Management
+Associated Bank
+Bank OZK
+Brighthouse Financial
+The Carlyle Group
+CNO Financial Group
+Commerce Bancshares
+Corebridge Financial
+East West Bancorp
+Equitable Holdings
+Euronet Worldwide
+Evercore
+Federated Hermes
+Fidelity National Financial
+First American
+First Horizon
+FirstCash
+Flagstar Bank
+FNB Corporation
+Frost Bank
+Glacier Bancorp
+Hamilton Lane
+Hancock Whitney
+Hanover Insurance
+Home BancShares
+Houlihan Lokey
+Intl Bancshares Corp
+Jefferies
+MGIC Investment Corporation
+Morningstar, Inc.
+Old National Bank
+Old Republic International
+Pinnacle Financial Partners
+Primerica
+Prosperity Bancshares
+Reinsurance Group of America
+RenaissanceRe
+RLI
+SEI
+SLM Corp
+Shift4
+SouthState Bank
+Stifel
+Texas Capital Bancshares
+Toast, Inc.
+UMB Financial Corp.
+United Bankshares
+Unum
+Valley Bank
+Voya Financial
+Webster Bank
+Western Alliance Bancorporation
+WEX Inc.
+Wintrust
+Zions Bancorporation
+Information
+technology
+Advanced Energy
+Amkor Technology
+AppFolio
+Arrow Electronics
+Avnet
+Belden
+Bentley Systems
+Bill Holdings
+Cirrus Logic
+Cognex
+CommVault Systems
+Crane NXT
+DigitalOcean
+Dolby
+Docusign
+Dropbox
+Dynatrace
+Entegris
+Everpure
+Guidewire Software
+InterDigital
+IPG Photonics
+Kyndryl
+Lattice Semiconductor
+Littelfuse
+MACOM Technology Solutions
+MKS Instruments
+Nutanix
+Okta, Inc.
+Onto Innovation
+Pegasystems
+Qualys
+Rambus
+Sanmina
+Semtech
+Silicon Labs
+SiTime
+Synaptics
+TD Synnex
+TTM Technologies
+Twilio
+UiPath
+Universal Display
+Viavi Solutions
+Vontier
+Communication
+services
+The New York Times Company
+Nexstar Media Group
+Pinterest
+Roku, Inc.
+SiriusXM
+Warner Music Group
+Real estate
+Brixmor Property Group
+COPT Defense Properties
+Cousins Properties
+CubeSmart
+EPR Properties
+Gaming and Leisure Properties
+Jones Lang LaSalle
+Lamar Advertising Company
+NNN Reit
+Park Hotels & Resorts
+Rayonier
+Vornado Realty Trust
+W. P. Carey
+Utilities
+Black Hills Corporation
+Essential Utilities
+Idacorp
+National Fuel Gas
+New Jersey Resources
+NorthWestern Energy
+OGE Energy
+ONE Gas
+Ormat Technologies
+Portland General Electric
+Southwest Gas
+Spire
+Talen Energy
+TXNM Energy
+UGI Corporation
+Retrieved from "
+https://en.wikipedia.org/w/index.php?title=Twilio&oldid=1363517907
+"
+Categories
+:
+Cloud computing providers
+American companies established in 2008
+Computer companies established in 2008
+Telecommunications companies established in 2008
+Companies based in San Francisco
+Cloud communication platforms
+Companies in the S&P 400
+Companies listed on the New York Stock Exchange
+500 Startups companies
+2016 initial public offerings
+Information technology companies of the United States
+2008 establishments in Washington (state)
+Software as a Service (SaaS) companies
+Hidden categories:
+Articles with short description
+Short description is different from Wikidata
+Articles needing cleanup from January 2026
+All pages needing cleanup
+Articles with sections that need to be turned into prose from January 2026
+Use American English from February 2026
+All Wikipedia articles written in American English
+Use mdy dates from February 2026
+Pages with non-numeric formatnum arguments
+Infobox network service provider ASN using Wikidata
+All articles with dead external links
+Articles with dead external links from June 2024
+Articles with permanently dead external links
+CS1 maint: deprecated archival service
+Webarchive template wayback links
+Official website different in Wikidata and Wikipedia
+Search
+Search
+Twilio
+13 languages
+Add topic

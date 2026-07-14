@@ -1,0 +1,92 @@
+Authentication
+For AI agents: visit https://developer.monday.com/llms.txt for an index of all pages formatted in Markdown and endpoints in OpenAPI.
+The monday.com platform API utilizes
+personal V2 API tokens
+to authenticate requests and identify the user making the call. These tokens are unique to each user and have no explicit length.
+Personal tokens allow you to interact with the API using your own user account. Their permissions mirror what you can do in the monday.com UI, ensuring that API access is consistent with your platform-level permissions.
+Token permissions
+Personal tokens mirror all permission levels set in the monday.com UI, including
+board
+,
+column
+,
+item
+, or
+account
+access.
+For example: If you don't have permission to access a certain workspace via the UI, you won't have permission using your personal API token either.
+App tokens have an additional
+set of permission scopes
+that specify which queries and mutations it can access, while personal tokens have all permission scopes.
+Accessing your token
+You can access your API token in two ways, depending on your
+user type
+.
+In the Developer Center (all users)
+All
+users with API access
+can follow these steps to access their API token:
+In your monday.com account, click on your profile picture in the top right corner.
+Select
+Developers
+. This will open the
+Developer Center
+in another tab.
+Click
+API token
+>
+Show
+.
+Copy your personal token.
+In the Administration tab (account admins only)
+Account admins can use the
+Developer Center
+steps above or access their token via the
+Administration
+tab:
+In your monday.com account, click on your profile picture in the top right corner.
+Select
+Administration
+>
+Connections
+>
+Personal API token
+.
+Copy your personal token.
+Making requests with your token
+Once you have your token, you can make requests with the API by passing the token in the
+Authorization
+header.
+cURL
+curl -X POST https://api.monday.com/v2 \
+-H "Authorization: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
+-H "Content-Type: application/json" \
+-d '{"query": "query { me { id name } }"}'
+Regenerating a token
+API tokens can be regenerated at any time. However, this will immediately invalidate your current token, so be sure to update any integrations using it.
+How to regenerate a token
+In the Developer Center
+In your monday.com account, click on your profile picture in the top right corner.
+Select
+Developers
+. This will open the
+Developer Center
+in another tab.
+Click
+API token
+>
+Regenerate
+.
+In the Administration tab
+In your monday.com account, click on your profile picture in the top right corner.
+Select
+Administration
+>
+Connections
+>
+Personal API token
+.
+Click
+Regenerate
+.
+Copy Page

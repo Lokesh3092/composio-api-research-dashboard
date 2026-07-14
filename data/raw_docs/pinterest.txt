@@ -1,0 +1,593 @@
+Pinterest Developers
+Skip to content
+Set up authentication and authorization
+Use with AI
+Pinterest API services are only available to authenticated and authorized users.
+Make sure your API requests on a user"s behalf include a current access token that identifies the user and defines your permissions, or scopes, for using the API on their behalf.
+Before you begin
+Make sure you have the following items before you generate an access token:
+OAuth prerequisites
+What you need
+Why you need it
+How to get it
+Your app ID and client secret
+You will provide these as credentials when requesting an OAuth access token.
+First,
+Register your app
+.
+Then, find your
+app ID
+and
+client secret
+.
+Redirect URI
+References your app's site, where Pinterest will send the user and an authorization code after the user authorizes your app in
+Step 1
+.
+You will later provide the redirect URI in
+Step 3
+, when requesting the OAuth access token.
+When you register your app, you provide at least one redirect URI.
+See
+Configure your app's redirect URI
+to learn more.
+OAuth grant type selection
+The grant type determines how your app authenticates and acquires authorization to access
+protected resources.
+Learn about
+grant types
+. Then, select one.
+Scope(s) selection
+Scopes are the permissions your users give your app to act on their behalf within Pinterest.
+Each scope allows your app to make different API requests, such as for creating ads or
+viewing secret boards.
+Learn about
+scopes
+. Then select the ones you need.
+Generate an access token
+Take the following three steps to generate a token with the
+Authorization Code grant
+.
+For the
+Client Credentials grant
+, take only
+Step 3
+.
+Step 1: Redirect the user to the Pinterest OAuth page
+Prompt the user to click a link that redirects them to
+https://www.pinterest.com/oauth/
+with the following parameters:
+Table for redirect parameters
+Parameter
+Description
+client_id
+Required
+Unique ID for your app, also referred to as
+App ID
+.
+See
+Before you begin
+.
+redirect_uri
+Required
+Redirect URI registered for your app.
+Must exactly match the value as registered with Pinterest.
+See
+Before you begin
+.
+response_type
+Required
+Type of credential you want the authorization server to return after the user authenticates
+and authorizes your app.
+Set to literal string
+code
+.
+scope
+Required
+Permission granted with the access token.
+At least one is required.
+Separate multiple scopes with spaces or commas.
+For example, to include the scopes
+boards:read
+and
+pins:read
+,
+set
+scope
+to
+boards:read,pins:read
+or
+boards:read pins:read
+.
+state
+Optional
+Any string value you define, appended to your redirect URI as part of the request query
+string during the OAuth transaction.
+Commonly used to prevent
+cross-site request
+forgery
+.
+Learn more from the
+Open Worldwide Application Security Project
+(OWASP)
+.
+Example request to the OAuth page
+https://www.pinterest.com/oauth/?client_id=1234567&redirect_uri=https://example.com/&response_type=code&scope=ads:read,ads:write,boards:read,pins:read&state=hello
+If the user is not yet logged in to Pinterest, they see a login page. Otherwise, they see a page to approve access for your app with your requested scopes.
+Step 2: Receive the authorization code with your redirect URI
+After the user authorizes your app, we send them to the
+redirect_uri
+you specified in the
+preceding step
+with the following parameters:
+Table for redirect parameters
+Parameter
+Description
+code
+Code to be exchanged for an access token.
+state
+Should match the string you entered in the
+redirect
+request
+.
+A non-matching string could indicate a cross-site request forgery attack.
+For example: the following redirect URI…
+https://www.example.com/oauth/pinterest/oauth_response/
+…results in a callback request like the following:
+https://www.example.com/oauth/pinterest/oauth_response/?code={code}&state={your_optional_string}
+Step 3: Get the access token
+For the
+Authorization Code grant
+, you will exchange the code you received in your redirect URI for an access token.
+For the
+Client Credentials grant
+, you will request the token without exchanging any code.
+Call the access token endpoint using the following guidelines:
+POST
+Generate OAuth access token
+Try out this endpoint with the
+Pinterest Postman collection
+. On the collection site, select
+OAuth
+under
+Pinterest REST API (latest)
+in the left navigation panel. Then select
+Generate access token
+.
+Try out this endpoint with the
+Pinterest Postman collection
+. On the collection site, select
+OAuth
+under
+Pinterest REST API (latest)
+in the left navigation panel. Then select
+Generate access token
+.
+Authentication
+Use HTTP Basic Authentication:
+Username:
+client_id
+Password:
+client_secret
+Authorization Header
+Authorization:
+Basic {base64-encoded_string_made_of client_id:client_secret}
+For example, if your
+client_id
+is
+123
+and your
+client_secret
+is
+456
+, the base64 encoding of
+123:456
+is
+MTIzOjQ1Ng==
+. So, your header would be:
+Authorization: Basic MTIzOjQ1Ng==
+Request Body Parameters
+Use the following parameters for the Authorization Code grant:
+Table for Authorization Code token request
+Parameter
+Description
+code
+Required
+Authorization code returned in
+preceding
+step
+.
+redirect_uri
+Required
+Redirect URI used during registration, which must match exactly.
+grant_type
+Required
+Set this to
+authorization_code
+.
+continuous_refresh
+Optional
+Only applicable to apps created before
+September 25, 2025
+.
+Set to
+true
+to return a
+continuous refresh
+token
+.
+Pinterest no longer supports the legacy refresh token (365-day expiration, hard limit)
+Pinterest no longer supports the legacy refresh token (365-day expiration, hard limit)
+If your app was created on or after
+September 25, 2025
+, disregard this parameter, as you are automatically using the continuous refresh token (60-day expiration, refreshable indefinitely).
+Use the following parameters for the Client Credentials grant:
+Table for Client Credentials token request
+Parameter
+Description
+scope
+Required
+Permission granted with the access token. At least one is required.
+Separate multiple scopes
+with spaces or commas. For example, to include the scopes
+boards:read
+and
+pins:read
+,
+enter:
+boards:read,pins:read
+or
+boards:read pins:read
+.
+grant_type
+Required
+Set this to
+authorization_code
+.
+Example Requests
+Authorization Code grant request:
+curl -X POST https://api.pinterest.com/v5/oauth/token \
+--header 'Authorization: Basic {base64-encoded_string_made_of client_id:client_secret}' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'grant_type=authorization_code' \
+--data-urlencode 'code={your_code}' \
+--data-urlencode 'redirect_uri=http://localhost/' \
+--data-urlencode 'continuous_refresh=true'
+If you want to use an OAuth token in the Sandbox environment, you can generate a Sandbox token by inserting
+-sandbox
+into the request URL path. The first line of the request example would appear as follows:
+curl -X POST https://api-sandbox.pinterest.com/v5/oauth/token
+. Learn more about
+Using Sandbox.
+If you want to use an OAuth token in the Sandbox environment, you can generate a Sandbox token by inserting
+-sandbox
+into the request URL path. The first line of the request example would appear as follows:
+curl -X POST https://api-sandbox.pinterest.com/v5/oauth/token
+. Learn more about
+Using Sandbox.
+Client Credentials grant request:
+curl -X POST https://api.pinterest.com/v5/oauth/token \
+--header 'Authorization: Basic {base64-encoded_string_made_of client_id:client_secret}' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'grant_type=client_credentials' \
+--data-urlencode 'scope=boards:read,pins:read'
+Example response
+Authorization Code grant response (Note the
+pina
+prefix for the access token.):
+{
+"access_token": "{access_token_string_with_'pina'_prefix}",
+"refresh_token": "{refresh_token_string_with_'pinr'_prefix}",
+"response_type": "authorization_code",
+"token_type": "bearer",
+"expires_in": 2592000,
+"refresh_token_expires_in": 31536000,
+"scope": "boards:read boards:write pins:read"
+}
+Client Credentials grant response: (Note the
+pinc
+prefix for the access token.):
+{
+"access_token": "{access_token_string_with_'pinc'_prefix}",
+"response_type": "client_credentials",
+"token_type": "bearer",
+"expires_in": 2592000,
+"scope": "boards:read catalogs:read catalogs:write pins:read"
+}
+Response fields
+The response includes the following fields:
+Table for token request response fields
+Field
+Description
+access_token
+Token used to authenticate API requests.
+refresh_token
+Token used to obtain a new access token without requiring user interaction.
+token_type
+Type of token returned in the request. For example, the type
+bearer
+can be used by the
+client to authenticate requests to the API without requiring additional credentials.
+expires_in
+Lifetime of the access token in seconds.
+refresh_token_expires_in
+Lifetime of the refresh token in seconds.
+scope
+Permissions granted with the access token.
+Use and manage tokens
+See this section for guidance on using tokens, keeping them up to date and addressing invalid tokens.
+Use a token
+When calling the Pinterest API, include the access token in the request header as part of the key-value pair for authorization. For the key
+Authorization
+, enter the value
+Bearer {your_token}
+, as in the following example:
+curl https://api.pinterest.com/v5/user_account --header 'Authorization: Bearer 123'
+If the access token has expired or is invalid, the request returns the following:
+Status code:
+HTTP 401
+API error code:
+2
+Inspect a token
+To see information about a token, such as whether it is still valid or has the appropriate set of scopes, use the
+Token Debugger
+.
+Store a token
+Authorization Code grants only
+You can store the access token, so that you do not have to keep repeating the flow for token generation. See the
+Pinterest API Quickstart guide
+to learn about two methods for storing the token:
+As a JSON file
+As an environmental variable
+Refresh a token
+Authorization Code grants only
+Refresh your access token before it expires-–within 30 days (2592000 seconds) after it is issued–-to ensure uninterrupted access for your app users.
+Pinterest only supports the continuous refresh token (60-day expiration, refreshable indefinitely) and no longer supports the legacy refresh token (365-day expiration, hard limit).
+Pinterest only supports the continuous refresh token (60-day expiration, refreshable indefinitely) and no longer supports the legacy refresh token (365-day expiration, hard limit).
+POST
+Generate OAuth access token
+Request body parameters
+Table for token refresh parameters
+Parameter
+Description
+refresh_token
+Required
+Full refresh token string, starting with
+pinr
+, which was returned when you
+requested the
+access token
+.
+grant_type
+Required
+Set to the literal string
+refresh_token
+.
+scope
+Optional
+One or more scopes. Include this parameter to get an access token with a subset of the
+scopes originally granted
+Example request
+curl -X POST https://api.pinterest.com/v5/oauth/token \
+--header 'Authorization: Basic {base64-encoded_string_made_of client_id:client_secret}' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'grant_type=refresh_token' \
+--data-urlencode 'refresh_token={your_refresh_token}' \
+--data-urlencode 'scope=boards:read'
+Example response for a continuous refresh token
+A successful request returns a new access token and a continuous refresh token. The JSON includes the same fields that are returned in a
+request for an access token
+, with the addition of the
+refresh_token_expires_at
+field, which indicates the refresh token's expiration date in Unix time.
+In the following example, the value
+1730227664
+converts to
+October 29, 2024
+.
+{
+"access_token": "{access_token_string_with_'pina'_prefix}",
+"response_type": "refresh_token",
+"token_type": "bearer",
+"expires_in": 2592000,
+"scope": "boards:read",
+"refresh_token": "{refresh_token_string_with_'pinr'_prefix}",
+"refresh_token_expires_in": 5184000,
+"refresh_token_expires_at": 1730227664
+}
+Response fields
+Table for refresh token response
+Parameter
+Description
+access_token
+Token used to authenticate API requests.
+response_type
+Set to literal string
+code
+.
+token_type
+Type of token returned in the request. For example, the type
+bearer
+can be used by the
+client to authenticate requests to the API without requiring additional credentials.
+expires_in
+Lifetime of the access token in seconds.
+scope
+Permissions granted with the access token.
+Repeat these steps before 60 days in order to keep the continuous refresh token valid.
+Once the refresh token has expired, you will need to explicitly request access again by repeating the Authorization Code flow.
+Once the refresh token has expired, you will need to explicitly request access again by repeating the Authorization Code flow.
+Replace an invalid token
+When calling a Pinterest endpoint, you may occasionally receive an
+Authentication failed
+error, indicating that a token no longer works.
+Tokens may become invalid for a number of reasons, and Pinterest does not always notify you if that has happened. The most common reasons for token invalidation are:
+The account user has changed their username or password.
+The
+Github Secret Scanner program
+discovered that the token was leaked.
+If your token becomes invalid, generate a new one by repeating the
+Authorization Code flow
+.
+Reset the app secret key
+Your app's secret key, the client-secret, is a unique identifier from which tokens are generated. If its secret key becomes public, you should reset the key on the
+My apps
+page.
+Reset your app's secret key:
+Go to
+My apps
+.
+In the
+Configure
+tab, select
+Reset app secret
+.
+Select
+Reset
+in the confirmation pop-up window.
+Reveal and copy the new app secret key.
+After you change a secret key, existing access tokens continue to work. However, you cannot generate any more access tokens using the old secret key.
+Which grant type should you use?
+The Pinterest API supports three grant types, which are methods for authenticating your app and acquiring authorization to access protected resources. The type you choose will affect how you
+generate an access token
+.
+Our implementation of grant types and access tokens follows OAuth 2.0 specifications. To learn more about OAuth and grant types, see the
+OAuth 2.0 Authorization Framework RFC
+.
+Authorization Code grant
+What this type is for:
+This grant type is designed for web apps that access a user's data on behalf of that user. It is the only grant type that gives you access to the full range of capabilities offered by the Pinterest API. It requires user authentication.
+Authorization Code is the most secure grant type because:
+The user must explicitly approve the scopes requested by your app.
+The user's credentials are never shared with the client (your app) directly.
+The access token is sent directly to the client server, not the user's browser, minimizing risk of token exposure.
+When to use it:
+Use this grant type if you are building an app to be used by multiple, independent end users, or customers.
+How it works:
+A user clicks a button in your app to connect to their Pinterest account.
+Your app redirects the user to our OAuth page. If the user is not logged into Pinterest they will be prompted to do so first.
+The OAuth page prompts the user to give access to your app with your requested scopes.
+The user approves access.
+The user is redirected to your app with an authorization code (passed as a query parameter).
+Your app calls the OAuth server with the authorization code, requesting an access token.
+The OAuth server returns an access token.
+Your app accesses the Pinterest API using the token on behalf of the user.
+Client Credentials grant
+Two-factor authentication is required for this grant type.
+Learn how to enable it for your app.
+Two-factor authentication is required for this grant type.
+Learn how to enable it for your app.
+What this type is for:
+This grant type is designed for situations when the client (your app) is acting on its own behalf, not a user. This means that the access token generated from this grant type is on behalf of the current app owner. It is suitable for machine-to-machine communication, where backend services authenticate and interact with APIs without user involvement.
+What you can access:
+With this grant type, you cannot use certain endpoints that provide read/write access to more sensitive data. To find out if an endpoint is accessible with a Client Credentials token:
+Go to the
+API reference
+page for that endpoint.
+Check if
+Client Credentials
+is listed in the
+Authorizations
+section.
+Also, note the necessary
+scopes
+for accessing the endpoint.
+When to use it:
+Use this grant type to access the API with your own credentials to:
+Get started faster using the API and trying out the endpoints before you access it on behalf of your users.
+Automate API calls for your developer account by setting up CRON jobs.
+Because the Client Credentials flow does not require a manual authorization approval step, it is less secure. Make sure to store your client secret securely.
+Because the Client Credentials flow does not require a manual authorization approval step, it is less secure. Make sure to store your client secret securely.
+How it works:
+Your app requests an access token from the Pinterest OAuth server.
+The OAuth server returns an access token.
+Your app accesses the Pinterest API, using the access token on behalf of your own account.
+Refresh Token grant
+What this type is for:
+This grant type allows a client to exchange a refresh token for a new access token before the current access token has expired, without requiring the user to re-authenticate.
+When to use it:
+Use this grant type to obtain a new access token before the current one expires.
+How it works:
+Your app requests a new access token from the Pinterest OAuth server with the refresh token that you obtained when first generating an access token.
+The OAuth server returns a new access token.
+Your app accesses the Pinterest API, using the new access token.
+Pinterest only supports the continuous refresh token (60-day expiration, refreshable indefinitely) and no longer supports the legacy refresh token (365-day expiration, hard limit).
+Pinterest only supports the continuous refresh token (60-day expiration, refreshable indefinitely) and no longer supports the legacy refresh token (365-day expiration, hard limit).
+Which scopes do you need?
+Scopes are the permissions your users give your app to act on their behalf within Pinterest. Each scope allows your app to make different API requests, such as for creating ads or viewing secret boards.
+As a security best practice, request the minimum number of scopes from your users to meet their business needs. Limiting their API permissions mitigates risk to them and your organization in case your app is compromised. Consider starting with a few essential scopes and request more later as needed.
+Scope types and syntax
+We provide two types of scopes:
+Read
+scopes allow users to see information related to an entity without taking any action.
+Write scopes
+allow users to take actions related to an entity. When requesting a write scope, consider also requesting the associated read scope if you need information about the affected entity to take action. For example, to create a pin on a board, you need the ID of the board or board section, which you can get from a read scope.
+When specifying scopes during token creation, use the syntax
+{entity}:read
+or
+{entity}:write
+, and separate multiple scopes with commas or single spaces.
+Examples:
+ads:read,ads:write,boards:read,boards:write
+ads:read ads:write boards:read boards:write
+Available scopes
+See what read and write scopes enable you to do with each entity:
+Scopes table
+Entity
+read
+permissions
+write
+permissions
+ads
+See all data related to advertising, such as ads, ad groups and campaigns.
+Create, update or delete ads, ad groups and campaigns.
+billing
+See all of your billing data, such as your billing profile.
+Create, update or delete billing data.
+biz_access
+See all business access data.
+Create, update or delete business access data.
+boards
+See public boards, including group boards, with
+boards:read
+or secret boards with
+boards:read_secret
+.
+Create, update or delete public boards with
+boards:write
+or secret boards with
+boards:write_secret
+.
+catalogs
+See all catalog data.
+Create, update or delete catalogs.
+pins
+See public pins with
+pins:read
+or secret pins with
+pins:read_secret
+.
+Create, update or delete public pins with
+pins:write
+or secret pins with
+pins:write_secret
+.
+user_accounts
+See user accounts and followers.
+Update user accounts and followers.
+Token security considerations: Github secret scanner program
+Pinterest participates in GitHub's secret scanning partner program, which alerts our security team if a Pinterest access token has been leaked in a developer's code commit.
+Our API tokens, such as access and refresh tokens, are secrets that developers should not share in their code or repos. A developer hosting their code on GitHub may unintentionally expose tokens in their code. If the code repo is public, anyone on the internet can see and copy the exposed tokens, which is a significant security risk.
+As a partner in the program, Pinterest provides GiHub secret patterns to scan for our token format. When they detect a leaked token, they notify us.
+In response, Pinterest revokes the token's access and advises the developer and user of the app to reconnect their account to the app.
+What can I expect if I receive an email?
+The secret scanning alert is a free service from GitHub for public repositories on GitHub.com. If a token is leaked for an app you own, all contact emails associated with the app, including the user account associated with the leaked token, receive an email notification about the exposure. The exposed token's access is revoked within 24 hours.
+If you receive an email, we recommend you take immediate action to secure your GitHub repo and re-establish your app's connection with the impacted account.
+Resources on OAuth 2.0:
+The OAuth 2.0 Authorization Framework
+OAuth.net's "Getting Started"
+OAuth Redirects
+Validating redirect URIs
+NEXT
+Make an API call
+Was this page helpful?

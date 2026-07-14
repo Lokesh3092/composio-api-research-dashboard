@@ -1,0 +1,602 @@
+[
+    {
+        "app_name":"Salesforce",
+        "confidence":0,
+        "status":"FAIL",
+        "notes":"Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Buildability uncertain; Limited documentation retrieved"
+    },
+    {
+        "app_name":"HubSpot",
+        "confidence":85,
+        "status":"PASS",
+        "notes":"Self Serve unknown"
+    },
+    {
+        "app_name":"Pipedrive",
+        "confidence":40,
+        "status":"FAIL",
+        "notes":"API surface not detected in retrieved page; Self Serve unknown; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Attio",
+        "confidence":85,
+        "status":"PASS",
+        "notes":"Self Serve unknown"
+    },
+    {
+        "app_name":"Twenty",
+        "confidence":60,
+        "status":"REVIEW",
+        "notes":"Self Serve unknown; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Podio",
+        "confidence":55,
+        "status":"REVIEW",
+        "notes":"API surface not detected in retrieved page; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Zoho CRM",
+        "confidence":40,
+        "status":"FAIL",
+        "notes":"API surface not detected in retrieved page; Self Serve unknown; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Close",
+        "confidence":60,
+        "status":"REVIEW",
+        "notes":"Self Serve unknown; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Copper",
+        "confidence":65,
+        "status":"REVIEW",
+        "notes":"Authentication missing; Self Serve unknown"
+    },
+    {
+        "app_name":"DealCloud",
+        "confidence":40,
+        "status":"FAIL",
+        "notes":"Authentication missing; Self Serve unknown; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Zendesk",
+        "confidence":55,
+        "status":"REVIEW",
+        "notes":"Authentication missing; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Intercom",
+        "confidence":100,
+        "status":"PASS",
+        "notes":null
+    },
+    {
+        "app_name":"Freshdesk",
+        "confidence":85,
+        "status":"PASS",
+        "notes":"Self Serve unknown"
+    },
+    {
+        "app_name":"Front",
+        "confidence":60,
+        "status":"REVIEW",
+        "notes":"Self Serve unknown; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Pylon",
+        "confidence":40,
+        "status":"FAIL",
+        "notes":"API surface not detected in retrieved page; Self Serve unknown; Limited documentation retrieved"
+    },
+    {
+        "app_name":"LiveAgent",
+        "confidence":0,
+        "status":"FAIL",
+        "notes":"Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Buildability uncertain; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Plain",
+        "confidence":85,
+        "status":"PASS",
+        "notes":"Self Serve unknown"
+    },
+    {
+        "app_name":"Help Scout",
+        "confidence":65,
+        "status":"REVIEW",
+        "notes":"API surface not detected in retrieved page; Self Serve unknown"
+    },
+    {
+        "app_name":"Gorgias",
+        "confidence":60,
+        "status":"REVIEW",
+        "notes":"Self Serve unknown; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Gladly",
+        "confidence":60,
+        "status":"REVIEW",
+        "notes":"Self Serve unknown; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Slack",
+        "confidence":55,
+        "status":"REVIEW",
+        "notes":"API surface not detected in retrieved page; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Twilio",
+        "confidence":80,
+        "status":"PASS",
+        "notes":"Authentication missing"
+    },
+    {
+        "app_name":"Zoho Cliq",
+        "confidence":85,
+        "status":"PASS",
+        "notes":"Self Serve unknown"
+    },
+    {
+        "app_name":"Lark (Larksuite)",
+        "confidence":0,
+        "status":"FAIL",
+        "notes":"Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Buildability uncertain; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Pumble",
+        "confidence":85,
+        "status":"PASS",
+        "notes":"Self Serve unknown"
+    },
+    {
+        "app_name":"Discord",
+        "confidence":100,
+        "status":"PASS",
+        "notes":null
+    },
+    {
+        "app_name":"Telegram",
+        "confidence":0,
+        "status":"FAIL",
+        "notes":"Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Buildability uncertain; Limited documentation retrieved"
+    },
+    {
+        "app_name":"WhatsApp Business",
+        "confidence":100,
+        "status":"PASS",
+        "notes":null
+    },
+    {
+        "app_name":"Aircall",
+        "confidence":100,
+        "status":"PASS",
+        "notes":null
+    },
+    {
+        "app_name":"Vonage",
+        "confidence":20,
+        "status":"FAIL",
+        "notes":"Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Google Ads",
+        "confidence":20,
+        "status":"FAIL",
+        "notes":"Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Meta Ads",
+        "confidence":60,
+        "status":"REVIEW",
+        "notes":"Authentication missing; API surface not detected in retrieved page"
+    },
+    {
+        "app_name":"LinkedIn Ads",
+        "confidence":100,
+        "status":"PASS",
+        "notes":null
+    },
+    {
+        "app_name":"GoHighLevel",
+        "confidence":75,
+        "status":"REVIEW",
+        "notes":"Limited documentation retrieved"
+    },
+    {
+        "app_name":"Mailchimp",
+        "confidence":0,
+        "status":"FAIL",
+        "notes":"Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Buildability uncertain; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Klaviyo",
+        "confidence":100,
+        "status":"PASS",
+        "notes":null
+    },
+    {
+        "app_name":"systeme.io",
+        "confidence":75,
+        "status":"REVIEW",
+        "notes":"Limited documentation retrieved"
+    },
+    {
+        "app_name":"Pinterest",
+        "confidence":100,
+        "status":"PASS",
+        "notes":null
+    },
+    {
+        "app_name":"Threads (Meta)",
+        "confidence":40,
+        "status":"FAIL",
+        "notes":"Authentication missing; Self Serve unknown; Limited documentation retrieved"
+    },
+    {
+        "app_name":"SendGrid",
+        "confidence":40,
+        "status":"FAIL",
+        "notes":"Authentication missing; Self Serve unknown; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Shopify",
+        "confidence":85,
+        "status":"PASS",
+        "notes":"Self Serve unknown"
+    },
+    {
+        "app_name":"WooCommerce",
+        "confidence":0,
+        "status":"FAIL",
+        "notes":"Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Buildability uncertain; Limited documentation retrieved"
+    },
+    {
+        "app_name":"BigCommerce",
+        "confidence":100,
+        "status":"PASS",
+        "notes":null
+    },
+    {
+        "app_name":"Salesforce Commerce Cloud",
+        "confidence":0,
+        "status":"FAIL",
+        "notes":"Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Buildability uncertain; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Magento (Adobe Commerce)",
+        "confidence":40,
+        "status":"FAIL",
+        "notes":"Authentication missing; Self Serve unknown; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Squarespace",
+        "confidence":85,
+        "status":"PASS",
+        "notes":"Self Serve unknown"
+    },
+    {
+        "app_name":"Ecwid",
+        "confidence":60,
+        "status":"REVIEW",
+        "notes":"Self Serve unknown; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Gumroad",
+        "confidence":85,
+        "status":"PASS",
+        "notes":"Self Serve unknown"
+    },
+    {
+        "app_name":"Amazon Selling Partner",
+        "confidence":100,
+        "status":"PASS",
+        "notes":null
+    },
+    {
+        "app_name":"fanbasis",
+        "confidence":100,
+        "status":"PASS",
+        "notes":null
+    },
+    {
+        "app_name":"DataForSEO",
+        "confidence":85,
+        "status":"PASS",
+        "notes":"Self Serve unknown"
+    },
+    {
+        "app_name":"SE Ranking",
+        "confidence":65,
+        "status":"REVIEW",
+        "notes":"API surface not detected in retrieved page; Self Serve unknown"
+    },
+    {
+        "app_name":"Ahrefs",
+        "confidence":85,
+        "status":"PASS",
+        "notes":"Self Serve unknown"
+    },
+    {
+        "app_name":"MrScraper",
+        "confidence":20,
+        "status":"FAIL",
+        "notes":"Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Apify",
+        "confidence":65,
+        "status":"REVIEW",
+        "notes":"Authentication missing; Self Serve unknown"
+    },
+    {
+        "app_name":"Firecrawl",
+        "confidence":100,
+        "status":"PASS",
+        "notes":null
+    },
+    {
+        "app_name":"Bright Data",
+        "confidence":85,
+        "status":"PASS",
+        "notes":"Self Serve unknown"
+    },
+    {
+        "app_name":"Sherlock",
+        "confidence":0,
+        "status":"FAIL",
+        "notes":"Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Buildability uncertain; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Waterfall.io",
+        "confidence":20,
+        "status":"FAIL",
+        "notes":"Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Clay",
+        "confidence":65,
+        "status":"REVIEW",
+        "notes":"Authentication missing; Self Serve unknown"
+    },
+    {
+        "app_name":"GitHub",
+        "confidence":85,
+        "status":"PASS",
+        "notes":"Self Serve unknown"
+    },
+    {
+        "app_name":"Vercel",
+        "confidence":60,
+        "status":"REVIEW",
+        "notes":"Self Serve unknown; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Netlify",
+        "confidence":85,
+        "status":"PASS",
+        "notes":"Self Serve unknown"
+    },
+    {
+        "app_name":"Cloudflare",
+        "confidence":85,
+        "status":"PASS",
+        "notes":"Self Serve unknown"
+    },
+    {
+        "app_name":"Supabase",
+        "confidence":100,
+        "status":"PASS",
+        "notes":null
+    },
+    {
+        "app_name":"Neo4j",
+        "confidence":65,
+        "status":"REVIEW",
+        "notes":"Self Serve unknown; Buildability uncertain"
+    },
+    {
+        "app_name":"Snowflake",
+        "confidence":80,
+        "status":"PASS",
+        "notes":"Authentication missing"
+    },
+    {
+        "app_name":"MongoDB Atlas",
+        "confidence":85,
+        "status":"PASS",
+        "notes":"Self Serve unknown"
+    },
+    {
+        "app_name":"Datadog",
+        "confidence":100,
+        "status":"PASS",
+        "notes":null
+    },
+    {
+        "app_name":"Sentry",
+        "confidence":0,
+        "status":"FAIL",
+        "notes":"Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Buildability uncertain; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Notion",
+        "confidence":60,
+        "status":"REVIEW",
+        "notes":"Self Serve unknown; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Airtable",
+        "confidence":40,
+        "status":"FAIL",
+        "notes":"API surface not detected in retrieved page; Self Serve unknown; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Linear",
+        "confidence":80,
+        "status":"PASS",
+        "notes":"Authentication missing"
+    },
+    {
+        "app_name":"Jira",
+        "confidence":100,
+        "status":"PASS",
+        "notes":null
+    },
+    {
+        "app_name":"Asana",
+        "confidence":40,
+        "status":"FAIL",
+        "notes":"Authentication missing; Self Serve unknown; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Monday.com",
+        "confidence":20,
+        "status":"FAIL",
+        "notes":"Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Limited documentation retrieved"
+    },
+    {
+        "app_name":"ClickUp",
+        "confidence":65,
+        "status":"REVIEW",
+        "notes":"API surface not detected in retrieved page; Self Serve unknown"
+    },
+    {
+        "app_name":"Coda",
+        "confidence":85,
+        "status":"PASS",
+        "notes":"Self Serve unknown"
+    },
+    {
+        "app_name":"Smartsheet",
+        "confidence":0,
+        "status":"FAIL",
+        "notes":"Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Buildability uncertain; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Harvest",
+        "confidence":85,
+        "status":"PASS",
+        "notes":"Self Serve unknown"
+    },
+    {
+        "app_name":"Stripe",
+        "confidence":85,
+        "status":"PASS",
+        "notes":"Self Serve unknown"
+    },
+    {
+        "app_name":"Plaid",
+        "confidence":100,
+        "status":"PASS",
+        "notes":null
+    },
+    {
+        "app_name":"Binance",
+        "confidence":0,
+        "status":"FAIL",
+        "notes":"Documentation missing"
+    },
+    {
+        "app_name":"Paygent Connect",
+        "confidence":55,
+        "status":"REVIEW",
+        "notes":"Authentication missing; Limited documentation retrieved"
+    },
+    {
+        "app_name":"iPayX",
+        "confidence":0,
+        "status":"FAIL",
+        "notes":"Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Buildability uncertain; Limited documentation retrieved"
+    },
+    {
+        "app_name":"QuickBooks",
+        "confidence":0,
+        "status":"FAIL",
+        "notes":"Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Buildability uncertain; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Xero",
+        "confidence":0,
+        "status":"FAIL",
+        "notes":"Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Buildability uncertain; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Brex",
+        "confidence":55,
+        "status":"REVIEW",
+        "notes":"Authentication missing; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Ramp",
+        "confidence":20,
+        "status":"FAIL",
+        "notes":"Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Limited documentation retrieved"
+    },
+    {
+        "app_name":"PitchBook",
+        "confidence":20,
+        "status":"FAIL",
+        "notes":"Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Limited documentation retrieved"
+    },
+    {
+        "app_name":"NotebookLM",
+        "confidence":85,
+        "status":"PASS",
+        "notes":"Self Serve unknown"
+    },
+    {
+        "app_name":"Otter AI",
+        "confidence":60,
+        "status":"REVIEW",
+        "notes":"Authentication missing; Buildability uncertain"
+    },
+    {
+        "app_name":"Fathom",
+        "confidence":60,
+        "status":"REVIEW",
+        "notes":"Self Serve unknown; Limited documentation retrieved"
+    },
+    {
+        "app_name":"Consensus",
+        "confidence":65,
+        "status":"REVIEW",
+        "notes":"Authentication missing; Self Serve unknown"
+    },
+    {
+        "app_name":"Reducto",
+        "confidence":65,
+        "status":"REVIEW",
+        "notes":"Authentication missing; Self Serve unknown"
+    },
+    {
+        "app_name":"Devin",
+        "confidence":65,
+        "status":"REVIEW",
+        "notes":"API surface not detected in retrieved page; Self Serve unknown"
+    },
+    {
+        "app_name":"higgsfield",
+        "confidence":100,
+        "status":"PASS",
+        "notes":null
+    },
+    {
+        "app_name":"Mermaid CLI",
+        "confidence":40,
+        "status":"FAIL",
+        "notes":"Authentication missing; Self Serve unknown; Limited documentation retrieved"
+    },
+    {
+        "app_name":"YouTube Transcript",
+        "confidence":100,
+        "status":"PASS",
+        "notes":null
+    },
+    {
+        "app_name":"Grain",
+        "confidence":75,
+        "status":"REVIEW",
+        "notes":"Limited documentation retrieved"
+    }
+]

@@ -1,0 +1,78 @@
+Google Ads API  |  Google for Developers
+Skip to main content
+Google
+Ads API
+/
+English
+Deutsch
+Español
+Español – América Latina
+Français
+Indonesia
+Italiano
+Polski
+Português – Brasil
+Tiếng Việt
+Türkçe
+Русский
+עברית
+العربيّة
+فارسی
+हिंदी
+বাংলা
+ภาษาไทย
+中文 – 简体
+中文 – 繁體
+日本語
+한국어
+Sign in
+Join us live on
+Discord
+on the Google Advertising and Measurement Community server and on
+YouTube
+on July 23rd at 10:00 AM EST! We will discuss the new features added in v25 of the Google Ads API.
+Home
+Products
+Google Ads API
+Send feedback
+Stay organized with collections
+Save and categorize content based on your preferences.
+Explore campaign types
+rocket_launch
+Performance Max
+Reach your goals across all of Google's channels with a single campaign.
+image
+Demand Gen
+Create visually rich, relevant ads that drive action with potential customers.
+search
+Search
+Reach people when they're searching for your products or services.
+shopping_cart
+Shopping
+Promote your products with visually engaging ads.
+menu_book
+Guides
+Learn how to use the Google Ads API.
+play_circle
+Get Started
+Set up your environment and start building.
+code
+Reference
+Explore the API reference.
+table_chart
+Reporting
+Run reports and metrics.
+Google Ads API Best Practices Series
+Learn best practices for using the Google Ads API.
+What's New in the Google Ads API
+Learn what's new in the Google Ads API.
+Authorization and Authentication in the Google Ads API
+Learn how to authenticate with the Google Ads API to manage your Google Ads accounts.
+Except as otherwise noted, the content of this page is licensed under the
+Creative Commons Attribution 4.0 License
+, and code samples are licensed under the
+Apache 2.0 License
+. For details, see the
+Google Developers Site Policies
+. Java is a registered trademark of Oracle and/or its affiliates.
+Last updated 2025-12-10 UTC.

@@ -1,0 +1,74 @@
+API Overview | Close | Developer API Documentation
+For AI agents: a documentation index is available at the root level at /llms.txt. Append /llms.txt to any URL for a page-level index, or .md for the markdown version of any page.
+Base URL:
+https://api.close.com/api/v1
+Close uses industry-standard REST conventions with predictable URL structures, standard HTTP methods, and JSON request/response bodies.
+Authentication
+All API requests require authentication. Two methods are supported:
+API Keys
+— Best for scripts, internal tools, and server-side integrations. Use HTTP Basic Auth with your API key as the username and an empty password.
+OAuth 2.0
+— Best for user-facing integrations.
+Core concepts
+Concept
+Description
+Leads
+Companies or organizations — the primary object in Close. Contain contacts, tasks, opportunities, and activities.
+Contacts
+Individual people within a lead.
+Opportunities
+Potential deals tracked through pipeline stages.
+Activities
+Calls, emails, notes, SMS, meetings, and other interactions logged on leads.
+Custom Fields
+Store arbitrary data on leads, contacts, opportunities, and custom activities.
+Making requests
+All requests use JSON (
+Content-Type: application/json
+).
+PUT
+requests behave as patches — send only the fields you want to update. See
+Fields
+.
+List endpoints support
+pagination
+via
+_skip
+/
+_limit
+or cursor-based pagination.
+Use the
+_fields
+parameter
+to control which fields are returned and improve performance.
+Rate limits
+apply to all endpoints. Handle
+429
+responses with exponential backoff.
+Real-time data
+Webhooks
+— Subscribe to events and receive POST notifications when data changes.
+Event Log
+— Query the last 30 days of changes to any object.
+HTTP response codes
+Code
+Meaning
+200
+Success
+201
+Created (newer endpoints)
+400
+Bad request — check your parameters
+401
+Unauthorized — invalid or missing credentials
+404
+Not found
+429
+Rate limited — back off and retry
+See
+HTTP Response Codes
+for the full list.
+OpenAPI Spec
+We publish an OpenAPI spec at:
+https://api.close.com/api/openapi.json
+Note: This spec is currently considered experimental and does not contain 100% coverage of request/response schemas.

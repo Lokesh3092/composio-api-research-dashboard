@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Composio API Research Dashboard</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style_new.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- ==========================
+         SIDEBAR
+    =========================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">🤖</div>
+
+            <h2>Composio</h2>
+
+            <p>API Research Dashboard</p>
+
+        </div>
+
+        <nav>
+
+            <a href="#dashboard" class="active">🏠 Dashboard</a>
+
+            <a href="#analytics">📊 Analytics</a>
+
+            <a href="#reports">📄 Reports</a>
+
+            <a href="#insights">💡 AI Insights</a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+
+            <hr>
+
+            <h4>Lokesh Barkale</h4>
+
+            <p>AI Product Intern</p>
+
+        </div>
+
+    </aside>
+
+    <!-- ==========================
+         MAIN CONTENT
+    =========================== -->
+
+    <main class="main-content">
+
+        <!-- Header -->
+
+        <header id="dashboard" class="dashboard-header">
+
+            <div>
+
+                <h1>🤖 Composio API Research Dashboard</h1>
+
+                <p>
+                    AI Product Ops Assignment • Automated Research of 100 APIs
+                </p>
+
+            </div>
+
+            <button id="themeToggle">
+
+                🌙 Dark Mode
+
+            </button>
+
+        </header>
+
+                <!-- =========================================
+                    KPI CARDS
+        ========================================== -->
+
+        <section class="cards">
+
+            <div class="card total-card">
+
+                <div class="card-icon">📦</div>
+
+                <div>
+
+                    <h2 id="totalApps">0</h2>
+
+                    <p>Total Applications</p>
+
+                </div>
+
+            </div>
+
+            <div class="card pass-card">
+
+                <div class="card-icon">✅</div>
+
+                <div>
+
+                    <h2 id="passCount">0</h2>
+
+                    <p>PASS</p>
+
+                </div>
+
+            </div>
+
+            <div class="card review-card">
+
+                <div class="card-icon">🟡</div>
+
+                <div>
+
+                    <h2 id="reviewCount">0</h2>
+
+                    <p>REVIEW</p>
+
+                </div>
+
+            </div>
+
+            <div class="card fail-card">
+
+                <div class="card-icon">❌</div>
+
+                <div>
+
+                    <h2 id="failCount">0</h2>
+
+                    <p>FAIL</p>
+
+                </div>
+
+            </div>
+
+            <div class="card build-card">
+
+                <div class="card-icon">🚀</div>
+
+                <div>
+
+                    <h2 id="buildableCount">0</h2>
+
+                    <p>Buildable APIs</p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+                    CHARTS
+        ========================================== -->
+
+        <section id="analytics" class="charts-grid">
+
+            <div class="chart-card">
+
+                <h3>📊 Verification Summary</h3>
+
+                <canvas id="verificationChart"></canvas>
+
+            </div>
+
+            <div class="chart-card">
+
+                <h3>🔐 Authentication Methods</h3>
+
+                <canvas id="authChart"></canvas>
+
+            </div>
+
+            <div class="chart-card">
+
+                <h3>🌐 API Types</h3>
+
+                <canvas id="apiChart"></canvas>
+
+            </div>
+
+            <div class="chart-card">
+
+                <h3>⚡ Self Serve vs Gated</h3>
+
+                <canvas id="serveChart"></canvas>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+                    INSIGHTS
+        ========================================== -->
+
+        <section id="insights" class="insights-card">
+
+            <h2>💡 AI Insights</h2>
+
+            <div id="insights"></div>
+
+        </section>
+
+                <!-- =========================================
+                    APPLICATION TABLE
+        ========================================== -->
+
+        <section id="reports" class="table-section">
+
+            <div class="table-header">
+
+                <h2>📋 Applications</h2>
+
+                <div class="export-buttons">
+
+                    <button id="exportCSV">
+                        📥 Export CSV
+                    </button>
+
+                    <button id="exportPDF">
+                        📄 Export PDF
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- Search -->
+
+            <div class="toolbar">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="🔍 Search applications..."
+                >
+
+                <div class="filter-buttons">
+
+                    <button
+                        class="filter-btn active"
+                        data-status="ALL">
+
+                        ALL
+
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-status="PASS">
+
+                        PASS
+
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-status="REVIEW">
+
+                        REVIEW
+
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-status="FAIL">
+
+                        FAIL
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- Data Table -->
+
+            <div class="table-wrapper">
+
+                <table id="appsTable">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Application</th>
+
+                            <th>Status</th>
+
+                            <th>Confidence</th>
+
+                            <th>Notes</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tableBody">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

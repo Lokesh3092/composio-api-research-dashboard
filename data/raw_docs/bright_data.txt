@@ -1,0 +1,262 @@
+Authentication - Bright Data Docs
+Documentation Index
+Fetch the complete documentation index at:
+/llms.txt
+Use this file to discover all available pages before exploring further.
+Skip to main content
+Bright Data ensures secure access to its services.
+Bright Data provides two primary methods for authentication:
+API Access
+- Authenticate and interact with the Bright Data platform using an API key/token.
+Native Access
+- Authenticate and interact with the Bright Data platform using proxy protocol
+username
+and
+password
+.
+Both API and Native access methods are billed at the same rate. Usage is charged according to your pricing plan for each Bright Data product.
+​
+How do I authenticate with API Key?
+An API key is a secure hashed token used to authenticate with Bright Data API. We create a default key for you upon account creation automatically.
+You can create additional API keys for different users and with different permissions.
+Manage your API Keys anytime in the
+Account settings
+.
+​
+How do I relay the API key within a request?
+Here’s an example request:
+Sample Request
+curl
+--request
+POST
+\
+--url
+https://api.brightdata.com/request
+\
+--header
+'Authorization: Bearer <token>'
+\
+--header
+'Content-Type: application/json'
+\
+--data
+'{
+"zone": "my_unlocker_zone",
+"url": "https://example.com/page",
+"format": "json",
+"method": "GET",
+"country": "us",
+"data_format": "markdown"
+}'
+The important part of this request is the
+Authorization
+header:
+'Authorization: Bearer <token>'
+This
+<token>
+is your
+API key
+, which is required for every API request.
+​
+How do I generate a new API key?
+To generate a new API key, follow these steps:
+1
+Sign In
+Sign in to Bright Data’s control panel and go to your
+Account settings
+.
+2
+Click 'Add API key'
+Click the
+Add API key
+button in the top right of the API key section.
+If you don’t see the ‘API key’ section, switch to an
+admin account
+. only admins can generate API keys.
+Note: Each user can generate only one API key. The total number of API keys cannot exceed the number of account users.
+3
+Configure your API key
+Set the User, Permissions, and Expiration date (or choose ‘Unlimited’), then click
+Save
+.
+4
+Save your API key locally
+Once generated, your API key will only be shown once. Be sure to
+save it in a secure location
+.
+​
+What are API Key options and configuration?
+When creating an API key, you can assign one of five permission levels to control access and ensure security based on user roles or use cases.
+Learn more about user roles here
+.
+​
+What permissions level does an API key have?
+There are 5 types of permissions to choose from to control API key access:
+Admin:
+Grants full access to the account, including all Billing, Financial, product settings and configurations.
+Finance:
+Allows access to Billing and Financial pages only.
+Ops:
+Allows access to proxy/API configurations but restricts Billing access.
+Limit:
+Permits management of proxy passwords and IP allowlists/denylists.
+User:
+Enables API usage on the proxy/API level without access to Billing or product configuration pages.
+​
+Does the API Key have an expiration date?
+When creating an API key, you can setup its expiration date. Requests authenticating with this key past the expiration date will be denied.
+You can setup the expiration date as
+unlimited
+- although this is possible, we strongly recommend to setup an expiration date.
+Consult your organization’s information or data security officer for instructions.
+​
+How can I view the API Key settings and configuration?
+You can view and manage your API Keys in
+Account settings
+.
+​
+Why can’t I see a plain text version of my API Key, or copy it?
+For your security, we do not allow plain text view of  API keys with
+admin
+permissions. After creation you will be offered to copy and save the key.
+​
+Can I refresh the API key?
+Yes. Once you click “Refresh” we will generate a new API key. After the refresh, any request you will send with the old key will fail to authenticate.
+​
+Where should I save the API key with admin permissions?
+API keys are like passwords and should be dealt and saved with outmost care and under controlled access. Consult your IT manager or security administrator on how and where to save the keys per your organizations’ processes and regulation.
+​
+How do I authenticate with native proxy protocol?
+​
+Which products can I access with proxy protocol?
+Proxy protocol access is supported by:
+All proxy networks (Datacenter, ISP, Residential, and Mobile)
+Web Unlocker
+Scraping Browser
+​
+How do I authenticate with native proxy username and password?
+Here’s an example of a Native Access request:
+Sample Request
+curl
+"https://www.example.com"
+\
+-i
+--proxy
+brd.superproxy.io:33335
+\
+--proxy-user
+brd-customer-[ACCOUNT_ID]-zone-[PROXY_NAME]:[PROXY_PASSWORD]
+The key part of this request is the
+--proxy-user
+parameter which holds the authentication credentials:
+proxy-user
+brd-customer-[ACCOUNT_ID]-zone-[PROXY_NAME]:[PROXY_PASSWORD]
+This parameter is made up of three elements combined into a single string:
+ACCOUNT_ID
+- your unique customer identifier.
+PROXY_NAME
+- the name you gave your proxy or API (e.g.,
+web_unlocker1
+,
+datacenter_proxy1
+).
+PROXY_PASSWORD
+- the password shown in your Access Details.
+Together, they form the complete proxy-user value.
+​
+Username/password format
+All parameters are case sensitive.
+The string must be consecutive without spaces.
+-
+(dash/minus sign) separates the username substrings, and
+:
+(colon) separates the username from the password.
+​
+Account ID
+Your Account ID is a unique identifier automatically generated when your Bright Data account is created. It is used for authentication and account-related operations.
+To find your Account ID, follow these steps:
+1
+Click on
+Account Settings
+in the left-hand menu.
+2
+Open the Profile tab.
+3
+Locate and copy your Account ID.
+Your Account ID is always a text string that begins with
+hl_###
+.
+​
+Username
+Each product you create in the Bright Data dashboard is assigned a
+Username
+visible in the product’s
+Access Details
+section. The username follows this format:
+brd-customer-[ACCOUNT_ID]-zone-[PRODUCT_NAME]
+For example:
+brd-customer-hl_7abed23d-zone-web_unlocker1
+This name is set
+once
+when you create a proxy or API and cannot be changed later. You can find your username by opening your proxy or API (under
+Proxies
+or
+Web Access
+) and checking the
+Access Details
+section.
+​
+Password
+Each proxy or API is assigned a unique
+Password
+that is required for authenticating Native Access requests. You can find it in the
+Access Details
+section.
+To view or update your password, follow these steps:
+1
+Open your product in the dashboard (under Proxies or Web Access).
+2
+Locate the Password field in the Access Details section.
+3
+Copy your current password, or generate a new one from the Configuration tab under Security Settings.
+​
+Comparing API Access vs. Native Access
+Feature
+API Access
+Native Access
+Used for
+Seamless integration with scripts, automation tools, or third-party APIs
+Direct proxy connections in browsers, crawlers, or proxy-compatible tools
+Recommended products
+-
+Web Unlocker API
+-
+SERP
+-
+Browsers
+-
+Scrapers
+-
+Functions
+-
+Marketplace
+Proxies
+SSL certificate
+Not required
+Required to access without KYC the residential network & unlocker. More info
+here.
+Connection via
+API endpoint
+Proxy endpoint
+Authentication
+API key
+username:password
+Output options
+HTML or JSON
+HTML
+Was this page helpful?
+Yes
+No
+Terminology
+⌘
+I

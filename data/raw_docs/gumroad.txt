@@ -1,0 +1,163 @@
+This is the complete API documentation for connecting to the Gumroad API using MindCloud's Universal API.
+If you are new to MindCloud, start with the
+Introduction
+to see how one API can sit in front of many different apps.
+MindCloud is an integration company that offers one normalized API to access 3,100+ apps from a single place. It cleans up provider-specific quirks, keeps requests and responses consistent, and centralizes authentication so you do not need to manage separate flows for every app.
+Browse other apps
+.
+Meet Gumroad: Sell products and manage Gumroad sales.
+Keep reading to get started.
+Quickstart
+Before you run your first Gumroad request, you need three things:
+A
+MindCloud account
+— sign in or create an account at
+MindCloud
+.
+A
+MindCloud API Key
+— create one in
+API Keys
+. Keep it on your server.
+At least one
+Gumroad connection
+— create or choose one in
+Connections
+. Note its
+connectionId
+.
+Every Gumroad action uses the same URL pattern:
+https://connect.mindcloud.co/v1/universal/gumroad/latest/actions/{actionSlug}
+You need a MindCloud API Key and a
+Gumroad connection.
+Then call an action
+such as
+Get Offer Code
+:
+curl
+--request GET \
+--url
+"https://connect.mindcloud.co/v1/universal/gumroad/latest/actions/get-offer-code"
+\
+--header
+"Authorization: Bearer
+$MINDCLOUD_API_KEY
+"
+\
+--get
+\
+--data-urlencode
+"connectionId=
+$CONNECTION_ID
+"
+Every response comes back in the same envelope, with your rows in a
+data
+array:
+{
+"success"
+:
+true
+,
+"data"
+: [
+{
+"id"
+:
+"1042"
+,
+"name"
+:
+"Ava"
+}
+],
+"meta"
+: {}
+}
+After your first request works, use
+Shape your requests
+to control arguments, pagination, filtering, fields, and errors.
+Authentication
+Authentication has two layers. Your
+MindCloud API Key
+authenticates the request to MindCloud, sent as a Bearer token in the
+Authorization
+header. The
+connectionId
+selects the connected Gumroad account that should run the action. MindCloud stores and refreshes the Gumroad credentials behind that connection, so you never send provider tokens with your requests.
+Pass
+connectionId
+in the query string for
+GET
+and
+DELETE
+actions, and in the JSON body for
+POST
+,
+PUT
+, and
+PATCH
+actions. Keep your MindCloud API Key on your server; do not ship it in browser code, mobile apps, public repositories, or logs.
+Gumroad actions
+All 24 published actions for this Gumroad version. Each page documents the endpoint, arguments, and response controls.
+POST
+Create Custom Field
+POST
+Create Offer Code
+DELETE
+Delete Custom Field
+DELETE
+Delete Offer Code
+PUT
+Disable Product
+PUT
+Enable Product
+GET
+Get Offer Code
+GET
+Get Payout
+GET
+Get Product
+GET
+Get Sale
+GET
+Get Subscriber
+GET
+Get User
+GET
+List Custom Fields
+GET
+List Offer Codes
+GET
+List Payouts
+GET
+List Products
+GET
+List Sales
+GET
+List Subscribers
+GET
+List Upcoming Payouts
+PUT
+Mark Sale as Shipped
+PUT
+Refund Sale
+POST
+Resend Sale Receipt
+PUT
+Update Custom Field
+PUT
+Update Offer Code
+Related apps
+More Commerce apps on the Universal API,
+behind the same REST shape. Or
+browse all apps
+.
+Stripe
+Shopify
+Square
+WooCommerce
+Xero
+Thinkific
+Whop
+Ecwid
+Gumroad API Documentation | MindCloud Universal API

@@ -1,0 +1,101 @@
+app_name,confidence,status,notes
+Salesforce,0,FAIL,Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Buildability uncertain; Limited documentation retrieved
+HubSpot,85,PASS,Self Serve unknown
+Pipedrive,40,FAIL,API surface not detected in retrieved page; Self Serve unknown; Limited documentation retrieved
+Attio,85,PASS,Self Serve unknown
+Twenty,60,REVIEW,Self Serve unknown; Limited documentation retrieved
+Podio,55,REVIEW,API surface not detected in retrieved page; Limited documentation retrieved
+Zoho CRM,40,FAIL,API surface not detected in retrieved page; Self Serve unknown; Limited documentation retrieved
+Close,60,REVIEW,Self Serve unknown; Limited documentation retrieved
+Copper,65,REVIEW,Authentication missing; Self Serve unknown
+DealCloud,40,FAIL,Authentication missing; Self Serve unknown; Limited documentation retrieved
+Zendesk,55,REVIEW,Authentication missing; Limited documentation retrieved
+Intercom,100,PASS,
+Freshdesk,85,PASS,Self Serve unknown
+Front,60,REVIEW,Self Serve unknown; Limited documentation retrieved
+Pylon,40,FAIL,API surface not detected in retrieved page; Self Serve unknown; Limited documentation retrieved
+LiveAgent,0,FAIL,Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Buildability uncertain; Limited documentation retrieved
+Plain,85,PASS,Self Serve unknown
+Help Scout,65,REVIEW,API surface not detected in retrieved page; Self Serve unknown
+Gorgias,60,REVIEW,Self Serve unknown; Limited documentation retrieved
+Gladly,60,REVIEW,Self Serve unknown; Limited documentation retrieved
+Slack,55,REVIEW,API surface not detected in retrieved page; Limited documentation retrieved
+Twilio,80,PASS,Authentication missing
+Zoho Cliq,85,PASS,Self Serve unknown
+Lark (Larksuite),0,FAIL,Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Buildability uncertain; Limited documentation retrieved
+Pumble,85,PASS,Self Serve unknown
+Discord,100,PASS,
+Telegram,0,FAIL,Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Buildability uncertain; Limited documentation retrieved
+WhatsApp Business,100,PASS,
+Aircall,100,PASS,
+Vonage,20,FAIL,Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Limited documentation retrieved
+Google Ads,20,FAIL,Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Limited documentation retrieved
+Meta Ads,60,REVIEW,Authentication missing; API surface not detected in retrieved page
+LinkedIn Ads,100,PASS,
+GoHighLevel,75,REVIEW,Limited documentation retrieved
+Mailchimp,0,FAIL,Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Buildability uncertain; Limited documentation retrieved
+Klaviyo,100,PASS,
+systeme.io,75,REVIEW,Limited documentation retrieved
+Pinterest,100,PASS,
+Threads (Meta),40,FAIL,Authentication missing; Self Serve unknown; Limited documentation retrieved
+SendGrid,40,FAIL,Authentication missing; Self Serve unknown; Limited documentation retrieved
+Shopify,85,PASS,Self Serve unknown
+WooCommerce,0,FAIL,Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Buildability uncertain; Limited documentation retrieved
+BigCommerce,100,PASS,
+Salesforce Commerce Cloud,0,FAIL,Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Buildability uncertain; Limited documentation retrieved
+Magento (Adobe Commerce),40,FAIL,Authentication missing; Self Serve unknown; Limited documentation retrieved
+Squarespace,85,PASS,Self Serve unknown
+Ecwid,60,REVIEW,Self Serve unknown; Limited documentation retrieved
+Gumroad,85,PASS,Self Serve unknown
+Amazon Selling Partner,100,PASS,
+fanbasis,100,PASS,
+DataForSEO,85,PASS,Self Serve unknown
+SE Ranking,65,REVIEW,API surface not detected in retrieved page; Self Serve unknown
+Ahrefs,85,PASS,Self Serve unknown
+MrScraper,20,FAIL,Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Limited documentation retrieved
+Apify,65,REVIEW,Authentication missing; Self Serve unknown
+Firecrawl,100,PASS,
+Bright Data,85,PASS,Self Serve unknown
+Sherlock,0,FAIL,Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Buildability uncertain; Limited documentation retrieved
+Waterfall.io,20,FAIL,Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Limited documentation retrieved
+Clay,65,REVIEW,Authentication missing; Self Serve unknown
+GitHub,85,PASS,Self Serve unknown
+Vercel,60,REVIEW,Self Serve unknown; Limited documentation retrieved
+Netlify,85,PASS,Self Serve unknown
+Cloudflare,85,PASS,Self Serve unknown
+Supabase,100,PASS,
+Neo4j,65,REVIEW,Self Serve unknown; Buildability uncertain
+Snowflake,80,PASS,Authentication missing
+MongoDB Atlas,85,PASS,Self Serve unknown
+Datadog,100,PASS,
+Sentry,0,FAIL,Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Buildability uncertain; Limited documentation retrieved
+Notion,60,REVIEW,Self Serve unknown; Limited documentation retrieved
+Airtable,40,FAIL,API surface not detected in retrieved page; Self Serve unknown; Limited documentation retrieved
+Linear,80,PASS,Authentication missing
+Jira,100,PASS,
+Asana,40,FAIL,Authentication missing; Self Serve unknown; Limited documentation retrieved
+Monday.com,20,FAIL,Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Limited documentation retrieved
+ClickUp,65,REVIEW,API surface not detected in retrieved page; Self Serve unknown
+Coda,85,PASS,Self Serve unknown
+Smartsheet,0,FAIL,Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Buildability uncertain; Limited documentation retrieved
+Harvest,85,PASS,Self Serve unknown
+Stripe,85,PASS,Self Serve unknown
+Plaid,100,PASS,
+Binance,0,FAIL,Documentation missing
+Paygent Connect,55,REVIEW,Authentication missing; Limited documentation retrieved
+iPayX,0,FAIL,Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Buildability uncertain; Limited documentation retrieved
+QuickBooks,0,FAIL,Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Buildability uncertain; Limited documentation retrieved
+Xero,0,FAIL,Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Buildability uncertain; Limited documentation retrieved
+Brex,55,REVIEW,Authentication missing; Limited documentation retrieved
+Ramp,20,FAIL,Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Limited documentation retrieved
+PitchBook,20,FAIL,Authentication missing; API surface not detected in retrieved page; Self Serve unknown; Limited documentation retrieved
+NotebookLM,85,PASS,Self Serve unknown
+Otter AI,60,REVIEW,Authentication missing; Buildability uncertain
+Fathom,60,REVIEW,Self Serve unknown; Limited documentation retrieved
+Consensus,65,REVIEW,Authentication missing; Self Serve unknown
+Reducto,65,REVIEW,Authentication missing; Self Serve unknown
+Devin,65,REVIEW,API surface not detected in retrieved page; Self Serve unknown
+higgsfield,100,PASS,
+Mermaid CLI,40,FAIL,Authentication missing; Self Serve unknown; Limited documentation retrieved
+YouTube Transcript,100,PASS,
+Grain,75,REVIEW,Limited documentation retrieved

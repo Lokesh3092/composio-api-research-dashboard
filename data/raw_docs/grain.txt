@@ -1,0 +1,123 @@
+Grain API Key - Nango Docs
+Documentation Index
+Fetch the complete documentation index at:
+/docs/llms.txt
+Use this file to discover all available pages before exploring further.
+Skip to main content
+​
+Overview
+Pre-built tooling
+Pre-built integrations
+Access requirements
+Setup guide
+Useful links
+API gotchas
+​
+Pre-built tooling
+✅ Authorization
+Tools
+Status
+Pre-built authorization (API Key)
+✅
+Pre-built authorization UI
+✅
+Custom authorization UI
+✅
+End-user authorization guide
+🚫
+Expired credentials detection
+✅
+✅ Read & write data
+Tools
+Status
+Pre-built integrations
+🚫 (time to contribute: <48h)
+API unification
+✅
+2-way sync
+✅
+Webhooks from Nango on data modifications
+✅
+Real-time webhooks from 3rd-party API
+🚫 (time to contribute: <48h)
+Proxy requests
+✅
+✅ Observability & data quality
+Tools
+Status
+HTTP request logging
+✅
+End-to-end type safety
+✅
+Data runtime validation
+✅
+OpenTelemetry export
+✅
+Slack alerts on errors
+✅
+Integration status API
+✅
+✅ Customization
+Tools
+Status
+Create or customize use-cases
+✅
+Pre-configured pagination
+🚫 (time to contribute: <48h)
+Pre-configured rate-limit handling
+🚫 (time to contribute: <48h)
+Per-customer configurations
+✅
+No pre-built syncs or actions available yet.
+Not seeing the integration you need?
+Build your own
+independently.
+​
+Access requirements
+Pre-Requisites
+Status
+Comment
+Paid dev account
+❓
+Paid test account
+❓
+Partnership
+❓
+App review
+❓
+Security audit
+❓
+​
+Setup guide
+No setup guide yet.
+Need help getting started? Get help in the
+community
+.
+Contribute improvements to the setup guide by
+editing this page
+​
+Useful links
+Generate Grain Personal Access Token in your Grain account
+OAuth related docs
+Grain API docs
+Contribute useful links by
+editing this page
+​
+API gotchas
+Grain offers both OAuth and API_KEY authentication modes. For the API_KEY auth mode,
+Authorization: Bearer apiKey
+is passed in the request header to access different endpoints, where
+apiKey
+is your account’s personal access token.
+The Grain Public API is still in beta. Developer access is limited to select partners. Please reach out to Grain’s support for more questions.
+Contribute API gotchas by
+editing this page
+Was this page helpful?
+Yes
+No
+Grain
+Grammarly
+⌘
+I
+Assistant
+Responses are generated using AI and may contain mistakes.

@@ -1,0 +1,62 @@
+Introduction
+For AI agents: visit https://dev.frontapp.com/llms.txt for an index of all pages formatted in Markdown and endpoints in OpenAPI.
+Here is Front's Core API, a backend API that gives comprehensive control over all entities in Front from Contacts to Comments.
+Guides
+Refer to the following guides to learn how to use the Core API:
+Getting Started
+Fundamentals
+Tools
+Sample Application
+API Terminology 101
+Authentication
+Front supports OAuth2.0 as well as API Tokens. To learn about authenticating with Front, see our guide on
+authentication
+.
+Base URL
+API calls will always work with
+https://api2.frontapp.com
+as the base URL. However, the API may return resource URLs that include your company's name, such as
+https://acme.api.frontapp.com
+.  If the API is returning URLs like those, you can call it either with
+api2.frontapp.com
+or
+acme.api.frontapp.com
+.
+Rate Limits
+To ensure an acceptable response time from our API and facilitate access for all customers, Front implements an overall rate limit as well as several "burst" limits for certain endpoints. For more on these limits, please see
+here
+.
+Content Type
+The API is designed to communicate with your server using JSON. All responses coming from the API will send data in a valid JSON object. If you need to send data to the API, your request should set the Content-Type HTTP header to application/json.
+Some endpoints also support multipart requests for file upload. For more details about it, please check our
+multipart request documentation
+.
+Search parameters
+For some requests to get a large collection of resources, you can send search criteria in the query string via a parameter named
+q
+.
+Parameters for Conversations
+Parameters for  Events
+Parameters for  Contacts
+File Upload
+When you want to send files through the API, your request needs to be sent using the Content-Type HTTP header set to multipart/form-data.
+The JSON data you would normally send in the request body needs to be split in multiple form fields (one for each property) named after the property key. If the property is an array, the name should include the index of the data (ie: {"to": [
+[email protected]
+,
+[email protected]
+]} would be split in two fields named to[0], to[1]).
+📘
+Restriction on files (type and size) depends on the endpoint. If your request doesn't comply to those limitations, the response will contain an error describing the issue.
+Dates
+All dates in the Front API are encoded as a number representing Unix time: It is the number of seconds that have elapsed since 00:00:00 UTC, January 1st 1970.
+Since Front is based on events that can occur during the same second, all the timestamps include leap seconds with a precision of 3 digits:
+1454453901.012
+.
+Deprecation Policy
+Read our
+deprecation policy
+to learn how Front communicates about changes that may affect your integrations.
+Updated
+about 1 year ago
+Updated
+about 1 year ago

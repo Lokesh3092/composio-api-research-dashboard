@@ -1,0 +1,31 @@
+API Reference â dealcloud v0.4.0
+dealcloud
+v0.4.0
+Pages
+Modules
+Settings
+API Reference
+dealcloud v0.4.0
+Modules
+Dealcloud
+A blazing fast SDK for using the Dealcloud | OnePlace APIs in pure Elixir.
+Dealcloud.Auth
+Handles authentication with Dealcloud's API
+Dealcloud.Data
+The Data APIs are used to minipulate records in the site.
+Dealcloud.Data.Cells
+These are cell APIs. These APIs use key-value pairs when communicating with the server.
+Both Requests and Responses are sent as arrays of [{EntryId: 1, FieldId: 1, Value: "Hello"}].
+Dealcloud.Data.Rows
+These are Rows APIs, These APIs work using Arrays of Json objects.
+These APIs are typical of what you see in most other systems. These APIs works better with ETL tools.
+Dealcloud.Management
+Management contains all of the apis needed to work with users
+Dealcloud.Marketing
+The Marketing endpoints capture activities associated with campaigns and web pages
+Dealcloud.Marketing.Activity
+Dealcloud.Marketing.Query
+Dealcloud.Schema
+Schema tells you information about your site and about the system.
+Next Page â
+Dealcloud

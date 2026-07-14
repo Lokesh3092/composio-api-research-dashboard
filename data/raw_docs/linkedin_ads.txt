@@ -1,0 +1,483 @@
+LinkedIn Advertising Python API Docs | dltHub
+←
+All Scaffoldings
+LinkedIn Advertising Python API Docs | dltHub
+Build a LinkedIn Advertising-to-database pipeline in Python using dlt with AI Workbench support for Claude Code, Cursor, and Codex.
+Last updated:
+May 19, 2026
+LinkedIn Advertising API is a RESTful service that enables developers to manage ad accounts, campaigns, creatives, analytics, and targeting on LinkedIn. The REST API base URL is
+https://api.linkedin.com/v2
+and All requests require a Bearer token obtained via OAuth 2.0 Authorization Code flow..
+dlt is an open-source Python library that handles authentication, pagination, and schema evolution automatically. dlthub provides AI context files that enable code assistants to generate production-ready pipelines. Install with
+uv add "dlt[hub]"
+and start loading LinkedIn Advertising data in under 10 minutes.
+What data can I load from LinkedIn Advertising?
+Here are some of the endpoints you can load from LinkedIn Advertising:
+Resource
+Endpoint
+Method
+Data selector
+Description
+ad_accounts
+/adAccounts
+GET
+elements
+Retrieves ad account objects.
+ad_campaign_groups
+/adCampaignGroups
+GET
+elements
+Retrieves campaign groups.
+ad_campaigns
+/adCampaigns
+GET
+elements
+Retrieves campaigns.
+ad_creatives
+/adCreatives
+GET
+elements
+Retrieves ad creatives.
+ad_analytics
+/adAnalyticsV2
+GET
+elements
+Retrieves analytics data for campaigns.
+How do I authenticate with the LinkedIn Advertising API?
+Authentication uses OAuth 2.0 Authorization Code flow; each request must include an
+Authorization: Bearer <access_token>
+header (and optionally
+X-Restli-Protocol-Version: 2.0.0
+).
+1. Get your credentials
+Sign in to the LinkedIn Developer Portal at
+https://www.linkedin.com/developers/apps
+.
+Click
+Create app
+and fill in required details.
+In the app settings, add the
+Marketing (Advertising)
+product.
+Submit the required access request for the Advertising API if prompted.
+Note the
+Client ID
+and
+Client Secret
+displayed.
+Implement the OAuth 2.0 Authorization Code flow using the redirect URI you configured to obtain an Authorization Code.
+Exchange the Authorization Code for an
+access token
+(and refresh token) via LinkedIn's token endpoint.
+Store the tokens securely for use in API requests.
+2. Add them to
+.dlt/secrets.toml
+Copy
+[
+sources.linkedin_ads_source
+]
+client_id
+=
+"your_client_id"
+client_secret
+=
+"your_client_secret"
+redirect_uri
+=
+"https://your.redirect.uri"
+access_token
+=
+"your_access_token"
+refresh_token
+=
+"your_refresh_token"
+dlt reads this automatically at runtime — never hardcode tokens in your pipeline script. For production environments, see
+setting up credentials with dlt
+for environment variable and vault-based options.
+How do I set up and run the pipeline?
+Set up a virtual environment and install dlt:
+Copy
+uv init
+uv
+add
+"dlt[hub]"
+1. Install the
+dlt
+AI Workbench:
+Copy
+uv run dlthub ai init
+--agent
+<
+your-agent
+>
+# <agent>: claude | cursor | codex
+This installs project rules, a secrets management skill, appropriate ignore files, and configures the
+dlt
+MCP server for your agent.
+Learn more →
+2. Install the
+rest-api-pipeline
+toolkit:
+Copy
+uv run dlthub ai toolkit
+install
+rest-api-pipeline
+This loads the skills and context about
+dlt
+the agent uses to build the pipeline iteratively, efficiently, and safely. The agent uses MCP tools to inspect credentials — it never needs to read your
+secrets.toml
+directly.
+Learn more →
+3. Start LLM-assisted coding:
+Use /find-source to load data from the LinkedIn Advertising API into DuckDB.
+The
+rest-api-pipeline
+toolkit takes over from here — it reads relevant API documentation, presents you with options for which endpoints to load, and follows a structured workflow to scaffold, debug, and validate the pipeline step by step.
+4. Run the pipeline:
+Copy
+uv run python linkedin_ads_pipeline.py
+If everything is configured correctly, you'll see output like this:
+Copy
+Pipeline linkedin_ads_pipeline load step completed
+in
+0.26
+seconds
+1
+load package
+(
+s
+)
+were loaded to destination duckdb and into dataset linkedin_ads_data
+The duckdb destination used duckdb:/linkedin_ads.duckdb location to store data
+Load package
+1749667187.541553
+is LOADED and contains no failed
+jobs
+Inspect your pipeline and data:
+Copy
+uv run dlthub show
+This opens the Pipeline Dashboard where you can verify pipeline state, load metrics, schema (tables, columns, types), and query the loaded data directly.
+Python pipeline example
+This example loads
+ad_accounts
+and
+ad_campaigns
+from the LinkedIn Advertising API into DuckDB. It mirrors the endpoint and data selector configuration from the table above:
+Copy
+import
+dlt
+from
+dlt
+.
+sources
+.
+rest_api
+import
+RESTAPIConfig
+,
+rest_api_resources
+@dlt
+.
+source
+def
+linkedin_ads_source
+(
+access_token
+=
+dlt
+.
+secrets
+.
+value
+)
+:
+config
+:
+RESTAPIConfig
+=
+{
+"client"
+:
+{
+"base_url"
+:
+"https://api.linkedin.com/v2"
+,
+"auth"
+:
+{
+"type"
+:
+"bearer"
+,
+"token"
+:
+access_token
+,
+}
+,
+}
+,
+"resources"
+:
+[
+{
+"name"
+:
+"ad_accounts"
+,
+"endpoint"
+:
+{
+"path"
+:
+"adAccounts"
+,
+"data_selector"
+:
+"elements"
+}
+}
+,
+{
+"name"
+:
+"ad_campaigns"
+,
+"endpoint"
+:
+{
+"path"
+:
+"adCampaigns"
+,
+"data_selector"
+:
+"elements"
+}
+}
+]
+,
+}
+yield
+from
+rest_api_resources
+(
+config
+)
+def
+get_data
+(
+)
+-
+>
+None
+:
+pipeline
+=
+dlt
+.
+pipeline
+(
+pipeline_name
+=
+"linkedin_ads_pipeline"
+,
+destination
+=
+"duckdb"
+,
+dataset_name
+=
+"linkedin_ads_data"
+,
+)
+load_info
+=
+pipeline
+.
+run
+(
+linkedin_ads_source
+(
+)
+)
+print
+(
+load_info
+)
+To add more endpoints, append entries from the resource table to the
+"resources"
+list using the same
+name
+,
+path
+, and
+data_selector
+pattern.
+How do I query the loaded data?
+Once the pipeline runs, dlt creates one table per resource. You can query with Python or SQL.
+Python (pandas DataFrame):
+Copy
+import
+dlt
+data
+=
+dlt
+.
+pipeline
+(
+"linkedin_ads_pipeline"
+)
+.
+dataset
+(
+)
+sessions_df
+=
+data
+.
+ad_campaigns
+.
+df
+(
+)
+print
+(
+sessions_df
+.
+head
+(
+)
+)
+SQL (DuckDB example):
+Copy
+SELECT
+*
+FROM
+linkedin_ads_data
+.
+ad_campaigns
+LIMIT
+10
+;
+In a marimo or Jupyter notebook:
+Copy
+import
+dlt
+data
+=
+dlt
+.
+pipeline
+(
+"linkedin_ads_pipeline"
+)
+.
+dataset
+(
+)
+data
+.
+ad_campaigns
+.
+df
+(
+)
+.
+head
+(
+)
+See
+how to explore your data in marimo Notebooks
+and
+how to query your data in Python with dataset
+.
+What destinations can I load LinkedIn Advertising data to?
+dlt supports loading into any of these destinations — only the
+destination
+parameter changes:
+Destination
+Example value
+DuckDB (local, default)
+"duckdb"
+PostgreSQL
+"postgres"
+BigQuery
+"bigquery"
+Snowflake
+"snowflake"
+Redshift
+"redshift"
+Databricks
+"databricks"
+Filesystem (S3, GCS, Azure)
+"filesystem"
+Change the destination in
+dlt.pipeline(destination="snowflake")
+and add credentials in
+.dlt/secrets.toml
+. See the
+full destinations list
+.
+Troubleshooting
+401 Unauthorized
+Cause: Missing, expired, or invalid Bearer token, or required scopes not granted.
+Fix: Refresh the access token or re‑authorize the app.
+403 Forbidden
+Cause: Application lacks the Advertising product access or the user does not have permission to the requested resource.
+Fix: Ensure the app is approved for the Marketing (Advertising) product and the user has appropriate rights.
+429 Too Many Requests
+Cause: Rate limit exceeded (default: 100 requests per second per app).
+Fix: Implement exponential back‑off and respect the
+X-Restli-Header-RateLimit-Limit
+response header.
+Pagination quirks
+The API uses
+start
+and
+count
+query parameters. The response contains a
+paging
+object with
+total
+,
+start
+, and
+count
+. Continue requesting until
+start + count >= total
+.
+Certain analytics endpoints restrict date ranges (e.g., max 92 days). Split larger queries into multiple calls.
+Ensure that the API key is valid to avoid 401 Unauthorized errors. Also, verify endpoint paths and parameters to avoid 404 Not Found errors.
+Next steps
+Continue your data engineering journey with the other toolkits of the
+dltHub AI Workbench
+:
+data-exploration
+— Build custom notebooks, charts, and dashboards for deeper analysis with marimo notebooks.
+dlthub-runtime
+— Deploy, schedule, and monitor your pipeline in production.
+Copy
+uv run dlthub ai toolkit
+install
+data-exploration
+uv run dlthub ai toolkit
+install
+dlthub-runtime
+How to deploy a pipeline
+How to explore your data in marimo Notebooks
+How to query your data in Python with dataset
+Join the dlt community on Slack
+Was this page helpful?
+Yes
+No
+Community Hub
+Need more dlt context for
+LinkedIn Advertising
+?
+Request dlt skills, commands,
+AGENT.md
+files, and AI-native context.
+Request more context
+Submit context

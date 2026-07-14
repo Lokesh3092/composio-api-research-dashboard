@@ -1,0 +1,71 @@
+Authentication | MrScraper Documentation
+Authentication
+Learn how to authenticate your requests to the MrScraper API using API tokens, including best practices for security and usage.
+The MrScraper API uses API token authentication to secure all endpoints. Every API request must include a valid API token in the request headers to access the API.
+Getting Your API token
+Generate an API token by following the steps in our
+API Token Generation guide
+.
+API token Scope
+Your API token provides access to:
+V3 Platform endpoints
+- All endpoints in the V3 API
+Sync endpoints
+- Endpoints on the
+sync.scraper.mrscraper.com
+host
+Analytics endpoints
+- Special authentication requirements (see
+Analytics Authentication
+below)
+For access to endpoints on other hosts, please
+contact support
+to request an API token.
+Make Your First Call
+Most API endpoints use HTTP header-based authentication. Include your API token in the request header:
+x-api-token
+:
+MRSCRAPER_API_TOKEN
+For example, to
+retrieve scraping results
+, make the following cURL request:
+curl
+-X
+GET
+"https://api.app.mrscraper.com/api/v1/results?filters[scraperId]=<SCRAPER_ID>&page=1&pageSize=10&sort=createdAt&sortOrder=DESC"
+\
+-H
+"accept: application/json"
+\
+-H
+"x-api-token: MRSCRAPER_API_TOKEN"
+Analytics Authentication
+Analytics endpoints require a different authentication method using query parameters instead of headers. The following endpoints use query parameter authentication:
+/analytic/statuses
+: Retrieve scraper status analytics
+/analytic/timeline
+: Retrieve timeline analytics data
+For analytics endpoints, pass your API token as a query parameter:
+apiTokenName
+=
+MRSCRAPER_API_TOKEN
+For example, to
+retrieve analytics results
+, make the following cURL request:
+curl
+--location
+'https://api.app.mrscraper.com/api/v1/analytic/statuses?domain=LINK&action=ACTION_DETAIL&startDate=2026-04-12%2000%3A00%3A00&endDate=2026-04-13%2023%3A59%3A59&apiTokenName=MRSCRAPER_API_TOKEN'
+\
+-H
+"accept: application/json"
+\
+-H
+"x-api-token: MRSCRAPER_API_TOKEN"
+API Overview
+Comprehensive documentation for MrScraper's API endpoints, including authentication, pagination, error handling, and scraper management.
+Pagination
+Understand how pagination works in the MrScraper API, including parameters for controlling page size and navigating through large datasets.
+On this page
+Getting Your API token
+Make Your First Call
+Analytics Authentication

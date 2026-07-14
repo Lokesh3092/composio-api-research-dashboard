@@ -1,0 +1,80 @@
+API explorer
+For AI agents: visit https://developers.asana.com/llms.txt for an index of all pages formatted in Markdown and endpoints in OpenAPI.
+Asana's
+REST API reference
+allows you to explore different REST API endpoints through an in-context, easy-to-use interface. Using this built-in API explorer, you can make API requests (and view responses)
+directly in your browser
+.
+Prerequisites
+Before using the API explorer, be sure to create a
+personal access token
+(if you do not already have one). Generating a PAT allows you to access (i.e., make requests to) the Asana REST API upon successful authentication.
+🚧
+Operating on real data
+By authenticating with a personal access token, note that you will be operating on
+real data
+in your Asana instance. This is also true when making requests via
+cURL
+or the
+Postman Collection
+.
+If you would like to make requests against data
+outside
+of your Asana instance (e.g., for testing purposes), we recommend setting up a
+developer sandbox
+.
+Usage
+1. Select an API endpoint
+To access the API explorer, visit the
+REST API reference
+and select any API endpoint.
+For example, here is the section for
+GET https://app.asana.com/api/1.0/users/
+USER_GID
+:
+2. Authenticate
+After choosing an API endpoint, provide your personal access token on the right side of the page:
+3. Build the request
+Then, in the middle section of the page, supply the required request parameters. You may also enter any
+input/output options
+here as well.
+4. View the response
+Once the request has been built, select
+Try It!
+to make your API request. For example, the following shows an example request and
+200
+response:
+Notes
+Enumerated values
+Enumerated
+values for request parameters can be found as a dropdown on the property itself. For example, here are the enumerated values for
+resource_subtype
+when
+creating a custom field
+:
+Example responses
+If you wish to view a sample response (e.g., a
+200
+response for a
+GET
+request) for a given API endpoint, select the HTTP status code on the right portion of the screen.
+In the above example, selecting
+200
+will display the following sample response:
+Schemas
+To see object schemas directly in the API explorer, select the
+200
+response for a
+GET
+request for that resource. For example, see the
+200
+response option here (highlighted in red) for
+GET /users/
+USER_GID
+:
+In the above example, selecting
+200
+will open a modal that features the full schema for that resource (in this case, a
+user
+resource).
+Copy Page

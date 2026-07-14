@@ -1,0 +1,126 @@
+Authentication
+For AI agents: visit https://developer.clickup.com/llms.txt for an index of all pages formatted in Markdown and endpoints in OpenAPI.
+Authentication
+To use the ClickUp API, you must authenticate every request.
+For personal use, authenticate with your
+personal API token
+.
+For apps or integrations that other people use, use the
+OAuth flow
+, allowing users to authorize Workspaces for your app.
+Include the token in the
+Authorization
+header of your requests.
+Both methods ensure that you and your users only have access to the information permitted by ClickUp.
+👍
+View the OAuth endpoints.
+Personal Token
+Use a personal API token for individual or testing purposes. Personal tokens begin with
+pk_
+.
+Add the token to the header:
+Authorization: {personal_token}
+. This is also needed to use the Try-It feature in the API docs.
+Generate or regenerate a Personal API Token
+Log in to ClickUp.
+In the upper-right corner, click your avatar.
+Select
+Settings
+.
+In the sidebar, click
+Apps
+. Or click
+here
+to go directly to your settings.
+Under
+API Token
+, click
+Generate
+or
+Regenerate
+.
+👀
+Note
+You'll need to sign in to your ClickUp account in order to generate or regenerate a token.
+Click
+Copy
+to copy the personal token to your clipboard. Personal tokens never expire.
+Build Apps for others - OAuth Flow
+To allow others to use your app, implement the OAuth2 flow so each user has their own token for accessing their ClickUp resources.
+OAuth resources and specs:
+Authentication:
+OAuth 2.0
+Grant Type:
+Authorization Code
+.
+Learn more
+.
+Authorization URL:
+https://app.clickup.com/api
+Access Token URL:
+https://api.clickup.com/api/v2/oauth/token
+👀
+Note
+ClickUp uses the
+authorization code
+grant type
+.
+Use your personal API key to use the Try-It feature in the API docs.
+Step 1: Create an OAuth app
+Only
+Workspace
+owners or admins can create OAuth apps.
+Log in to ClickUp.
+In the upper-right corner, click your avatar.
+Select
+Settings
+.
+In the sidebar, click
+Apps
+.
+Click
+Create new app
+.
+Name the app and add a
+redirect URL
+.
+You'll receive a
+client_id
+and
+secret
+.
+Step 2: Retrieve an Authorization Code
+Send users to this URL to connect their ClickUp account:
+https://app.clickup.com/api?client_id={client_id}&redirect_uri={redirect_uri}
+You can also add a
+state
+parameter:
+https://app.clickup.com/api?client_id={client_id}&redirect_uri={redirect_uri}&state={state}
+👀
+Note
+Non-SSL redirect URIs may not be supported in the future.
+Users will be redirected back to the
+redirect_uri
+with the authorization code after logging in.
+Select Workspaces
+Users can authorize one or more Workspaces. Use the
+Get Authorized Teams (Workspaces)
+endpoint to see which Workspaces are authorized. Redirect users to the authorization URL to modify Workspace permissions.
+Step 3: Request a Token
+Use the
+Get Access Token
+endpoint with
+client_id
+,
+client_secret
+, and
+code
+to get the access token. This token is used in the
+Authorization: Bearer {access_token}
+header for all API requests made on behalf of the user.
+The access token currently does not expire. This is subject to change.
+Learn more about OAuth:
+OAuth.net
+OAuth Simplified
+Digital Ocean Intro to OAuth 2.0
+Copy Page

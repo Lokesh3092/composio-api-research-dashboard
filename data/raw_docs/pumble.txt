@@ -1,0 +1,163 @@
+Pumble API Documentation | MindCloud Universal API
+This is the complete API documentation for connecting to the Pumble API using MindCloud's Universal API.
+If you are new to MindCloud, start with the
+Introduction
+to see how one API can sit in front of many different apps.
+MindCloud is an integration company that offers one normalized API to access 3,100+ apps from a single place. It cleans up provider-specific quirks, keeps requests and responses consistent, and centralizes authentication so you do not need to manage separate flows for every app.
+Browse other apps
+.
+Meet Pumble: Send messages, manage channels, and schedule posts in Pumble.
+Keep reading to get started.
+Quickstart
+Before you run your first Pumble request, you need three things:
+A
+MindCloud account
+— sign in or create an account at
+MindCloud
+.
+A
+MindCloud API Key
+— create one in
+API Keys
+. Keep it on your server.
+At least one
+Pumble connection
+— create or choose one in
+Connections
+. Note its
+connectionId
+.
+Every Pumble action uses the same URL pattern:
+https://connect.mindcloud.co/v1/universal/pumble/latest/actions/{actionSlug}
+You need a MindCloud API Key and a
+Pumble connection.
+Then call an action
+such as
+Get Channel
+:
+curl
+--request GET \
+--url
+"https://connect.mindcloud.co/v1/universal/pumble/latest/actions/get-channel"
+\
+--header
+"Authorization: Bearer
+$MINDCLOUD_API_KEY
+"
+\
+--get
+\
+--data-urlencode
+"connectionId=
+$CONNECTION_ID
+"
+Every response comes back in the same envelope, with your rows in a
+data
+array:
+{
+"success"
+:
+true
+,
+"data"
+: [
+{
+"id"
+:
+"1042"
+,
+"name"
+:
+"Ava"
+}
+],
+"meta"
+: {}
+}
+After your first request works, use
+Shape your requests
+to control arguments, pagination, filtering, fields, and errors.
+Authentication
+Authentication has two layers. Your
+MindCloud API Key
+authenticates the request to MindCloud, sent as a Bearer token in the
+Authorization
+header. The
+connectionId
+selects the connected Pumble account that should run the action. MindCloud stores and refreshes the Pumble credentials behind that connection, so you never send provider tokens with your requests.
+Pass
+connectionId
+in the query string for
+GET
+and
+DELETE
+actions, and in the JSON body for
+POST
+,
+PUT
+, and
+PATCH
+actions. Keep your MindCloud API Key on your server; do not ship it in browser code, mobile apps, public repositories, or logs.
+Pumble actions
+All 24 published actions for this Pumble version. Each page documents the endpoint, arguments, and response controls.
+POST
+Add Reaction to Message
+POST
+Add Users to Channel
+POST
+Create Channel
+POST
+Create Scheduled Message
+DELETE
+Delete Message
+DELETE
+Delete Scheduled Message
+GET
+Get Channel
+GET
+Get Current User
+GET
+Get Message
+GET
+Get Scheduled Message
+GET
+List Channel Messages
+GET
+List Channels
+GET
+List Scheduled Messages
+GET
+List Thread Replies
+GET
+List User Groups
+GET
+List Users
+DELETE
+Remove User from Channel
+POST
+Reply to Message
+GET
+Search Messages
+POST
+Send Direct Message to Group
+POST
+Send Direct Message to User
+POST
+Send Message to Channel
+PUT
+Update Message
+PUT
+Update Scheduled Message
+Related apps
+More Communication apps on the Universal API,
+behind the same REST shape. Or
+browse all apps
+.
+Gmail
+Slack
+Discord
+Twilio
+Microsoft Teams
+Circle
+tl;dv
+ClickSend SMS

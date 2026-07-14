@@ -1,0 +1,13 @@
+sources_telegram_update | authentik
+Skip to main content
+sources_telegram_update
+PUT
+/sources/telegram/:slug/
+Mixin to add a used_by endpoint to return a list of all objects using this object
+Request
+​
+Responses
+​
+200
+400
+403

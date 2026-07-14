@@ -1,0 +1,505 @@
+Getting started - SE Ranking Data API Documentation
+API
+API
+/
+Data API
+/
+Getting started
+Getting started
+Welcome to the SE Ranking API! This guide will walk you through authenticating your account, making your first request, understanding our credit system, and more. Let’s get you up and running in minutes.
+Authentication
+All requests to the Data API must be authenticated. The base URL for all endpoints is:
+Copy
+https://api.seranking.com
+1. Obtain your API key
+First, you’ll need to generate a unique API key from your account dashboard.
+1. Navigate to the
+API Dashboard
+. You can access this by clicking the
+API
+icon in the main left-hand navigation menu:
+2. On the API Dashboard, click the
++ CREATE API KEY
+button located in the top-right corner:
+3. In the
+Create API key
+dialog box:
+a. Enter a descriptive name in the
+API key name
+field (e.g., “Demo”).
+c. Click
+CREATE KEY
+.
+4. Your new key will be generated and listed in the
+API Keys
+table. You can create multiple API keys for different applications or environments:
+2. Authenticate your requests
+You have two methods to authenticate your requests. We strongly recommend using the Authorization header.
+Method 1: Authorization header (recommended)
+Include an
+Authorization
+header in your request, with the value
+Token YOUR_API_KEY
+.
+You can test your key by fetching your subscription details. The
+200 OK
+response confirms that your key is working correctly.
+Copy
+curl -X GET 'https://api.seranking.com/v1/account/subscription' \
+-H 'Authorization: Token YOUR_API_KEY'
+Method 2: Query parameter
+Alternatively, you can pass the key as a URL query parameter named
+apikey
+.
+Copy
+curl -X GET 'https://api.seranking.com/v1/account/subscription?apikey=YOUR_API_KEY'
+Making requests
+Once authenticated, you can make requests to any API endpoint.
+GET requests
+can include parameters in the URL’s query string.
+POST requests
+must include the
+Content-Type: application/json
+header and send data in a JSON body.
+Example POST request
+Here is an example of a more complex POST request to the
+/backlinks/summary
+endpoint. Notice how the authentication header remains the same.
+Copy
+curl -X POST 'https://api.seranking.com/v1/backlinks/summary' \
+-H 'Authorization: Token YOUR_API_KEY' \
+-H 'Content-Type: application/json' \
+-d '{
+"target": "seranking.com",
+"mode": "host"
+}'
+Postman collection
+We offer a Postman collection to help you get started without writing any code. Postman is a free application that makes it easy to explore and test APIs.
+Prerequisites
+Postman
+SE ranking account
+Getting started
+To get started, click the
+Run in Postman
+button below. This will fork both the API collection and the environment template into your Postman workspace in one simple step.
+When you click the button, you’ll be prompted to fork the collection. Enter a name for your fork and select the workspace where you want it to be created.
+The pre-configured environment will also be forked into your selected workspace, ready for you to add your API key.
+Set your API key
+To run requests, you’ll need to supply your
+secret API key
+and set it as an
+environment variable
+within your workspace.
+1. To set any environment variable, create a new environment within Postman:
+2. Add your secret key as a variable to the environment and save:
+3. Set the environment to active:
+4. Now, within the collection, set it to use the environment you just created:
+If your environment is set up correctly, you should see your secret key value if you mouse over the
+secret_key
+variable in the
+Token
+field:
+5. Be sure to save the collection after you’ve set the key:
+Make a test call
+You should be ready now to make a test call. An easy first call is to create a customer:
+Since this is a test, no parameter updates are required. You can hit the
+Send
+button to run this request:
+If your environment is set up, you’ll get a summary object back as the response to the call:
+Add parameters to the call by clicking the
+Params
+tab, where you’ll see a list of available parameters. Select and populate the ones you want to use. Here’s an example of updating a target parameter:
+You’ll see the updated target in the response:
+Unit costs
+Credits
+are the unit SE Ranking uses to bill API usage. Each endpoint lists two unit costs:
+Per-request credits (2xx)
+: a fixed number of credits charged
+once per successful request
+.
+Per-record credits (2xx)
+: a variable charge applied
+for each record returned
+in a successful response.
+Only successful HTTP 2xx responses consume credits.
+4xx and 5xx responses are not billed.
+Endpoint credit costs
+Service
+Method
+Command
+Per-request credits (2xx)
+Per-record credits (2xx)
+backlinks
+GET
+summary
+0
+100
+backlinks
+GET
+all
+0
+1
+backlinks
+GET
+export
+0
+1
+backlinks
+GET
+export/status
+0
+0
+backlinks
+GET
+anchors
+0
+1
+backlinks
+GET
+count
+0
+2
+backlinks
+GET
+authority
+0
+10
+backlinks
+GET
+authority/page
+0
+5
+backlinks
+GET
+authority/page/history
+4
+1
+backlinks
+GET
+authority/domain
+0
+5
+backlinks
+GET
+authority/domain/distribution
+0
+1
+backlinks
+GET
+authority/domain/histogram
+0
+10
+backlinks
+GET
+authority/domain/history
+4
+1
+backlinks
+GET
+referring-ips
+0
+1
+backlinks
+GET
+referring-ips/count
+0
+2
+backlinks
+GET
+metrics
+0
+10
+backlinks
+GET
+history
+0
+1
+backlinks
+GET
+history/count
+10
+1
+backlinks
+GET
+history/cumulative
+10
+1
+backlinks
+GET
+refdomains/history
+0
+1
+backlinks
+GET
+refdomains/history/count
+10
+1
+backlinks
+GET
+indexed-pages
+0
+1
+backlinks
+GET
+raw
+0
+1
+backlinks
+GET
+refdomains
+0
+1
+backlinks
+GET
+refdomains/count
+0
+2
+backlinks
+GET
+referring-subnets/count
+0
+2
+account
+GET
+subscription
+0
+0
+domain
+GET
+overview/db
+100
+0
+domain
+GET
+overview/worldwide
+100
+0
+domain
+GET
+overview/worldwide/url
+100
+0
+domain
+GET
+overview/history
+100
+0
+domain
+GET
+keywords
+100
+0
+domain
+GET
+pages
+100
+0
+domain
+GET
+subdomains
+100
+0
+domain
+GET
+ads
+100
+0
+domain
+GET
+competitors
+100
+0
+domain
+GET
+keywords/comparison
+100
+0
+ai-search
+GET
+overview/aggregated/*
+1800
+0
+ai-search
+GET
+overview/by-engine/time-series
+800
+0
+ai-search
+POST
+overview/leaderboard
+7,500
+0
+ai-search
+GET
+discover-brand
+100
+0
+ai-search
+GET
+prompts-by-target
+0
+200
+ai-search
+GET
+prompts-by-brand
+0
+200
+keywords
+GET
+export
+0
+10
+keywords
+GET
+related
+0
+10
+keywords
+GET
+similar
+0
+10
+keywords
+GET
+questions
+0
+10
+keywords
+GET
+longtail
+0
+1
+site-audit
+POST
+audits/standard
+0
+2
+site-audit
+POST
+audits/advanced
+0
+20
+site-audit
+GET
+audits/status
+0
+0
+site-audit
+GET
+audits/report
+0
+0
+site-audit
+GET
+audits/pages
+0
+0
+site-audit
+GET
+audits/issue-pages
+0
+0
+site-audit
+GET
+audits/issues
+0
+0
+site-audit
+GET
+audits/links
+0
+0
+site-audit
+GET
+audits/history
+0
+0
+site-audit
+GET
+audits
+0
+0
+site-audit
+PATCH
+audits
+0
+0
+site-audit
+DELETE
+audits
+0
+0
+site-audit
+POST
+audits/recheck/standard
+0
+2
+site-audit
+POST
+audits/recheck/advanced
+0
+20
+Plans and pricing
+Our Data API credit plans are available as annual packages. Credits are provided upfront at the start of the subscription period.
+Annual credits
+Price (per year)
+Effective monthly price
+$ / 1M credits
+12M
+$2,148.00
+$179.00
+$179.00
+24M
+$3,816.00
+$318.00
+$159.00
+36M
+$4,896.00
+$408.00
+$136.00
+48M
+$5,808.00
+$484.00
+$121.00
+60M
+$6,660.00
+$555.00
+$111.00
+72M
+$7,416.00
+$618.00
+$103.00
+84M
+$8,148.00
+$679.00
+$97.00
+96M
+$8,832.00
+$736.00
+$92.00
+108M
+$9,504.00
+$792.00
+$88.00
+120M
+$10,200.00
+$850.00
+$85.00
+If you need a different volume,
+schedule a call
+or email us at
+[email protected]
+.
+Learn how SE Ranking’s API can boost your SEO!
+Hi! Meet our product experts!
+One of them will walk you through the API and show you how to get the most out of it.
+Enjoy a tailored demo on integrating rich, structured SEO data into your stack.
+Pin down every tech detail live—auth, endpoints, rate limits, data formats.
+Compare usage tiers and pricing so you can unlock maximum data value.
+Request a free demo
+to see our tools and integrations in action
+By clicking this button, you agree to SE Ranking’s
+Terms of Service
+and
+Privacy Statement
+.

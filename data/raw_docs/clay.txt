@@ -1,0 +1,134 @@
+Clay User Management API Guide | Stitchflow
+On this page
+Summary
+API quick reference
+Authentication
+User object / data model
+Core endpoints
+Rate limits, pagination, and events
+SCIM API status
+Common scenarios
+Why building this yourself is a trap
+Summary and recommendation
+Clay does not expose a user management API. There are no documented endpoints to create, list, update, or deactivate workspace members programmatically. The public API surface is scoped exclusively to data enrichment and table operations.
+For teams building an identity graph that requires authoritative seat state from Clay, the only available data sources are the Clay UI (Settings → Team) and, for Enterprise accounts, IdP-side directory data from Okta or Entra ID. No official SDK is published as of this research date.
+API quick reference
+Has user API
+No
+SCIM available
+No
+SCIM plan required
+Enterprise
+Authentication
+Auth method:
+Not documented
+User object / data model
+User object field mapping is not yet verified for this app.
+Core endpoints
+Endpoint coverage is not yet verified for this app.
+Rate limits, pagination, and events
+Rate limits:
+Not documented
+Rate-limit headers:
+No
+Retry-After header:
+No
+Rate-limit notes:
+Not documented
+Pagination method:
+none
+Default page size:
+0
+Max page size:
+0
+Pagination pointer:
+Not documented
+Webhooks available:
+Yes
+Webhook notes:
+Clay supports outbound webhooks on Explorer plan and above. Webhooks fire on table row events (row created, row updated, enrichment completed), not on user/seat lifecycle events.
+Alternative event strategy:
+No user-lifecycle webhook events are documented. User provisioning must be handled manually via the Clay UI or through SSO/IdP (Okta, Entra ID) for Enterprise accounts.
+Webhook events:
+row.created, row.updated, enrichment.completed
+SCIM API status
+SCIM available:
+No
+SCIM version:
+Not documented
+Plan required:
+Enterprise
+Endpoint:
+Not documented
+Limitations:
+SCIM provisioning is not publicly documented or confirmed as available even on Enterprise plan.
+Clay supports SSO via Okta and Entra ID on Enterprise, but SCIM automated provisioning support is unconfirmed in official documentation.
+User seat management is performed through the Clay workspace UI.
+Common scenarios
+All three core user lifecycle operations - invite, offboard, and audit - are UI-only. Offboarding requires navigating to Settings → Team and manually removing the member; if SSO is configured, the IdP must also be deprovisioned, but session invalidation timing in Clay post-IdP revocation is unconfirmed.
+Auditing workspace membership has no machine-readable output: there is no API endpoint to list members, and no documented export mechanism short of contacting Clay support. Webhooks are available on Explorer and above, but fire only on table row events (row.
+created, row. updated, enrichment.
+completed) - not on user or seat lifecycle events - making them unsuitable for provisioning automation.
+Offboard a workspace member
+No programmatic API exists to remove a user from a Clay workspace.
+Navigate to Clay workspace Settings > Members.
+Locate the member and select 'Remove from workspace' manually.
+If SSO is configured (Okta/Entra), deprovision the user in the IdP to revoke SSO access; session invalidation timing is unconfirmed.
+Watch out for:
+Without SCIM, deprovisioning is entirely manual. Revoking IdP SSO access does not guarantee immediate Clay session termination.
+Invite a new team member
+No API endpoint exists for programmatic user invitation.
+Navigate to Clay workspace Settings > Members > Invite.
+Enter the user's email address and assign a role (Admin, Member).
+User receives an email invitation and must accept to gain access.
+Watch out for:
+Role options and seat limits are plan-dependent. Enterprise accounts should confirm available roles with Clay support.
+Audit current workspace members
+No API endpoint exists to list workspace members programmatically.
+Access Settings > Members in the Clay UI to view current members and roles.
+For Enterprise audit requirements, contact Clay support to request a member export or explore IdP-side reporting via Okta/Entra.
+Watch out for:
+No machine-readable member list is available via API. Audit workflows must rely on UI exports or IdP directory data.
+Why building this yourself is a trap
+The absence of a user management API creates a hard gap in any identity graph that expects Clay seat state to be queryable or event-driven. SSO availability on Enterprise does not imply SCIM; JIT provisioning behavior is unconfirmed in official docs, so automated account creation on first login cannot be assumed.
+Credit consumption is plan-gated, and API access for webhooks requires Explorer or above, while CRM integrations require Pro or above - meaning integration depth is tied directly to plan tier. Teams that need Clay member state in their identity graph must treat Clay as a manually-reconciled source until SCIM support is officially confirmed and documented.
+Automate
+Clay
+workflows without
+one-off scripts
+Stitchflow builds and maintains end-to-end IT automation across your SaaS stack, including apps without APIs. Built for exactly how your company works, with human approvals where they matter.
+Every app coverage, including apps without APIs
+60+ app integrations plus browser automation for apps without APIs
+IT graph reconciliation across apps and your IdP
+Less than a week to launch, maintained as APIs and admin consoles change
+SOC 2 Type II. ~2 hours of your team's time
+Book a Demo
+Keep exploring
+Related apps
+6sense
+Manual Only
+Automation
+Not Supported
+Last updated
+Feb 2026
+6sense user management lives entirely in Settings > User Management (https://analytics.6sense.com/settings/user-management). The platform uses a role-based access control model scoped per product module — ABM, Sales Intelligence (SI), and Conversationa
+Admin guide
+API guide
+Alkami
+Manual Only
+Automation
+Not Supported
+Last updated
+Mar 2026
+Alkami is an enterprise-only digital banking platform sold exclusively to financial institutions such as banks and credit unions. It is not a general-purpose SaaS tool, and its admin and user-management documentation is not publicly available. Independ
+Admin guide
+API guide
+AmazingHiring
+Manual Only
+Automation
+Not Supported
+Last updated
+Mar 2026
+AmazingHiring is a recruiter-facing sourcing platform sold on a pay-per-seat, annual billing model. There is no native SCIM support and no publicly documented IdP integration, which means every app lifecycle event — onboarding, role change, offboarding
+Admin guide
+API guide

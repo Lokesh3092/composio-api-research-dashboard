@@ -1,0 +1,183 @@
+Authentication
+| Help Scout Developers
+This is an HTTPS-only API and it uses
+OAuth 2.0 authorization
+, implementing Authorization Code and Client Credential flows.
+All requests have to be authenticated via the
+Authorization
+header:
+curl
+-H
+"Authorization: Bearer f4f4994a875f461ca4d4708b9e027df4"
+\
+https://api.helpscout.net/v2/users/me
+The Authorization Code flow is typically used for integrations to be used by other Help Scout users. The Client Credentials
+flow is meant for internal integrations.
+All credentials must be associated with an active, invited user in the Help Scout account; a 401 error will be returned if a user does not meet these credentials.
+Please note that you can choose to send data as JSON, form or query params in all POST requests on this page, as long as the appropriate
+Content-Type
+header is included.
+OAuth2 application
+You need to create an OAuth2 application before you can use the API. Create one by navigating to Your Profile > My apps and click Create My App.
+A redirection URL is necessary when using the
+Authorization Code
+flow.
+Authorization Code flow
+This is a redirection-based flow. The application must be capable of interacting with the user-agent (i.e. the user’s web browser)
+and receiving API authorization codes that are routed through the user-agent.
+1. Redirect user to Help Scout
+Ask the user to authorize your application by either redirecting them to the Redirection URI or by opening the Redirection URI in the pop-up.
+https://secure.helpscout.net/authentication/authorizeClientApplication?client_id={application_id}&state={your_secret}
+The
+state
+param
+is optional and if you use it, it will be returned to you in step 2.
+If the user is already logged in to Help Scout, they will see the following Authorization screen.
+If they are not logged in to Help Scout, they will be brought to the Authorization screen after they log in.
+2. Redirect back to your backend
+After the user authorizes your application, we will redirect them back to the Redirection URL that is defined in My Apps. The URI will contain the
+code
+query param (and optionally a
+state
+param)
+3. Get access and refresh tokens
+Your application can now use the
+code
+param and exchange it for access and refresh token pair:
+Request
+curl
+-X
+POST https://api.helpscout.net/v2/oauth2/token
+\
+--data
+'code={code}'
+\
+--data
+'client_id={application_id}'
+\
+--data
+'client_secret={application_secret}'
+\
+--data
+'grant_type=authorization_code'
+Response
+HTTP
+/
+1.1
+200
+OK
+Content-Type
+:
+application/json; charset=utf-8
+{
+"refresh_token"
+:
+"c01194f69c3e4307a4fd0e9403fc8fd0"
+,
+"token_type"
+:
+"bearer"
+,
+"access_token"
+:
+"8fccb4f5cf6746148f336414f798cd87"
+,
+"expires_in"
+:
+172800
+}
+4. Refresh access token
+When the access token expires (indicated by HTTP 401 return code), you can use the refresh token to retrieve a new access and refresh token pair:
+Request
+curl
+-X
+POST https://api.helpscout.net/v2/oauth2/token
+\
+--data
+'refresh_token={refresh_token}'
+\
+--data
+'client_id={application_id}'
+\
+--data
+'client_secret={application_secret}'
+\
+--data
+'grant_type=refresh_token'
+Response
+HTTP
+/
+1.1
+200
+OK
+Content-Type
+:
+application/json; charset=utf-8
+{
+"refresh_token"
+:
+"8fccb4f5cf6746148f336414f798cd87"
+,
+"token_type"
+:
+"bearer"
+,
+"access_token"
+:
+"8fccb99232cf6743148f336414f798cd87"
+,
+"expires_in"
+:
+172800
+}
+Client Credentials flow
+With the
+Client Credentials
+flow it is possible to retrieve an access token directly using your application id and application secret:
+Request
+curl
+-X
+POST https://api.helpscout.net/v2/oauth2/token
+\
+--data
+"grant_type=client_credentials"
+\
+--data
+"client_id={application_id}"
+\
+--data
+"client_secret={application_secret}"
+Response
+HTTP
+/
+1.1
+200
+OK
+Content-Type
+:
+application/json; charset=utf-8
+{
+"token_type"
+:
+"bearer"
+,
+"access_token"
+:
+"369dbb08be58430086d2f8bd832bc1eb"
+,
+"expires_in"
+:
+172800
+}
+This token is valid for 2 days and you should create a new one only after the existing token expires. Expiration will be indicated by the API responding with HTTP 401.
+If creating a new application to generate an
+application_id
+and
+application_secret
+, you will be prompted to supply a redirection URL. If you intend to exclusively a Client Credentials flow, you can provide a placeholder URL (such as https://www.google.com) to continue with generating the application.
+Token Size
+Expect that the length of all access token types will change over time as we make changes to what is stored in them and how they are encoded.
+You can expect that they will grow and shrink over time. Please use a variable length data type without a specific maximum size to store access or refresh tokens.
+Contents
+↑
+Back to top

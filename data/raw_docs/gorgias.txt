@@ -1,0 +1,91 @@
+Access your Gorgias REST API credentials
+Search
+All articles
+Access your Gorgias REST API credentials
+Updated
+a month ago
+The Gorgias REST API lets you read and write data in your helpdesk programmatically. To authenticate API requests, Gorgias uses HTTP Basic Authentication with three pieces of information: your base API URL, your email address, and an API key. You can find and manage all three from the REST API settings page in your helpdesk.
+Note:
+API keys are tied to your individual account, not to the helpdesk as a whole.
+For full API documentation, visit the
+Gorgias Developer Documentation
+.
+Requirements
+Available on all
+Helpdesk plans
+The account owner and
+admins
+can access the API credentials and create API keys
+Find your API credentials
+You can find the
+Base API URL
+(
+https://{your-domain}.gorgias.com/api/
+),
+Username
+(the email address on your account), and
+API key
+in your Gorgias settings. If you don’t have an existing API key, you’ll have to create one first.
+From your helpdesk, click the
+Settings icon
+in the bottom-left corner.
+In the menu, locate
+Account
+, then select
+REST API
+.
+Under
+API Access & Credentials
+, you'll find the
+Base API URL
+, your
+Username
+, and
+Password (API Key)
+.
+Click
+Copy
+next to any field to copy it to your clipboard.
+Create an API key
+If you haven't created an API key yet, the Password field will show a
+Create API key
+button instead of a key value.
+From your helpdesk, click the
+Settings icon
+in the bottom-left corner.
+In the menu, locate
+Account
+, then select
+REST API
+.
+Under
+Password (API Key)
+, click
+Create API Key
+.
+Your API key is generated immediately and displayed alongside the other credentials. Your API key grants full access to your account's data. Once you’ve copied it, store it somewhere secure and don’t share it with anyone.
+Reset your API key
+You can reset your API key at any time. Resetting generates a new key and immediately invalidates the old one. Any integrations or scripts using the old key will stop working until they're updated with the new one.
+From your helpdesk, click the
+Settings icon
+in the bottom-left corner.
+In the menu, locate
+Account
+, then select
+REST API
+.
+Next to the
+Password (API Key)
+field, click
+Reset
+.
+Click
+OK
+to confirm.
+Import the Postman collection
+The REST API settings page also includes a
+Run in Postman
+button. Clicking it imports the Gorgias Postman collection with your domain, email address, and API key pre-filled as environment variables, so you can start making requests immediately.
+Was this article helpful?
+Yes
+No

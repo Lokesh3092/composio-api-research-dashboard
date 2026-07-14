@@ -1,0 +1,69 @@
+Developers :: Docs
+Quick Start Guide
+Paya Connect Recommended Path of Integration
+PayForm & AccountForm
+Hosted Payment Page
+CSV/TSV Download
+API Reference
+Endpoints
+Account Vaults
+Authentication
+Contacts
+Level3 Data
+Location Info
+Post Back Configs
+Quick Invoices
+Recurrings
+Router Account Vaults
+Router Transactions
+Signatures
+Transactions
+Transaction Batches
+Error Handling
+Expands (Related Records)
+HMAC Authorization Process
+Pagination
+Post Backs
+Post Message
+Response Reason Codes
+Test Data
+Authorize.net Emulator
+BIN Info
+Fee Info
+Postman
+Release Notes
+Developers
+Below you will find various resources to aid in the integration and development against our API.
+Developer Portal Access
+Have you requested Developer Portal access yet?
+Click here
+to fill out the Developer Portal application to request access.
+Quick Start Guide
+The purpose of this document is to detail the steps necessary to understand how to develop a proper integration to our API. This document should answer many of the basic questions around how our API operates and how to get integrated quickly and easily. Click
+here
+to access the Quick Start Guide.
+API Reference
+Many APIs are similar in the way that they handle requests and response. Ours is not much different than the rest. Most of the same concepts apply, only the parameters may vary slightly. This section describes the basics of our API and any information that is specific to our API that you will need to in order to properly code and interact with us. Click
+here
+to view the API Reference.
+Postman
+Postman is an open source tool that assists in the submission of requests to a (REST) API. This tool is very easy to use and can help debug requests and speed the development process when coding.
+Postman can be downloaded from
+getpostman.com
+Once you download Postman, you can import our sample collection by
+clicking here
+.
+Here is a sample postman
+Environment
+file that you can use as your base to import. Be sure to edit the file and insert your own credentials.
+Sandbox API Request Logs
+During development it may be helpful to review your API requests and their responses in order to troubleshoot any issues or unexpected behavior.
+Fortunately, this can easily be done within our
+Developer Portal
+.
+Once you are signed into the Developer Portal, click on the
+Projects
+link in the left-hand navigation.
+On the Projects page, click into the Project you are working on.
+Once you click into a Project, you should be viewing the Request Logs tab (by default), and you can use this tab control at any time to return to the API Logs if you should switch tabs.
+Within the API Request Logs tab, you will see controls that can be used to search for specific transactions based on Timestamp, Request Method, Response Code, Resource, and Endpoint.

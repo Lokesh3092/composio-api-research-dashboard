@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Composio API Research Agent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+</head>
+
+<body>
+
+    <div class="app-layout">
+
+        <aside class="sidebar">
+
+    <div class="logo">
+
+        🤖
+
+        <h2>Composio</h2>
+
+    </div>
+
+    <nav>
+
+        <a href="#" class="active">🏠 Dashboard</a>
+
+        <a href="#">📊 Analytics</a>
+
+        <a href="#">📄 Reports</a>
+
+        <a href="#">⚙ Settings</a>
+
+    </nav>
+
+</aside>
+    <main class="main-content"></main>
+    <div class="header">
+
+    <div class="header-top">
+
+        <h1>🤖 Composio API Research Agent</h1>
+
+        <button id="themeToggle">
+            🌙 Dark Mode
+        </button>
+
+    </div>
+
+
+    <p><strong>AI Product Ops Assignment</strong></p>
+
+    <p>Automated Research and Analysis of 100 APIs</p>
+
+</div>
+
+        <div class="cards">
+
+    <div class="card">
+        <h2 id="totalApps">0</h2>
+        <p>Total Apps</p>
+    </div>
+
+    <div class="card">
+        <h2 id="passCount">0</h2>
+        <p>PASS</p>
+    </div>
+
+    <div class="card">
+        <h2 id="reviewCount">0</h2>
+        <p>REVIEW</p>
+    </div>
+
+    <div class="card">
+        <h2 id="failCount">0</h2>
+        <p>FAIL</p>
+    </div>
+
+    <div class="card">
+        <h2 id="buildableCount">0</h2>
+        <p>Buildable</p>
+    </div>
+
+</div>
+
+<div class="charts-grid">
+
+    <div class="chart-card">
+
+        <h2>Verification Summary</h2>
+
+        <canvas id="verificationChart"></canvas>
+
+    </div>
+
+    
+
+    <div class="chart-card">
+
+        <h2>Authentication Methods</h2>
+
+        <canvas id="authChart"></canvas>
+
+    </div>
+
+    <div class="chart-card">
+
+        <h2>API Types</h2>
+
+        <canvas id="apiChart"></canvas>
+
+    </div>
+
+    <div class="chart-card">
+
+        <h2>Self Serve vs Gated</h2>
+
+        <canvas id="serveChart"></canvas>
+
+    </div>
+
+</div>
+
+<div class="insights-card">
+
+    <h2>📊 Dashboard Insights</h2>
+
+    <div id="insights"></div>
+
+</div>
+
+<div class="table-section">
+
+    <div class="table-header">
+
+    <h2>Applications</h2>
+
+    <button id="exportCSV">
+
+        📥 Export CSV
+
+    </button>
+
+     <button id="exportPDF">
+
+        📄 Export PDF
+
+    </button>
+
+</div>
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Search applications..."
+    >
+
+    <div class="filter-buttons">
+
+    <button class="filter-btn active" data-status="ALL">
+        All
+    </button>
+
+    <button class="filter-btn" data-status="PASS">
+        PASS
+    </button>
+
+    <button class="filter-btn" data-status="REVIEW">
+        REVIEW
+    </button>
+
+    <button class="filter-btn" data-status="FAIL">
+        FAIL
+    </button>
+
+</div>
+
+    <table id="appsTable">
+
+        <thead>
+
+            <tr>
+
+                <th>Application</th>
+
+                <th>Status</th>
+
+                <th>Confidence</th>
+
+                <th>Notes</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="tableBody">
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</main>
+
+</div>
+<script src="script.js"></script>
+</body>
+
+</html>

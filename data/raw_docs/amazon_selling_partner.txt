@@ -1,0 +1,172 @@
+Connecting to the Selling Partner API
+Before your application can connect to the Selling Partner API, you must register it and it must be authorized by a selling partner. See
+Registering your application
+and
+Authorizing Selling Partner API applications
+.
+These instructions show you the steps for making a call to the Selling Partner API. For help with constructing a Selling Partner API URI and adding headers to it, see
+Generating a Java client library
+. For a more complete solution that includes code for exchanging LWA tokens and authentication, see
+Generating a Java SDK with LWA token exchange
+and authentication
+.
+Step 1. Request a Login with Amazon access token
+A Login with Amazon (LWA) access token authorizes your application to take certain actions on behalf of a selling partner. An LWA access token expires one hour after it is issued.
+Note about restricted operations.
+An LWA access token must be included in calls to all operations
+except
+restricted operations, which return Personally Identifiable Information (PII). When calling restricted operations, instead of including an LWA access token, you include a Restricted Access Token (RDT). For information about getting RDTs and calling restricted operations, see the
+Tokens API Use Case Guide
+.
+To request an LWA access token, make a secure HTTP POST to the LWA authentication server (
+https://api.amazon.com/auth/o2/token
+) with the following parameters:
+Name
+Description
+Required
+grant_type
+The type of access grant requested. Values:
+refresh_token
+. Use this for calling operations that require authorization from a selling partner. All operations that are not
+grantless operations
+require authorization from a selling partner. When specifying this value, include the
+refresh_token
+parameter.
+client_credentials
+. Use this for calling
+grantless operations
+. When specifying this value, include the
+scope
+parameter.
+Yes
+refresh_token
+The LWA refresh token. Get this value when the selling partner authorizes your application. For more information, see
+Authorizing Selling Partner API applications
+.
+No. Include refresh_token for calling operations that require authorization from a selling partner. If you include refresh_token, do not include scope.
+scope
+The scope of the LWA authorization grant. Values:
+sellingpartnerapi::notifications
+. For the Notifications API.
+sellingpartnerapi::migration
+. For the Authorization API.
+No. Include scope for calling a
+grantless operation
+. If you include scope, do not include refresh_token.
+client_id
+Get this value when you register your application. See
+Viewing your developer information
+.
+Yes
+client_secret
+Get this value when you register your application. See
+Viewing your developer information
+.
+Yes
+Example for calling an operation that requires selling partner authorization:
+HTTP
+POST /auth/o2/token HTTP/l.l
+Host: api.amazon.com
+Content-Type: application/x-www-form-urlencoded;charset=UTF-8
+grant_type=refresh_token
+&refresh_token=Aztr|...
+&client_id=foodev
+&client_secret=Y76SDl2F
+Example for calling a grantless operation:
+HTTP
+POST /auth/o2/token HTTP/l.l
+Host: api.amazon.com
+Content-Type: application/x-www-form-urlencoded;charset=UTF-8
+grant_type=client_credentials
+&scope=sellingpartnerapi::notifications
+&client_id=foodev
+&client_secret=Y76SDl2F
+Tip:
+To avoid getting an untrusted certificate authority (CA) error when calling the LWA authorization server, be sure to update your trust store so that your application trusts the LWA authorization server.
+Response
+A successful response includes the following values.
+Name
+Description
+access_token
+The LWA access token. Maximum size: 2048 bytes.
+token_type
+The type of token returned. Must be
+bearer
+.
+expires_in
+The number of seconds before the LWA access token becomes invalid.
+refresh_token
+The LWA refresh token that you submitted in the request. Maximum size: 2048 bytes.
+HTTP
+HTTP/l.l 200 OK
+Content-Type: application/json;charset UTF-8
+Cache-Control: no-store
+Pragma:no-cache
+{
+"access_token":"Atza|IQEBLjAsAhRmHjNgHpi0U-Dme37rR6CuUpSREXAMPLE",
+"token_type":"bearer",
+"expires_in":3600,
+"refresh_token":"Atzr|IQEBLzAtAhRPpMJxdwVz2Nn6f2y-tpJX2DeXEXAMPLE"
+}
+For more information, visit the
+Authorization Code Grant
+page in the Login with Amazon documentation.
+Step 2. Construct a Selling Partner API URI
+Here are the components of a Selling Partner API URI.
+Name
+Description
+Example
+HTTP method
+The HTTP method.
+GET
+Endpoint
+A
+Selling Partner API endpoint
+.
+https://sellingpartnerapi-na.amazon.com
+Path
+The Selling Partner API section/version. number of the section/resource.
+/fba/inbound/v0/shipments/{shipmentId}/preorder/confirm
+Query string
+The query parameters.
+?marketplace=ATVPDKIKX0DER
+Path parameter
+The path parameters.
+shipmentId1
+For example:
+HTTP
+PUT https://sellingpartnerapi-na.amazon.com/fba/inbound/v0/shipments/shipmentId1/preorder/confirm?MarketplaceId=ATVPDKIKX0DER&NeedByDate=2020-10-10
+Step 3. Add headers to the URI
+Add headers to the URI that you constructed in
+Step 2. Construct a Selling Partner API URI
+. Here are the HTTP headers that you include in requests to the Selling Partner API:
+Request headers
+Name
+Description
+host
+The marketplace endpoint. See
+Selling Partner API endpoints
+.
+x-amz-access-token
+The LWA access token. See
+Step 1. Request a Login with Amazon access token
+.
+Note about restricted operations.
+If you are calling a restricted operation, pass in a Restricted Data Token (RDT) here instead of an LWA access token. For information about getting RDTs and calling restricted operations, see the
+Tokens API Use Case Guide
+in the Tokens API Use Case Guide.
+x-amz-date
+The date and time of your request.
+user-agent
+Your application name and version number, platform, and programming language. These help Amazon diagnose and fix problems you might encounter with the service. See
+Include a User-Agent header in all
+requests
+.
+Here is an example of a request to the Selling Partner API with URI and headers but no signing information:
+HTTP
+PUT /fba/inbound/v0/shipments/shipmentId1/preorder/confirm?MarketplaceId=ATVPDKIKX0DER&NeedByDate=2020-10-10 HTTP/1.1
+host: sellingpartnerapi-na.amazon.com
+user-agent: My Selling Tool/2.0 (Language=Java/1.8.0.221;
+Platform=Windows/10)
+x-amz-access-token=Atza|IQEBLjAsAhRmHjNgHpi0U-Dme37rR6CuUpSREXAMPLE
+x-amz-date: 20190430T123600Z

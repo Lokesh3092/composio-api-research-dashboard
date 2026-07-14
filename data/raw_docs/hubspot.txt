@@ -1,0 +1,182 @@
+Authentication overview - HubSpot docs
+Documentation Index
+Fetch the complete documentation index at:
+/docs/llms.txt
+Use this file to discover all available pages before exploring further.
+Skip to main content
+While building apps on the developer platform, you can configure authentication based on how you plan to install your app. HubSpot also provides local authentication tooling via the HubSpot CLI.
+​
+App authentication
+There are two authentication types available based on how you plan to distribute your app: OAuth is required for multiple accounts, while static auth access tokens are used for installing in a single account at a time.
+​
+OAuth
+If you plan to distribute your app to multiple accounts (either through listing on the HubSpot Marketplace or by managing specific authorized accounts), your app must be built using OAuth authentication. You’ll need to set up and host an OAuth backend service (e.g., hosted as a Docker instance using a cloud service provider) to initiate the OAuth process and manage token data for users installing your app in their account.
+HubSpot provides a Node.js quickstart guide
+here
+, which includes code you can run in a Docker instance with full OAuth support. Authentication configuration details for your app are available on the app details page in the
+developer overview
+of your HubSpot account.
+Once you’ve set up an OAuth backend, you can make API requests using the OAuth access token that corresponds to a user who installed your app. This access token is provided using the
+Bearer
+HTTP authorization header. For example, if you wanted to retrieve contacts for the account with an access token of
+00000000-aaaa-xxx-yyyy-zzzzzzzzzzzz
+, your request would resemble the following:
+curl
+--request
+GET
+\
+--header
+"Authorization: Bearer 00000000-aaaa-xxx-yyyy-zzzzzzzzzzzz"
+\
+--url
+"https://api.hubapi.com/crm/objects/2026-03/contacts?limit=10&archived=false"
+Configure your app to use OAuth by setting the
+type
+subproperty within the
+auth
+field of your app’s
+app-hsmeta.json
+config to
+oauth
+. You’ll also need to set the
+distribution
+property to
+marketplace
+or
+private
+based on how you plan to distribute your app:
+marketplace
+: used if you want the app to be eligible for listing on the HubSpot Marketplace.
+private
+: used if you only want to install your app in a specific set of allowlisted accounts. If you choose this option, you can install your app in a maximum of
+10
+accounts at a time.
+Learn more in the
+app configuration guide
+.
+​
+Static auth
+If you want to limit distribution of your app to a single authorized account, you’ll use a static auth access token. This token can be found in your
+app settings
+. An example request is provided below using a placeholder static auth access token.
+curl
+--request
+GET
+\
+--header
+"Authorization: Bearer ***-***-*********-****-****-****-************"
+\
+--url
+"https://api.hubapi.com/crm/objects/2026-03/contacts?limit=10&archived=false"
+Configure your app to use static auth by setting the
+type
+subproperty (within the
+auth
+field) in your app’s
+app-hsmeta.json
+config to
+static
+, and set the
+distribution
+field to
+private
+.
+Learn more in the
+app configuration guide
+.
+​
+Developer API keys
+Some app features and settings require a developer API key, which is available in the developer overview of your HubSpot account.
+If a feature or endpoint requires a developer API key, it’ll be documented in the associated guide or reference article. You’ll provide the key value in the
+hapikey
+query parameter, usually with the
+appId
+query parameter which corresponds to the app you’re making changes to. For example, the
+cURL
+snippet below provides an example of using the
+custom channel registration
+endpoint:
+curl
+--request
+POST
+\
+--url
+"https://api.hubapi.com/conversations/custom-channels/2026-03?hapikey={YOUR_DEVELOPER_API_KEY}&appId={appId}"
+​
+Client credentials
+Similar to HubSpot developer API keys, HubSpot uses client credential tokens to take an action on behalf of your app. These tokens are OAuth 2.0 tokens with short-term expiry windows that must be refreshed after a certain amount of time.
+Unlike the OAuth tokens used for app authentication, client credential tokens aren’t used to act on behalf of users who install your app. Instead, they’re used to manage your app’s global configuration for specific features.
+Currently, the only feature using client credential tokens is the
+webhooks journal API
+. For example, to generate a client credentials token with all available webhook journal and management permissions, you’d make the following API call:
+curl
+--location
+'https://api.hubapi.com/oauth/2026-03/token'
+\
+--header
+'Content-Type: application/x-www-form-urlencoded'
+\
+--data-urlencode
+'grant_type=client_credentials'
+\
+--data-urlencode
+'client_id=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX'
+\
+--data-urlencode
+'client_secret=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX'
+\
+--data-urlencode
+'scope=developer.webhooks_journal.read developer.webhooks_journal.subscriptions.read developer.webhooks_journal.subscriptions.write developer.webhooks_journal.snapshots.read developer.webhooks_journal.snapshots.write'
+​
+Scopes
+Based on the HubSpot data and functionality that your app will require access to, you’ll provide a list of scopes in your app’s
+app-hsmeta.json
+authentication config. For example, if your app required access to create contacts, you’d need to include the
+crm.objects.contacts.write
+.
+Learn more about
+scopes
+.
+​
+Local authentication
+While you develop your app locally using the HubSpot CLI, you can use the
+hs accounts auth
+command. If you’re configuring local authentication for the first time, you can also use the
+hs init
+command. After authenticating, a
+personal access key
+will be associated with your account that will be used to authenticate CLI commands.
+Learn more about
+installing the HubSpot CLI
+. A full list of CLI commands is provided
+here
+.
+​
+Client secret rotation
+A client secret is a confidential value specific to your app, which is used for managing
+OAuth tokens
+, validating
+requests from HubSpot
+, and generating a
+client credentials token
+.
+If this secret is compromised (e.g., you mistakenly committed the secret to a git repository), you can rotate the secret to ensure the old one is invalidated and cannot be used.
+Client secret rotation is supported for
+legacy public apps
+, project-based apps on the
+developer platform
+, and
+MCP auth apps
+.
+Learn how to rotate a
+client secret
+in a project-based app.
+Last modified on
+June 9, 2026
+Was this page helpful?
+Yes
+No
+⌘
+I
+Assistant
+Responses are generated using AI and may contain mistakes.
